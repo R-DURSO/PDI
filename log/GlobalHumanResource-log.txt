@@ -1,0 +1,4 @@
+INFO main process.connexion.Database_Connection - Start connection to mysql-globalresourcehuman.alwaysdata.net
+ERROR main process.Mediator - Database connection on MYSQL is failed
+INFO main process.connexion.Database_Connection - Start connection to postgresql-globalresourcehuman.alwaysdata.net:5432/globalresourcehuman_data_us
+ERROR main process.Mediator - Database connection on POSTGRESQL is failed

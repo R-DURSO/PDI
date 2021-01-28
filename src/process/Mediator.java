@@ -1,6 +1,6 @@
 package process;
 
-import data.Connection;
+import data.BDData;
 import logger.LoggerUtility;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -15,15 +15,15 @@ public class Mediator {
 
 	public Mediator() {
 		try {
-			dataBase_MSQL = new Database_Connection(Connection.DATABASE_URL_MYSQL, Connection.DATABASE_USER_MYSQL,
-					Connection.DATABASE_PASSEWORD_MYSQL, Connection.DATABASE_MYSQL);
+			dataBase_MSQL = new Database_Connection(BDData.DATABASE_URL_MYSQL, BDData.DATABASE_USER_MYSQL,
+					BDData.DATABASE_PASSEWORD_MYSQL, BDData.DATABASE_MYSQL);
 		} catch (SQLException e) {
 			logger.error("Database connection on MYSQL is failed");
 			
 		}
 		try {		
-			dataBase_POSTGREY = new Database_Connection(Connection.DATABASE_URL_POSRTGRESQL, Connection.DATABASE_USER_POSRTGRESQL,
-				Connection.DATABASE_PASSEWORD_POSRTGRESQL, Connection.DATABASE_POSRTGRESQL);
+			dataBase_POSTGREY = new Database_Connection(BDData.DATABASE_URL_POSRTGRESQL, BDData.DATABASE_USER_POSRTGRESQL,
+				BDData.DATABASE_PASSEWORD_POSRTGRESQL, BDData.DATABASE_POSRTGRESQL);
 			
 		} catch (SQLException e) {
 			logger.error("Database connection on POSTGRESQL is failed");

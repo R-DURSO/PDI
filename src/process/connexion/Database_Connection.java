@@ -5,7 +5,7 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import data.BDData;
+import data.DataForRecuperation;
 import org.apache.log4j.Logger;
 
 import logger.LoggerUtility;
@@ -26,7 +26,7 @@ public class Database_Connection {
 	 * @throws SQLException
 	 */
 	public Database_Connection(String url, String user, String password,String database) throws SQLException {
-		if(database.contains(BDData.DATABASE_POSRTGRESQL) ) {
+		if(database.contains(DataForRecuperation.DATABASE_POSRTGRESQL) ) {
 		logger.info("Start connection to " + url);
 		connection = DriverManager.getConnection("jdbc:postgresql://" + url, user, password);
 		//if we are here, we are connected
@@ -34,7 +34,7 @@ public class Database_Connection {
 		}
 		else {
 			logger.info("Start connection to " + url);
-			connection = DriverManager.getConnection("jdbc:mysql://sql7.freemysqlhosting.net:3306/sql7390707" , "sql7390707", "rGi5Qa3WGu");
+			connection = DriverManager.getConnection("jdbc:mysql://" +url , user, password);
 			//if we are here, we are connected
 			logger.info("Database connected !");
 		}

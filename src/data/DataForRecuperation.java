@@ -1,6 +1,6 @@
 package data;
 
-public class BDData {
+public class DataForRecuperation {
 
 	// static variable for connection on mysql database
 	public static String DATABASE_URL_MYSQL = "mysql-globalresourcehuman.alwaysdata.net:3306/globalresourcehuman_data_ch";
@@ -13,5 +13,9 @@ public class BDData {
 	public static String DATABASE_USER_POSRTGRESQL = "globalresourcehuman_admin";
 	public static String DATABASE_PASSEWORD_POSRTGRESQL = "ResourceHuman123456*";
 	public static String DATABASE_POSRTGRESQL = "POSTGRESQL";
-
+	
+	// for csv file
+	public static String CSV_FR ="src/CSV/france.csv";
+	public static String CSV_ALL ="";
+	public static String CSV_ALL2 ="";
 }

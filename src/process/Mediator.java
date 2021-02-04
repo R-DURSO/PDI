@@ -19,7 +19,7 @@ public class Mediator {
 					BDData.DATABASE_PASSEWORD_MYSQL, BDData.DATABASE_MYSQL);
 		} catch (SQLException e) {
 			logger.error("Database connection on MYSQL is failed");
-			
+			System.out.println(e.toString());
 		}
 		try {		
 			dataBase_POSTGREY = new Database_Connection(BDData.DATABASE_URL_POSRTGRESQL, BDData.DATABASE_USER_POSRTGRESQL,

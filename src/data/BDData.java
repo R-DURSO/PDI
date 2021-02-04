@@ -4,7 +4,7 @@ public class BDData {
 
 	// static variable for connection on mysql database
 	public static String DATABASE_URL_MYSQL = "mysql-globalresourcehuman.alwaysdata.net:3306/globalresourcehuman_data_ch";
-	public static String DATABASE_USER_MYSQL = "225252";
+	public static String DATABASE_USER_MYSQL = "225252_admin";
 	public static String DATABASE_PASSEWORD_MYSQL = "ResourceHuman123456*";
 	public static String DATABASE_MYSQL = "MYSQL";
 

@@ -34,7 +34,7 @@ public class Database_Connection {
 		}
 		else {
 			logger.info("Start connection to " + url);
-			connection = DriverManager.getConnection("jdbc:mysql://" + url, user, password);
+			connection = DriverManager.getConnection("jdbc:mysql://sql7.freemysqlhosting.net:3306/sql7390707" , "sql7390707", "rGi5Qa3WGu");
 			//if we are here, we are connected
 			logger.info("Database connected !");
 		}

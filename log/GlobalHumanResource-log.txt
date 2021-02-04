@@ -2,3 +2,120 @@ INFO main process.connexion.Database_Connection - Start connection to mysql-glob
 ERROR main process.Mediator - Database connection on MYSQL is failed
 INFO main process.connexion.Database_Connection - Start connection to postgresql-globalresourcehuman.alwaysdata.net:5432/globalresourcehuman_data_us
 ERROR main process.Mediator - Database connection on POSTGRESQL is failed
+INFO main process.connexion.Database_Connection - Start connection to mysql-globalresourcehuman.alwaysdata.net
+ERROR main process.Mediator - Database connection on MYSQL is failed
+INFO main process.connexion.Database_Connection - Start connection to postgresql-globalresourcehuman.alwaysdata.net:5432/globalresourcehuman_data_us
+INFO main process.connexion.Database_Connection - Database connected !
+INFO main process.connexion.Database_Connection - Start connection to mysql-globalresourcehuman.alwaysdata.net/globalresourcehuman_data_ch
+ERROR main process.Mediator - Database connection on MYSQL is failed
+INFO main process.connexion.Database_Connection - Start connection to postgresql-globalresourcehuman.alwaysdata.net:5432/globalresourcehuman_data_us
+INFO main process.connexion.Database_Connection - Database connected !
+INFO main process.connexion.Database_Connection - Start connection to mysql-globalresourcehuman.alwaysdata.net:3306/globalresourcehuman_data_ch
+ERROR main process.Mediator - Database connection on MYSQL is failed
+INFO main process.connexion.Database_Connection - Start connection to postgresql-globalresourcehuman.alwaysdata.net:5432/globalresourcehuman_data_us
+INFO main process.connexion.Database_Connection - Database connected !
+INFO main process.connexion.Database_Connection - Start connection to postgresql-globalresourcehuman.alwaysdata.net:3306/globalresourcehuman_data_ch
+ERROR main process.Mediator - Database connection on MYSQL is failed
+INFO main process.connexion.Database_Connection - Start connection to postgresql-globalresourcehuman.alwaysdata.net:5432/globalresourcehuman_data_us
+INFO main process.connexion.Database_Connection - Database connected !
+INFO main process.connexion.Database_Connection - Start connection to mysql-globalresourcehuman.alwaysdata.net:3306/globalresourcehuman_data_ch
+ERROR main process.Mediator - Database connection on MYSQL is failed
+INFO main process.connexion.Database_Connection - Start connection to postgresql-globalresourcehuman.alwaysdata.net:5432/globalresourcehuman_data_us
+INFO main process.connexion.Database_Connection - Database connected !
+INFO main process.connexion.Database_Connection - Start connection to mysql-globalresourcehuman.alwaysdata.net:3306/globalresourcehuman_data_ch
+ERROR main process.Mediator - Database connection on MYSQL is failed
+INFO main process.connexion.Database_Connection - Start connection to postgresql-globalresourcehuman.alwaysdata.net:5432/globalresourcehuman_data_us
+INFO main process.connexion.Database_Connection - Database connected !
+INFO main process.connexion.Database_Connection - Start connection to mysql-globalresourcehuman.alwaysdata.net:3306/globalresourcehuman_data_ch
+ERROR main process.Mediator - Database connection on MYSQL is failed
+INFO main process.connexion.Database_Connection - Start connection to postgresql-globalresourcehuman.alwaysdata.net:5432/globalresourcehuman_data_us
+INFO main process.connexion.Database_Connection - Database connected !
+INFO main process.connexion.Database_Connection - Start connection to mysql-globalresourcehuman.alwaysdata.net:3306/globalresourcehuman_data_ch
+ERROR main process.Mediator - Database connection on MYSQL is failed
+INFO main process.connexion.Database_Connection - Start connection to postgresql-globalresourcehuman.alwaysdata.net:5432/globalresourcehuman_data_us
+INFO main process.connexion.Database_Connection - Database connected !
+INFO main process.connexion.Database_Connection - Start connection to mysql-globalresourcehuman.alwaysdata.net:3306
+ERROR main process.Mediator - Database connection on MYSQL is failed
+INFO main process.connexion.Database_Connection - Start connection to postgresql-globalresourcehuman.alwaysdata.net:5432/globalresourcehuman_data_us
+INFO main process.connexion.Database_Connection - Database connected !
+INFO main process.connexion.Database_Connection - Start connection to mysql-globalresourcehuman.alwaysdata.net:3306/globalresourcehuman_data_ch
+ERROR main process.Mediator - Database connection on MYSQL is failed
+INFO main process.connexion.Database_Connection - Start connection to postgresql-globalresourcehuman.alwaysdata.net:5432/globalresourcehuman_data_us
+INFO main process.connexion.Database_Connection - Database connected !
+INFO main process.connexion.Database_Connection - Start connection to mysql-globalresourcehuman.alwaysdata.net:3306/globalresourcehuman_data_ch
+ERROR main process.Mediator - Database connection on MYSQL is failed
+INFO main process.connexion.Database_Connection - Start connection to postgresql-globalresourcehuman.alwaysdata.net:5432/globalresourcehuman_data_us
+INFO main process.connexion.Database_Connection - Database connected !
+INFO main process.connexion.Database_Connection - Start connection to mysql-globalresourcehuman.alwaysdata.net
+ERROR main process.Mediator - Database connection on MYSQL is failed
+INFO main process.connexion.Database_Connection - Start connection to postgresql-globalresourcehuman.alwaysdata.net:5432/globalresourcehuman_data_us
+INFO main process.connexion.Database_Connection - Database connected !
+INFO main process.connexion.Database_Connection - Start connection to mysql-globalresourcehuman.alwaysdata.net:3306/globalresourcehuman_data_ch
+ERROR main process.Mediator - Database connection on MYSQL is failed
+INFO main process.connexion.Database_Connection - Start connection to postgresql-globalresourcehuman.alwaysdata.net:5432/globalresourcehuman_data_us
+INFO main process.connexion.Database_Connection - Database connected !
+INFO main process.connexion.Database_Connection - Start connection to mysql-globalresourcehuman.alwaysdata.net/globalresourcehuman_data_ch
+ERROR main process.Mediator - Database connection on MYSQL is failed
+INFO main process.connexion.Database_Connection - Start connection to postgresql-globalresourcehuman.alwaysdata.net:5432/globalresourcehuman_data_us
+INFO main process.connexion.Database_Connection - Database connected !
+INFO main process.connexion.Database_Connection - Start connection to mysql-globalresourcehuman.alwaysdata.net:3306/globalresourcehuman_data_ch
+ERROR main process.Mediator - Database connection on MYSQL is failed
+INFO main process.connexion.Database_Connection - Start connection to postgresql-globalresourcehuman.alwaysdata.net:5432/globalresourcehuman_data_us
+INFO main process.connexion.Database_Connection - Database connected !
+INFO main process.connexion.Database_Connection - Start connection to mysql-globalresourcehuman.alwaysdata.net:3306/globalresourcehuman_data_ch
+ERROR main process.Mediator - Database connection on MYSQL is failed
+INFO main process.connexion.Database_Connection - Start connection to postgresql-globalresourcehuman.alwaysdata.net:5432/globalresourcehuman_data_us
+INFO main process.connexion.Database_Connection - Database connected !
+INFO main process.connexion.Database_Connection - Start connection to mysql-globalresourcehuman.alwaysdata.net:3306
+ERROR main process.Mediator - Database connection on MYSQL is failed
+INFO main process.connexion.Database_Connection - Start connection to postgresql-globalresourcehuman.alwaysdata.net:5432/globalresourcehuman_data_us
+INFO main process.connexion.Database_Connection - Database connected !
+INFO main process.connexion.Database_Connection - Start connection to  sql7.freemysqlhosting.net:3306/sql7390707
+ERROR main process.Mediator - Database connection on MYSQL is failed
+INFO main process.connexion.Database_Connection - Start connection to postgresql-globalresourcehuman.alwaysdata.net:5432/globalresourcehuman_data_us
+INFO main process.connexion.Database_Connection - Database connected !
+INFO main process.connexion.Database_Connection - Start connection to  sql7.freemysqlhosting.net:3306/sql7390707
+ERROR main process.Mediator - Database connection on MYSQL is failed
+INFO main process.connexion.Database_Connection - Start connection to postgresql-globalresourcehuman.alwaysdata.net:5432/globalresourcehuman_data_us
+INFO main process.connexion.Database_Connection - Database connected !
+INFO main process.connexion.Database_Connection - Start connection to  sql7.freemysqlhosting.net:3306/sql7390707
+ERROR main process.Mediator - Database connection on MYSQL is failed
+INFO main process.connexion.Database_Connection - Start connection to postgresql-globalresourcehuman.alwaysdata.net:5432/globalresourcehuman_data_us
+INFO main process.connexion.Database_Connection - Database connected !
+INFO main process.connexion.Database_Connection - Start connection to  sql7.freemysqlhosting.net:3306/sql7390707
+ERROR main process.Mediator - Database connection on MYSQL is failed
+INFO main process.connexion.Database_Connection - Start connection to postgresql-globalresourcehuman.alwaysdata.net:5432/globalresourcehuman_data_us
+INFO main process.connexion.Database_Connection - Database connected !
+INFO main process.connexion.Database_Connection - Start connection to  sql7.freemysqlhosting.net:3306/sql7390707
+ERROR main process.Mediator - Database connection on MYSQL is failed
+INFO main process.connexion.Database_Connection - Start connection to postgresql-globalresourcehuman.alwaysdata.net:5432/globalresourcehuman_data_us
+INFO main process.connexion.Database_Connection - Database connected !
+INFO main process.connexion.Database_Connection - Start connection to  sql7.freemysqlhosting.net:3306/sql7390707
+ERROR main process.Mediator - Database connection on MYSQL is failed
+INFO main process.connexion.Database_Connection - Start connection to postgresql-globalresourcehuman.alwaysdata.net:5432/globalresourcehuman_data_us
+INFO main process.connexion.Database_Connection - Database connected !
+INFO main process.connexion.Database_Connection - Start connection to  sql7.freemysqlhosting.net:3306/sql7390707
+ERROR main process.Mediator - Database connection on MYSQL is failed
+INFO main process.connexion.Database_Connection - Start connection to postgresql-globalresourcehuman.alwaysdata.net:5432/globalresourcehuman_data_us
+INFO main process.connexion.Database_Connection - Database connected !
+INFO main process.connexion.Database_Connection - Start connection to  sql7.freemysqlhosting.net:3306/sql7390707
+ERROR main process.Mediator - Database connection on MYSQL is failed
+ERROR main process.Mediator - Database connection on POSTGRESQL is failed
+INFO main process.connexion.Database_Connection - Start connection to postgresql-globalresourcehuman.alwaysdata.net:5432/globalresourcehuman_data_us
+INFO main process.connexion.Database_Connection - Database connected !
+INFO main process.connexion.Database_Connection - Start connection to  sql7.freemysqlhosting.net:3306/sql7390707
+ERROR main process.Mediator - Database connection on MYSQL is failed
+INFO main process.connexion.Database_Connection - Start connection to postgresql-globalresourcehuman.alwaysdata.net:5432/globalresourcehuman_data_us
+INFO main process.connexion.Database_Connection - Database connected !
+INFO main process.connexion.Database_Connection - Start connection to  sql7.freemysqlhosting.net:3306/sql7390707
+INFO main process.connexion.Database_Connection - Database connected !
+INFO main process.connexion.Database_Connection - Start connection to postgresql-globalresourcehuman.alwaysdata.net:5432/globalresourcehuman_data_us
+INFO main process.connexion.Database_Connection - Database connected !
+INFO main process.connexion.Database_Connection - Start connection to mysql-globalresourcehuman.alwaysdata.net:3306/globalresourcehuman_data_ch
+INFO main process.connexion.Database_Connection - Database connected !
+INFO main process.connexion.Database_Connection - Start connection to postgresql-globalresourcehuman.alwaysdata.net:5432/globalresourcehuman_data_us
+INFO main process.connexion.Database_Connection - Database connected !
+INFO main process.connexion.Database_Connection - Start connection to mysql-globalresourcehuman.alwaysdata.net:3306/globalresourcehuman_data_ch
+INFO main process.connexion.Database_Connection - Database connected !
+INFO main process.connexion.Database_Connection - Start connection to postgresql-globalresourcehuman.alwaysdata.net:5432/globalresourcehuman_data_us
+INFO main process.connexion.Database_Connection - Database connected !

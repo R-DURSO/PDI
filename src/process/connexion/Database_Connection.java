@@ -11,7 +11,7 @@ import org.apache.log4j.Logger;
 import logger.LoggerUtility;
 
 /**
- * @author rdurs
+ * @author Raphaël D'URSO 
  *
  */
 public class Database_Connection {
@@ -42,7 +42,7 @@ public class Database_Connection {
 	/**
 	 * this function will be used for take some data from database 
 	 * @param query
-	 * @return
+	 * @return a Resultet will be use for take information about woker or create stats with that 
 	 * @throws SQLException
 	 */
 	public ResultSet SelectQuery(String query) throws SQLException {

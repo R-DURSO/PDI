@@ -16,6 +16,6 @@ public class DataForRecuperation {
 	
 	// for csv file
 	public static String CSV_FR ="src/CSV/france.csv";
-	public static String CSV_ALL ="";
-	public static String CSV_ALL2 ="";
+	public static String CSV_ALL ="src/CSV/germany_1.csv";
+	public static String CSV_ALL2 ="src/CSV/germany_2.csv";
 }

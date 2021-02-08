@@ -13,7 +13,11 @@ import java.util.List;
 import org.apache.log4j.Logger;
 
 import logger.LoggerUtility;
-
+/**
+ * 
+ * @author Raphaël D'URSO
+ *
+ */
 public class CsvRecuperation {
 	private static Logger logger = LoggerUtility.getLogger(CsvRecuperation.class, LoggerUtility.LOG_PREFERENCE);
 	private List<String> lines = new ArrayList<String>();
@@ -26,7 +30,7 @@ public class CsvRecuperation {
 			File csv = new File(PathName);
 			
 			if (csv.exists()) {
-				logger.info(csv +" connected ");
+				logger.info(csv +" Find ");
 				FileReader rdcsv = new FileReader(csv);
 				BufferedReader brcsv = new BufferedReader(rdcsv);
 				for (String line = brcsv.readLine(); line != null; line = brcsv.readLine()) {

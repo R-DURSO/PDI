@@ -52,10 +52,10 @@ public class Mediator {
 		}
 		csv = new CsvRecuperation(DataForRecuperation.CSV_FR);
 		csv_fr = csv.SepareLine();
-/*		for (List<String> csList : csv_fr) {
-			System.out.println(csList.toString());
+		for (List<String> csList : csv_fr) {
+			System.out.println(csList.get(0));
 		}
-		*/
+		
 		csv = new CsvRecuperation(DataForRecuperation.CSV_ALL);
 		csv_ALL1= csv.SepareLine();
 		csv = new CsvRecuperation(DataForRecuperation.CSV_ALL2);

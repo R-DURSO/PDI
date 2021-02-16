@@ -9,6 +9,7 @@ public class BDconnection {
 		Mediator test = new Mediator();
 		test.MonthSalary();
 		test.SalaryNote();
+		test.LeaveDay();
 	}
 
 }

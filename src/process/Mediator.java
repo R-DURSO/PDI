@@ -80,7 +80,21 @@ public class Mediator {
 		// il faut récuprer les données des csv 
 	}
 	/**
-	 * Use for have a List with name and note of all salary for different susccurale 
+	 * Use for saying how many freeday is taken succursale per succursale 
+	 */
+	public void LeaveDay() {
+		List<String> freeDayList = new ArrayList<String>();
+		freeDayList.addAll(stat.freeDayCSV(csv_ALL2, CSV_Information.GER_CSV));
+		freeDayList.addAll(stat.freeDayCSV(csv_fr, CSV_Information.fR_CSV));
+		// use for test will ne to clean after this 
+		System.out.println("\n Test freeday per succursale \n");
+		for(String test : freeDayList) {
+			System.out.println(test);
+		}
+
+	}
+	/**
+	 * Use for have a List with name and note of all salary for different succursale 
 	 */
 	public void SalaryNote() {
 		List<String> noteList = new ArrayList<String>();

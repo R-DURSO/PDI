@@ -125,4 +125,36 @@ public class StatBuilder {
 
 		return note;
 	}
+
+	public List<String> freeDayCSV(List<List<String>> information, String typeCsv) {
+		List<String> freeday = new ArrayList<String>();
+		int numberOfFreeday = 0;
+
+		if (typeCsv.equals(CSV_Information.fR_CSV)) {
+			for (List<String> list : information) {
+				try {
+					numberOfFreeday = +Integer.parseInt(list.get(CSV_Information.LEAVE_FRANCE));
+				} catch (Exception e) {
+					logger.error("error during recuperation of freeday's French succursale ");
+					// System.out.println(e.toString());
+				}
+
+			}
+			freeday.add("For French succursale  the number of freeday used is : " + numberOfFreeday);
+		} else {
+			for (List<String> list : information) {
+				try {
+
+					numberOfFreeday = +Integer.parseInt(list.get(CSV_Information.LEAVE_GER));
+				} catch (Exception e) {
+					logger.error("error during recuperation of freeday's German succursale ");
+					// System.out.println(e.toString());
+				}
+
+			}
+			freeday.add("For German succursale  the number of freeday used is : " + numberOfFreeday);
+		}
+		return freeday;
+
+	}
 }

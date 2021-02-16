@@ -1,9 +1,11 @@
 package process;
 
+import data.CSV_Information;
 import data.DataForRecuperation;
 import logger.LoggerUtility;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.log4j.Logger;
@@ -28,7 +30,7 @@ public class Mediator {
 	private ResultSet resultSetMYSQL;
 	private ResultSet resultSetPOSTGRESQL;
 	private String    whoRequest="";
-
+	private StatBuilder stat = new StatBuilder();
 	/**
 	 * Connect to the different loctalisation of data
 	 */
@@ -51,16 +53,17 @@ public class Mediator {
 
 		}
 		csv = new CsvRecuperation(DataForRecuperation.CSV_FR);
-		csv_fr = csv.SepareLine();
-		for (List<String> csList : csv_fr) {
-			System.out.println(csList.get(0));
-		}
+		csv_fr = csv.SepareLineFR();
+
 		
 		csv = new CsvRecuperation(DataForRecuperation.CSV_ALL);
-		csv_ALL1= csv.SepareLine();
+		csv_ALL1= csv.SepareLineGER();
 		csv = new CsvRecuperation(DataForRecuperation.CSV_ALL2);
-		csv_ALL2 = csv.SepareLine();
-
+		csv_ALL2 = csv.SepareLineGER();
+		// we supprime the first line is not a usable data
+		csv_ALL1.remove(0);
+		csv_ALL2.remove(0);
+		csv_fr.remove(0);
 	}
 	
 	/**
@@ -76,9 +79,36 @@ public class Mediator {
 		}
 		// il faut récuprer les données des csv 
 	}
-	
 	/**
-	 * this return is for printf the eecution
+	 * Use for have a List with name and note of all salary for different susccurale 
+	 */
+	public void SalaryNote() {
+		List<String> noteList = new ArrayList<String>();
+		noteList.addAll(stat.NoteEmployeCSV(csv_fr, null, CSV_Information.fR_CSV));
+		noteList.addAll(stat.NoteEmployeCSV(csv_ALL1, csv_ALL2, CSV_Information.GER_CSV));
+		
+		
+		//test need clean this after 
+		System.out.println("\n Test salary Note \n");
+		for(String test : noteList) {
+			System.out.println(test);
+		}
+	}
+	/**
+	 * Use for said the best month salary from all succurale 
+	 */
+	public void MonthSalary() {
+		List<String> noteList = new ArrayList<String>();
+		
+		noteList.addAll(stat.MonthEmployeCSV(csv_fr,null,CSV_Information.fR_CSV));
+		noteList.addAll(stat.MonthEmployeCSV(csv_ALL1, csv_ALL2, CSV_Information.GER_CSV));
+		// manque les méthode de cacule SQL
+		for(String test : noteList) {
+			System.out.println(test);
+		}
+	}
+	/**
+	 * this return is for printf the execution
 	 */
 	public String getWhoRequest() {
 		return whoRequest;

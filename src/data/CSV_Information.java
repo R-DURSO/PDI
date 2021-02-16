@@ -6,6 +6,10 @@ package data;
  *
  */
 public class CSV_Information {
+	// said if is fr or ger csv
+	public static String fR_CSV="Fr";
+	public static String GER_CSV="Ger";
+	
 	// for FR csv
 	public static int FAMILY_NAME_FRANCE = 0;
 	public static int FIRST_NAME_FRANCE = 1;
@@ -55,13 +59,14 @@ public class CSV_Information {
 	*/
 	public static int OVERTIME_GER = 1;
 	public static int BONUS_GER = 2;
-	public static int TAX_GER = 3;
-	public static int LEAVE_GER = 4;
-	public static int POSITION_GER = 5;
-	public static int DEPARTMENT_GER = 6;
-	public static int GROUP_GER = 7;
-	public static int ACHIEVEMENTS_GER = 8;
-	public static int BLAME_GER = 9;
-	public static int SOCIAL_BENEFITS_GER = 10;
+	public static int FEES_GER = 3;
+	public static int TAX_GER = 4;
+	public static int LEAVE_GER = 5;
+	public static int POSITION_GER = 6;
+	public static int DEPARTMENT_GER = 7;
+	public static int GROUP_GER = 8;
+	public static int ACHIEVEMENTS_GER = 9;
+	public static int BLAME_GER = 10;
+	public static int SOCIAL_BENEFITS_GER = 11;
 
 }

@@ -56,15 +56,40 @@ public class CsvRecuperation {
 	 * 
 	 * @return a list of information about employe on this csv
 	 */
-	public List<List<String>> SepareLine() {
+	public List<List<String>> SepareLineFR() {
 		List<List<String>> employeList = new ArrayList<List<String>>();
 		
-		for (int i = 0; i < lines.size(); i++) {
-			String[] info = lines.get(i).split(";");
+		for (int line = 0; line < lines.size(); line++) {
+			String[] info = lines.get(line).split(";");
 			List<String> employe = new ArrayList<String>();
-			for (int j = 0; j < info.length; j++) {
+			for (int word = 0; word < info.length; word++) {
 				try {
-					employe.add(info[j]);
+					employe.add(info[word]);
+				} catch (NullPointerException e) {
+					logger.error("Error during recuperation data on " + lines.toString());
+
+				}
+			}
+			employeList.add(employe);
+		}
+			//System.out.println(employe.toString());
+		return employeList;
+	}
+	/**
+	 * this method take the lines and separe all line and , for have information
+	 * ready to use
+	 * 
+	 * @return a list of information about employe on this csv
+	 */
+	public List<List<String>> SepareLineGER() {
+		List<List<String>> employeList = new ArrayList<List<String>>();
+		
+		for (int line = 0; line < lines.size(); line++) {
+			String[] info = lines.get(line).split(",");
+			List<String> employe = new ArrayList<String>();
+			for (int word = 0; word < info.length; word++) {
+				try {
+					employe.add(info[word]);
 				} catch (NullPointerException e) {
 					logger.error("Error during recuperation data on " + lines.toString());
 

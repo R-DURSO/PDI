@@ -23,8 +23,11 @@ public class DataForRecuperation {
 	public static String CSV_ALL2 ="src/CSV/germany_2.csv";
 }
 
+/*
 String ribccreq = " SELECT rib FROM CompteCourant WHERE idUtilisateur = ?" ;
 PreparedStatement ribreq =  conn.prepareStatement(ribccreq,ResultSet.TYPE_SCROLL_INSENSITIVE,
 	ResultSet.CONCUR_READ_ONLY,ResultSet.HOLD_CURSORS_OVER_COMMIT);
 ribreq.setInt(1, iduser);
 ResultSet rescc = ribreq.executeQuery();
+
+*/

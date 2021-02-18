@@ -2,6 +2,7 @@ package process;
 
 import data.CSV_Information;
 import data.DataForRecuperation;
+import data.SQLQuery;
 import logger.LoggerUtility;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -10,9 +11,11 @@ import java.util.List;
 
 import org.apache.log4j.Logger;
 
+import com.mysql.jdbc.PreparedStatement;
+import com.mysql.jdbc.ResultSetMetaData;
+
 import process.connexion.CsvRecuperation;
 import process.connexion.Database_Connection;
-
 
 /**
  * @author Raphaël D'URSO
@@ -29,8 +32,9 @@ public class Mediator {
 	private CsvRecuperation csv;
 	private ResultSet resultSetMYSQL;
 	private ResultSet resultSetPOSTGRESQL;
-	private String    whoRequest="";
+	private String whoRequest = "";
 	private StatBuilder stat = new StatBuilder();
+
 	/**
 	 * Connect to the different loctalisation of data
 	 */
@@ -55,9 +59,8 @@ public class Mediator {
 		csv = new CsvRecuperation(DataForRecuperation.CSV_FR);
 		csv_fr = csv.SepareLineFR();
 
-		
 		csv = new CsvRecuperation(DataForRecuperation.CSV_ALL);
-		csv_ALL1= csv.SepareLineGER();
+		csv_ALL1 = csv.SepareLineGER();
 		csv = new CsvRecuperation(DataForRecuperation.CSV_ALL2);
 		csv_ALL2 = csv.SepareLineGER();
 		// we supprime the first line is not a usable data
@@ -65,71 +68,64 @@ public class Mediator {
 		csv_ALL2.remove(0);
 		csv_fr.remove(0);
 	}
-	
+
 	/**
-	 * will be change values of 
+	 * will be change values of
 	 */
 	public void ResultOfEntrepris() {
-		try {
-			resultSetMYSQL=dataBase_MySQL.SelectQuery(data.SQLQuery.ORDER_DO_MYSQL);
-			resultSetPOSTGRESQL= dataBase_POSTGREY.SelectQuery(data.SQLQuery.ORDER_DO_POSRTGRESQL);
-		} catch (SQLException e) {
-			logger.error("error during  query : "+data.SQLQuery.ORDER_DO_MYSQL);
-			
-		}
-		// il faut récuprer les données des csv 
+
 	}
+
 	/**
-	 * Use for saying how many freeday is taken succursale per succursale 
+	 * Use for saying how many freeday is taken succursale per succursale
 	 */
 	public void LeaveDay() {
 		List<String> freeDayList = new ArrayList<String>();
+		freeDayList.add("For the leaveday we addition the number of leaveday by all employe on all succursale :");
 		freeDayList.addAll(stat.freeDayCSV(csv_ALL2, CSV_Information.GER_CSV));
 		freeDayList.addAll(stat.freeDayCSV(csv_fr, CSV_Information.fR_CSV));
-		// use for test will ne to clean after this 
-		System.out.println("\n Test freeday per succursale \n");
-		for(String test : freeDayList) {
+		// use for test will ne to clean after this
+
+		System.out.println("\n \n");
+		for (String test : freeDayList) {
 			System.out.println(test);
 		}
 
 	}
+
 	/**
-	 * Use for have a List with name and note of all salary for different succursale 
+	 * Use for have a List with name and note of all salary for different succursale
 	 */
 	public void SalaryNote() {
 		List<String> noteList = new ArrayList<String>();
+		noteList.add("For saying the note of all employe we  sub the archivmement with the blame");
 		noteList.addAll(stat.NoteEmployeCSV(csv_fr, null, CSV_Information.fR_CSV));
 		noteList.addAll(stat.NoteEmployeCSV(csv_ALL1, csv_ALL2, CSV_Information.GER_CSV));
-		
-		
-		//test need clean this after 
-		System.out.println("\n Test salary Note \n");
-		for(String test : noteList) {
+		// test need clean this after
+		System.out.println("\n \n");
+		for (String test : noteList) {
 			System.out.println(test);
 		}
 	}
+
 	/**
-	 * Use for said the best month salary from all succurale 
+	 * Use for said the best month salary from all succurale
 	 */
 	public void MonthSalary() {
+		System.out.println("\n\n\n");
 		List<String> noteList = new ArrayList<String>();
-		
-		noteList.addAll(stat.MonthEmployeCSV(csv_fr,null,CSV_Information.fR_CSV));
+		noteList.add(
+				"He have a best salary for all succursale  we calculate this with the subbition between archivement and blame ");
+		noteList.addAll(stat.MonthEmployeCSV(csv_fr, null, CSV_Information.fR_CSV));
 		noteList.addAll(stat.MonthEmployeCSV(csv_ALL1, csv_ALL2, CSV_Information.GER_CSV));
 		// manque les méthode de cacule SQL
-		for(String test : noteList) {
+		for (String test : noteList) {
 			System.out.println(test);
 		}
 	}
+
 	/**
-	 * this return is for printf the execution
-	 */
-	public String getWhoRequest() {
-		return whoRequest;
-	}
-	
-	/**
-	 * we clean the resultset and he  whoRequest 
+	 * we clean the resultset and he whoRequest
 	 */
 	public void clean() {
 		try {
@@ -139,6 +135,6 @@ public class Mediator {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
+
 	}
 }

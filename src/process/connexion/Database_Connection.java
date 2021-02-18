@@ -45,7 +45,7 @@ public class Database_Connection {
 	 * @return a Resultet will be use for take information about woker or create stats with that 
 	 * @throws SQLException
 	 */
-	public ResultSet SelectQuery(String query) throws SQLException {
+	public ResultSet Query(String query) throws SQLException {
 		PreparedStatement preparedStatement = connection.prepareStatement(query);
 		return preparedStatement.executeQuery();
 		

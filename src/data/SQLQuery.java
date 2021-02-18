@@ -13,7 +13,7 @@ public class SQLQuery {
 	public static String MONTH_EMPLOYEE_MYSQL = "SELECT name, f_name, MAX(achievements-blame) AS MaxPerf FROM Employee NATURAL JOIN Work";
 	public static String EXPENSIVE_EMPLOYEES_MYSQL = "SELECT employee_id, fees FROM Pay ORDER BY fees DESC LIMIT 5";
 	public static String FORMATION_UTILITY_MYSQL = "";
-	public static String RESULT_BY_SENIORITY_MYSQL = "SELECT (DATEDIFF(CURDATE(),hiring_date)/365) AS seniority, achievements FROM Contract NATURAL JOIN Work GROUP seniority ORDER BY seniority";
+	public static String RESULT_BY_SENIORITY_MYSQL = "SELECT (DATEDIFF(CURDATE(),hiring_date)/365) AS seniority, achievements FROM Contract NATURAL JOIN Work GROUP BY seniority ORDER BY seniority";
 	public static String TYPE_OF_CONTRACT_MYSQL = "SELECT COUNT(DISTINCT(contract)) FROM Contract";
 	public static String COST_OF_EMPLOYMENT_MYSQL = "";
 

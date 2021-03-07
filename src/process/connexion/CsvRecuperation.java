@@ -60,7 +60,7 @@ public class CsvRecuperation {
 		List<List<String>> employeList = new ArrayList<List<String>>();
 		
 		for (int line = 0; line < lines.size(); line++) {
-			String[] info = lines.get(line).split(";");
+			String[] info = lines.get(line).split(",");
 			List<String> employe = new ArrayList<String>();
 			for (int word = 0; word < info.length; word++) {
 				try {

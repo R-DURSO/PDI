@@ -2,24 +2,30 @@ package process;
 
 /**
  * 
- *
- * @author rdurs
+ * @author Laura FUSTINONI
+ * @author Raphaël D'URSO
+ * @author Aëlien MOUBECHE
  * use for transform the different data into a stats
  */
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 
 import org.apache.log4j.Logger;
 
 import data.CSV_Information;
+import data.SQLQuery;
 import logger.LoggerUtility;
 import process.connexion.CsvRecuperation;
+import process.connexion.Database_Connection;
 
 public class StatBuilder {
 	private static Logger logger = LoggerUtility.getLogger(StatBuilder.class, LoggerUtility.LOG_PREFERENCE);
 
-	public StatBuilder() {
+ 	public StatBuilder() {
 		// TODO Auto-generated constructor stub
 	}
 
@@ -156,5 +162,68 @@ public class StatBuilder {
 		}
 		return freeday;
 
+	}
+	
+	/**
+	* returns total of achievements by branch
+	* @param CSV data
+	* @param type of CSV
+	* @return number of tasks done by branch
+	*/
+	public HashMap<String, Integer> taskDoneCSV(List<List<String>> information, String typeCsv) {
+		HashMap<String, Integer> result = new HashMap<String, Integer>();
+		String department = "";
+	
+		if (typeCsv.equals(CSV_Information.fR_CSV)) {
+			for (List<String> list : information) {
+				try {
+					department = list.get(CSV_Information.DEPARTMENT_FRANCE);
+					result.put(department, result.get(department) + Integer.parseInt(list.get(CSV_Information.ACHIEVEMENTS_FRANCE)));
+					result.put("total"+typeCsv, result.get("total") + Integer.parseInt(list.get(CSV_Information.ACHIEVEMENTS_FRANCE)));
+				} catch (Exception e) {
+					logger.error("error during recuperation of achievements's French succursale ");
+					// System.out.println(e.toString());
+				}
+			}
+		} else {
+			for (List<String> list : information) {
+				try {
+					department = list.get(CSV_Information.DEPARTMENT_GER);
+					result.put(department, result.get(department) + Integer.parseInt(list.get(CSV_Information.ACHIEVEMENTS_GER)));
+					result.put("total"+typeCsv, result.get("total") + Integer.parseInt(list.get(CSV_Information.ACHIEVEMENTS_GER)));
+				} catch (Exception e) {
+					logger.error("error during recuperation of achievements's German succursale ");
+					// System.out.println(e.toString());
+				}
+			}
+		}
+		return result;
+	}
+	
+	public HashMap<String, Integer> taskDoneBD(String branch) throws SQLException{
+		HashMap<String, Integer> result = new HashMap<String, Integer>();
+		ResultSet resulttasks;
+		
+		if (branch.equals("Chn")){
+			// Get the result of Chinese query
+			resulttasks = Database_Connection.Query(SQLQuery.TASKS_DONE_MYSQL);
+		} else {
+			// Get the result of American query
+			resulttasks = Database_Connection.Query(SQLQuery.TASKS_DONE_POSTGRESQL);
+		}
+		
+		// Save achievements for total sum
+		int sum_achievements = 0;
+		
+		// Browse the query result and get data
+		while(resulttasks.next()) {
+			int tmp_achv = resulttasks.getInt("achievements");
+			result.put(resulttasks.getString("department"), tmp_achv);
+			sum_achievements = sum_achievements + tmp_achv ;
+		}
+		// Total
+		result.put("total"+branch, sum_achievements);
+		
+		return result;
 	}
 }

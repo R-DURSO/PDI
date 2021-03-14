@@ -7,6 +7,7 @@ import logger.LoggerUtility;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import org.apache.log4j.Logger;
@@ -19,7 +20,7 @@ import process.connexion.Database_Connection;
 
 /**
  * @author Raphaël D'URSO
- *
+ * @author Aëlien MOUBECHE
  */
 public class Mediator {
 	private static Logger logger = LoggerUtility.getLogger(Mediator.class, LoggerUtility.LOG_PREFERENCE);
@@ -36,7 +37,7 @@ public class Mediator {
 	private StatBuilder stat = new StatBuilder();
 
 	/**
-	 * Connect to the different loctalisation of data
+	 * Connect to the different sources of data
 	 */
 	public Mediator() {
 		try {
@@ -70,14 +71,14 @@ public class Mediator {
 	}
 
 	/**
-	 * will be change values of
+	 * Values will be changed
 	 */
-	public void ResultOfEntrepris() {
+	public void ResultOfEnterprise() {
 
 	}
 
 	/**
-	 * Use for saying how many freeday is taken succursale per succursale
+	 * Used for telling how many leaves are taken branch by branch
 	 */
 	public void LeaveDay() {
 		List<String> freeDayList = new ArrayList<String>();
@@ -94,11 +95,11 @@ public class Mediator {
 	}
 
 	/**
-	 * Use for have a List with name and note of all salary for different succursale
+	 * Used to get a List with the name and note of all salaries from the different branches
 	 */
 	public void SalaryNote() {
 		List<String> noteList = new ArrayList<String>();
-		noteList.add("For saying the note of all employe we  sub the archivmement with the blame");
+		noteList.add("For information the notes of all employees are calculated by substracting their blame score from their archievement score");
 		noteList.addAll(stat.NoteEmployeCSV(csv_fr, null, CSV_Information.fR_CSV));
 		noteList.addAll(stat.NoteEmployeCSV(csv_ALL1, csv_ALL2, CSV_Information.GER_CSV));
 		// test need clean this after
@@ -109,7 +110,7 @@ public class Mediator {
 	}
 
 	/**
-	 * Use for said the best month salary from all succurale
+	 * Used for telling the salary of the month for each branch
 	 */
 	public void MonthSalary() {
 		System.out.println("\n\n\n");
@@ -123,9 +124,57 @@ public class Mediator {
 			System.out.println(test);
 		}
 	}
-
+	
 	/**
-	 * we clean the resultset and he whoRequest
+	 * Used for giving informations about total tasks done
+	 * @throws SQLException 
+	 */
+	public void TasksDone() {
+		HashMap<String, Integer> tasksDoneFr = stat.taskDoneCSV(csv_fr, CSV_Information.fR_CSV);
+		HashMap<String, Integer> tasksDoneGer = stat.taskDoneCSV(csv_ALL2, CSV_Information.GER_CSV);
+		HashMap<String, Integer> tasksDoneChn = null;
+		HashMap<String, Integer> tasksDoneUsa = null;
+		
+		try {
+			tasksDoneChn = stat.taskDoneBD("Chn");
+			tasksDoneUsa = stat.taskDoneBD("Usa");
+		} catch (SQLException e) {
+			logger.error("Could not get the achievements of Chinese or Usa succursale");
+		}
+		
+		
+		
+		
+		
+		int max_achv = tasksDoneFr.get("total"+CSV_Information.fR_CSV);
+		String best_succursale = "France";
+		
+		int achv_Ger = tasksDoneGer.get("total"+CSV_Information.GER_CSV);
+		int achv_Chn = tasksDoneChn.get("totalChn");
+		int achv_Usa = tasksDoneUsa.get("totalUsa");
+		
+		if (achv_Ger > max_achv) {
+			max_achv = achv_Ger;
+			best_succursale = "Germany";
+		} else if (achv_Chn > max_achv) {
+			max_achv = achv_Chn;
+			best_succursale = "China";
+		} else if (achv_Usa > max_achv) {
+			max_achv = achv_Usa;
+			best_succursale = "USA";
+		}
+		
+		
+		
+		
+		
+
+		
+		
+		
+	}
+	/**
+	 * Cleaning
 	 */
 	public void clean() {
 		try {

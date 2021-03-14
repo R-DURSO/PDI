@@ -15,7 +15,7 @@ import logger.LoggerUtility;
  *
  */
 public class Database_Connection {
-	private Connection connection;
+	private static Connection connection;
 	private static Logger logger = LoggerUtility.getLogger(Database_Connection.class, LoggerUtility.LOG_PREFERENCE);
 	/**
 	 * this function could be connect the java application on the database
@@ -45,7 +45,7 @@ public class Database_Connection {
 	 * @return a Resultet will be use for take information about woker or create stats with that 
 	 * @throws SQLException
 	 */
-	public ResultSet Query(String query) throws SQLException {
+	public static ResultSet Query(String query) throws SQLException {
 		PreparedStatement preparedStatement = connection.prepareStatement(query);
 		return preparedStatement.executeQuery();
 		

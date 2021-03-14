@@ -1,9 +1,19 @@
 package gui;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.Container;
 import java.awt.Dimension;
+import java.awt.GraphicsDevice;
+import java.awt.GraphicsDevice.WindowTranslucency;
+import java.awt.GraphicsEnvironment;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
+import java.io.ObjectInputFilter.Config;
 
+import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 
 import data.GuiData;
@@ -12,7 +22,7 @@ public class MainPanel extends JFrame implements Runnable {
 	
 	private static final long serialVersionUID = 1L;
 	private ControlPanel controlPanel;	
-	private DashboardPanel dashboardPanel;
+	private static DashboardPanel dashboardPanel;
 	private final static Dimension preferredSize = new Dimension(GuiData.WINDOW_WIDTH, GuiData.WINDOW_HEIGHT);
 	private final static Dimension dashboardSize = new Dimension(GuiData.DASHBOARD_PANEL_WIDTH,GuiData.DASHBOARD_PANEL_HEIGHT);
 	private final static Dimension controlPanelSize = new Dimension(GuiData.CONTROL_PANEL_WIDTH,GuiData.CONTROL_PANEL_HEIGHT);
@@ -40,9 +50,17 @@ public class MainPanel extends JFrame implements Runnable {
 		
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		pack();
-		setVisible(true);
 		setPreferredSize(preferredSize);
+		setVisible(true);
 		setResizable(false);
+		/*BufferedImage myPicture;
+		try {
+			myPicture = ImageIO.read(new File("H:\\Desktop\\png-transparent-business-professional-services-computer-icons-dynamics-365-business.png"));
+			setIconImage(myPicture);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}*/
 	}
 
 	public void run() {
@@ -57,4 +75,25 @@ public class MainPanel extends JFrame implements Runnable {
 			dashboardPanel.repaint();
 		}
 	}
+	
+	public static void creatTasksDonePanel() {
+		dashboardPanel.creatTasksDonePanel();
+	}
+	
+/*	public static void creatMonthSalaryPanel() {
+		dashboardPanel.creatMonthSalaryPanel();
+	}
+	
+	public static void creatSalaryNotePanel() {
+		dashboardPanel.creatSalaryNotePanel();
+	}
+	
+	public static void creatLeaveDayPanel() {
+		dashboardPanel.creatLeaveDayPanel();
+	}
+	
+	public static void creatResultOfEnterprisePanel() {
+		dashboardPanel.creatResultOfEnterprisePanel();
+	}*/
+	
 }

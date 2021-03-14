@@ -142,10 +142,6 @@ public class Mediator {
 			logger.error("Could not get the achievements of Chinese or Usa succursale");
 		}
 		
-		
-		
-		
-		
 		int max_achv = tasksDoneFr.get("total"+CSV_Information.fR_CSV);
 		String best_succursale = "France";
 		
@@ -163,15 +159,6 @@ public class Mediator {
 			max_achv = achv_Usa;
 			best_succursale = "USA";
 		}
-		
-		
-		
-		
-		
-
-		
-		
-		
 	}
 	/**
 	 * Cleaning

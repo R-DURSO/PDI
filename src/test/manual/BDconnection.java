@@ -13,10 +13,6 @@ public class BDconnection {
 		Thread mainPanelThread = new Thread(mainPanel);
 		mainPanelThread.start();
 		
-/*		ControlPanel controlPanel =  new ControlPanel();
-		Thread controlPanelThread = new Thread(controlPanel);
-		controlPanelThread.start();*/
-		
 		test.MonthSalary();
 		test.SalaryNote();
 		test.LeaveDay();

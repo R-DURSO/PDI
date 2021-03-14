@@ -1,9 +1,13 @@
 package gui;
 
 import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
 import data.GuiData;
 
 import javax.swing.JButton;
+import javax.swing.JDialog;
 import javax.swing.JPanel;
 
 public class ControlPanel extends JPanel {
@@ -39,60 +43,130 @@ public class ControlPanel extends JPanel {
 			tasksDoneButton.setBackground(GuiData.BACK_STAT_BUTTON_COLOR);
 			tasksDoneButton.setForeground(GuiData.FORE_BUTTON_COLOR);
 			statPanel.add(tasksDoneButton);
+			tasksDoneButton.addActionListener(new ActionListener()
+			{
+			  public void actionPerformed(ActionEvent e)
+			  {
+				MainPanel.creatTasksDonePanel();
+			  }
+			});
 			
 			JButton wagesInfosButton = new JButton();
 			wagesInfosButton.setText("Moyenne des salaires");
 			wagesInfosButton.setBackground(GuiData.BACK_STAT_BUTTON_COLOR);
 			wagesInfosButton.setForeground(GuiData.FORE_BUTTON_COLOR);
 			statPanel.add(wagesInfosButton);
+			wagesInfosButton.addActionListener(new ActionListener()
+			{
+			  public void actionPerformed(ActionEvent e)
+			  {
+				
+			  }
+			});
 			
 			JButton leaveUsageButton = new JButton();
 			leaveUsageButton.setText("Utilisation des congés");
 			leaveUsageButton.setBackground(GuiData.BACK_STAT_BUTTON_COLOR);
 			leaveUsageButton.setForeground(GuiData.FORE_BUTTON_COLOR);
 			statPanel.add(leaveUsageButton);
+			leaveUsageButton.addActionListener(new ActionListener()
+			{
+			  public void actionPerformed(ActionEvent e)
+			  {
+				
+			  }
+			});
 			
 			JButton monthEmpButton = new JButton();
 			monthEmpButton.setText("Employé du mois");
 			monthEmpButton.setBackground(GuiData.BACK_STAT_BUTTON_COLOR);
 			monthEmpButton.setForeground(GuiData.FORE_BUTTON_COLOR);
 			statPanel.add(monthEmpButton);
+			monthEmpButton.addActionListener(new ActionListener()
+			{
+			  public void actionPerformed(ActionEvent e)
+			  {
+				
+			  }
+			});
 			
 			JButton expensiveEmpButton = new JButton();
 			expensiveEmpButton.setText("Employé le plus cher");
 			expensiveEmpButton.setBackground(GuiData.BACK_STAT_BUTTON_COLOR);
 			expensiveEmpButton.setForeground(GuiData.FORE_BUTTON_COLOR);
 			statPanel.add(expensiveEmpButton);
+			expensiveEmpButton.addActionListener(new ActionListener()
+			{
+			  public void actionPerformed(ActionEvent e)
+			  {
+				
+			  }
+			});
 			
 			JButton formationUtilityButton = new JButton();
 			formationUtilityButton.setText("Efficacité des formations");
 			formationUtilityButton.setBackground(GuiData.BACK_STAT_BUTTON_COLOR);
 			formationUtilityButton.setForeground(GuiData.FORE_BUTTON_COLOR);
 			statPanel.add(formationUtilityButton);
+			formationUtilityButton.addActionListener(new ActionListener()
+			{
+			  public void actionPerformed(ActionEvent e)
+			  {
+				
+			  }
+			});
 			
 			JButton resBySeniorityButton = new JButton();
 			resBySeniorityButton.setText("Résultats par ancienneté");
 			resBySeniorityButton.setBackground(GuiData.BACK_STAT_BUTTON_COLOR);
 			resBySeniorityButton.setForeground(GuiData.FORE_BUTTON_COLOR);
 			statPanel.add(resBySeniorityButton);
+			resBySeniorityButton.addActionListener(new ActionListener()
+			{
+			  public void actionPerformed(ActionEvent e)
+			  {
+				
+			  }
+			});
 			
 			JButton typeContractButton = new JButton();
 			typeContractButton.setText("Taux des contrats");
 			typeContractButton.setBackground(GuiData.BACK_STAT_BUTTON_COLOR);
 			typeContractButton.setForeground(GuiData.FORE_BUTTON_COLOR);
 			statPanel.add(typeContractButton);
+			typeContractButton.addActionListener(new ActionListener()
+			{
+			  public void actionPerformed(ActionEvent e)
+			  {
+				
+			  }
+			});
 			
 			JButton employCostButton = new JButton();
 			employCostButton.setText("Coût de l'emploi");
 			employCostButton.setBackground(GuiData.BACK_STAT_BUTTON_COLOR);
 			employCostButton.setForeground(GuiData.FORE_BUTTON_COLOR);
 			statPanel.add(employCostButton);
+			employCostButton.addActionListener(new ActionListener()
+			{
+			  public void actionPerformed(ActionEvent e)
+			  {
+				
+			  }
+			});
 			
 			JButton salGradesButton = new JButton();
 			salGradesButton.setText("Notes des salariés");
 			salGradesButton.setBackground(GuiData.BACK_STAT_BUTTON_COLOR);
 			salGradesButton.setForeground(GuiData.FORE_BUTTON_COLOR);
 			statPanel.add(salGradesButton);
+			salGradesButton.addActionListener(new ActionListener()
+			{
+			  public void actionPerformed(ActionEvent e)
+			  {
+				
+			  }
+			});
 			
 			//statPanel.add(new Button("Résultats de l'entreprise")); // tasksDoneButton
 			//statPanel.add(new Button("Moyenne des salaires")); // wagesInfosButton
@@ -110,6 +184,13 @@ public class ControlPanel extends JPanel {
 			payButton.setBackground(GuiData.BACK_PAY_BUTTON_COLOR);
 			payButton.setForeground(GuiData.FORE_BUTTON_COLOR);
 			payPanel.add(payButton);
+			payButton.addActionListener(new ActionListener()
+			{
+			  public void actionPerformed(ActionEvent e)
+			  {
+				
+			  }
+			});
 			
 			add(statPanel);
 			add(payPanel);

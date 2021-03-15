@@ -1,5 +1,6 @@
-/gui/
-/data/
-/test/
 /CSV/
+/data/
+/gui/
+/logger/
 /process/
+/test/

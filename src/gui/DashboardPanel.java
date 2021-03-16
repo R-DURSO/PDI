@@ -22,36 +22,69 @@ public class DashboardPanel extends JPanel{
 			
 		}
 		
-/*		public JPanel creatResultOfEnterprisePanel(){
+		public JPanel creatTasksDonePanel() {
 			new JPanel();
 			setSize(800,600);
 			add();
 		}
 		
-		public JPanel creatLeaveDayPanel(){
-			new JPanel();
-			setSize(800,600);
-//			add();
-		}
-		
-		public JPanel creatSalaryNotePanel(){
-			new JPanel();
-			setSize(800,600);
-//			add();
-		}
-		
-		public JPanel creatMonthSalaryPanel(){
+		public JPanel creatWagesInfosPanel() {
 			new JPanel();
 			setSize(800,600);
 			add();
-		}*/
+		}
 		
-		public void creatTasksDonePanel(){
+		public JPanel creatLeaveUsagePanel() {
 			new JPanel();
 			setSize(800,600);
-			JTextField jtf = new JTextField();
-			jtf.setText("Coucou ça fonctionne !!!");
-			add(jtf);
-			repaint();
+			add(/*a completer*/);
+		}
+		
+		public JPanel creatMonthEmpPanel() {
+			new JPanel();
+			setSize(800,600);
+			add(/*a completer*/);
+		}
+		
+		public void creatExpensiveEmpPanel() {
+			new JPanel();
+			setSize(800,600);
+			add(/*a completer*/);
+		}
+		
+		public JPanel creatFormationUtilityPanel() {
+			new JPanel();
+			setSize(800,600);
+			add(/*a completer*/);
+		}
+		
+		public JPanel creatResBySeniorityPanel() {
+			new JPanel();
+			setSize(800,600);
+			add(/*a completer*/);
+		}
+		
+		public JPanel creatTypeContractPanel() {
+			new JPanel();
+			setSize(800,600);
+			add(/*a completer*/);
+		}
+		
+		public JPanel creatEmployCostPanel() {
+			new JPanel();
+			setSize(800,600);
+			add(/*a completer*/);
+		}
+		
+		public JPanel creatSalGradesPanel() {
+			new JPanel();
+			setSize(800,600);
+			add(/*a completer*/);
+		}
+		
+		public JPanel creatPayPanel() {
+			new JPanel();
+			setSize(800,600);
+			add(/*a completer*/);
 		}
 }

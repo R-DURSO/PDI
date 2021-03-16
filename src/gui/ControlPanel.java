@@ -43,12 +43,10 @@ public class ControlPanel extends JPanel {
 			tasksDoneButton.setBackground(GuiData.BACK_STAT_BUTTON_COLOR);
 			tasksDoneButton.setForeground(GuiData.FORE_BUTTON_COLOR);
 			statPanel.add(tasksDoneButton);
-			tasksDoneButton.addActionListener(new ActionListener()
-			{
-			  public void actionPerformed(ActionEvent e)
-			  {
-				MainPanel.creatTasksDonePanel();
-			  }
+			tasksDoneButton.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					MainPanel.creatTasksDonePanel();
+				}
 			});
 			
 			JButton wagesInfosButton = new JButton();
@@ -56,12 +54,10 @@ public class ControlPanel extends JPanel {
 			wagesInfosButton.setBackground(GuiData.BACK_STAT_BUTTON_COLOR);
 			wagesInfosButton.setForeground(GuiData.FORE_BUTTON_COLOR);
 			statPanel.add(wagesInfosButton);
-			wagesInfosButton.addActionListener(new ActionListener()
-			{
-			  public void actionPerformed(ActionEvent e)
-			  {
-				
-			  }
+			wagesInfosButton.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					MainPanel.creatWagesInfosPanel();
+				}
 			});
 			
 			JButton leaveUsageButton = new JButton();
@@ -69,12 +65,10 @@ public class ControlPanel extends JPanel {
 			leaveUsageButton.setBackground(GuiData.BACK_STAT_BUTTON_COLOR);
 			leaveUsageButton.setForeground(GuiData.FORE_BUTTON_COLOR);
 			statPanel.add(leaveUsageButton);
-			leaveUsageButton.addActionListener(new ActionListener()
-			{
-			  public void actionPerformed(ActionEvent e)
-			  {
-				
-			  }
+			leaveUsageButton.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					MainPanel.creatLeaveUsagePanel();
+				}
 			});
 			
 			JButton monthEmpButton = new JButton();
@@ -82,12 +76,10 @@ public class ControlPanel extends JPanel {
 			monthEmpButton.setBackground(GuiData.BACK_STAT_BUTTON_COLOR);
 			monthEmpButton.setForeground(GuiData.FORE_BUTTON_COLOR);
 			statPanel.add(monthEmpButton);
-			monthEmpButton.addActionListener(new ActionListener()
-			{
-			  public void actionPerformed(ActionEvent e)
-			  {
-				
-			  }
+			monthEmpButton.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					MainPanel.creatMonthEmpPanel();
+				}
 			});
 			
 			JButton expensiveEmpButton = new JButton();
@@ -95,12 +87,10 @@ public class ControlPanel extends JPanel {
 			expensiveEmpButton.setBackground(GuiData.BACK_STAT_BUTTON_COLOR);
 			expensiveEmpButton.setForeground(GuiData.FORE_BUTTON_COLOR);
 			statPanel.add(expensiveEmpButton);
-			expensiveEmpButton.addActionListener(new ActionListener()
-			{
-			  public void actionPerformed(ActionEvent e)
-			  {
-				
-			  }
+			expensiveEmpButton.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					MainPanel.creatExpensiveEmpPanel();
+				}
 			});
 			
 			JButton formationUtilityButton = new JButton();
@@ -108,12 +98,10 @@ public class ControlPanel extends JPanel {
 			formationUtilityButton.setBackground(GuiData.BACK_STAT_BUTTON_COLOR);
 			formationUtilityButton.setForeground(GuiData.FORE_BUTTON_COLOR);
 			statPanel.add(formationUtilityButton);
-			formationUtilityButton.addActionListener(new ActionListener()
-			{
-			  public void actionPerformed(ActionEvent e)
-			  {
-				
-			  }
+			formationUtilityButton.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					MainPanel.creatFormationUtilityPanel();
+				}
 			});
 			
 			JButton resBySeniorityButton = new JButton();
@@ -121,12 +109,10 @@ public class ControlPanel extends JPanel {
 			resBySeniorityButton.setBackground(GuiData.BACK_STAT_BUTTON_COLOR);
 			resBySeniorityButton.setForeground(GuiData.FORE_BUTTON_COLOR);
 			statPanel.add(resBySeniorityButton);
-			resBySeniorityButton.addActionListener(new ActionListener()
-			{
-			  public void actionPerformed(ActionEvent e)
-			  {
-				
-			  }
+			resBySeniorityButton.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					MainPanel.creatResBySeniorityPanel();
+				}
 			});
 			
 			JButton typeContractButton = new JButton();
@@ -134,12 +120,10 @@ public class ControlPanel extends JPanel {
 			typeContractButton.setBackground(GuiData.BACK_STAT_BUTTON_COLOR);
 			typeContractButton.setForeground(GuiData.FORE_BUTTON_COLOR);
 			statPanel.add(typeContractButton);
-			typeContractButton.addActionListener(new ActionListener()
-			{
-			  public void actionPerformed(ActionEvent e)
-			  {
-				
-			  }
+			typeContractButton.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					MainPanel.creatTypeContractPanel();
+				}
 			});
 			
 			JButton employCostButton = new JButton();
@@ -147,12 +131,10 @@ public class ControlPanel extends JPanel {
 			employCostButton.setBackground(GuiData.BACK_STAT_BUTTON_COLOR);
 			employCostButton.setForeground(GuiData.FORE_BUTTON_COLOR);
 			statPanel.add(employCostButton);
-			employCostButton.addActionListener(new ActionListener()
-			{
-			  public void actionPerformed(ActionEvent e)
-			  {
-				
-			  }
+			employCostButton.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					MainPanel.creatEmployCostPanel();
+				}
 			});
 			
 			JButton salGradesButton = new JButton();
@@ -160,12 +142,10 @@ public class ControlPanel extends JPanel {
 			salGradesButton.setBackground(GuiData.BACK_STAT_BUTTON_COLOR);
 			salGradesButton.setForeground(GuiData.FORE_BUTTON_COLOR);
 			statPanel.add(salGradesButton);
-			salGradesButton.addActionListener(new ActionListener()
-			{
-			  public void actionPerformed(ActionEvent e)
-			  {
-				
-			  }
+			salGradesButton.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					MainPanel.creatSalGradesPanel();
+				}
 			});
 			
 			//statPanel.add(new Button("Résultats de l'entreprise")); // tasksDoneButton
@@ -184,12 +164,10 @@ public class ControlPanel extends JPanel {
 			payButton.setBackground(GuiData.BACK_PAY_BUTTON_COLOR);
 			payButton.setForeground(GuiData.FORE_BUTTON_COLOR);
 			payPanel.add(payButton);
-			payButton.addActionListener(new ActionListener()
-			{
-			  public void actionPerformed(ActionEvent e)
-			  {
-				
-			  }
+			payButton.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					MainPanel.creatPayPanel();
+				}
 			});
 			
 			add(statPanel);

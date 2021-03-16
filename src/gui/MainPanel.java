@@ -32,7 +32,7 @@ public class MainPanel extends JFrame implements Runnable {
 		this.setPreferredSize(preferredSize);
 
 		init();
-//		run();
+		run();
 	}
 
 	private void init() {
@@ -80,20 +80,44 @@ public class MainPanel extends JFrame implements Runnable {
 		dashboardPanel.creatTasksDonePanel();
 	}
 	
-/*	public static void creatMonthSalaryPanel() {
-		dashboardPanel.creatMonthSalaryPanel();
+	public static void creatWagesInfosPanel() {
+		dashboardPanel.creatWagesInfosPanel();
 	}
 	
-	public static void creatSalaryNotePanel() {
-		dashboardPanel.creatSalaryNotePanel();
+	public static void creatLeaveUsagePanel() {
+		dashboardPanel.creatLeaveUsagePanel();
 	}
 	
-	public static void creatLeaveDayPanel() {
-		dashboardPanel.creatLeaveDayPanel();
+	public static void creatMonthEmpPanel() {
+		dashboardPanel.creatMonthEmpPanel();
 	}
 	
-	public static void creatResultOfEnterprisePanel() {
-		dashboardPanel.creatResultOfEnterprisePanel();
-	}*/
+	public static void creatExpensiveEmpPanel() {
+		dashboardPanel.creatExpensiveEmpPanel();
+	}
+	
+	public static void creatFormationUtilityPanel() {
+		dashboardPanel.creatFormationUtilityPanel();
+	}
+	
+	public static void creatResBySeniorityPanel() {
+		dashboardPanel.creatResBySeniorityPanel();
+	}
+	
+	public static void creatTypeContractPanel() {
+		dashboardPanel.creatTypeContractPanel();
+	}
+	
+	public static void creatEmployCostPanel() {
+		dashboardPanel.creatEmployCostPanel();
+	}
+	
+	public static void creatSalGradesPanel() {
+		dashboardPanel.creatSalGradesPanel();
+	}
+	
+	public static void creatPayPanel() {
+		dashboardPanel.creatPayPanel();
+	}
 	
 }

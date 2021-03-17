@@ -1108,3 +1108,164 @@ INFO main process.connexion.CsvRecuperation - src\CSV\germany_1.csv Find
 INFO main process.connexion.CsvRecuperation - src\CSV\germany_1.csv  data collected
 INFO main process.connexion.CsvRecuperation - src\CSV\germany_2.csv Find 
 INFO main process.connexion.CsvRecuperation - src\CSV\germany_2.csv  data collected
+INFO main process.connexion.Database_Connection - Start connection to mysql-globalresourcehuman.alwaysdata.net:3306/globalresourcehuman_data_ch
+INFO main process.connexion.Database_Connection - Database connected !
+INFO main process.connexion.Database_Connection - Start connection to postgresql-globalresourcehuman.alwaysdata.net:5432/globalresourcehuman_data_us
+INFO main process.connexion.Database_Connection - Database connected !
+INFO main process.connexion.CsvRecuperation - src\CSV\france.csv Find 
+INFO main process.connexion.CsvRecuperation - src\CSV\france.csv  data collected
+INFO main process.connexion.CsvRecuperation - src\CSV\germany_1.csv Find 
+INFO main process.connexion.CsvRecuperation - src\CSV\germany_1.csv  data collected
+INFO main process.connexion.CsvRecuperation - src\CSV\germany_2.csv Find 
+INFO main process.connexion.CsvRecuperation - src\CSV\germany_2.csv  data collected
+INFO main process.connexion.Database_Connection - Start connection to mysql-globalresourcehuman.alwaysdata.net:3306/globalresourcehuman_data_ch
+INFO main process.connexion.Database_Connection - Database connected !
+INFO main process.connexion.Database_Connection - Start connection to postgresql-globalresourcehuman.alwaysdata.net:5432/globalresourcehuman_data_us
+INFO main process.connexion.Database_Connection - Database connected !
+INFO main process.connexion.CsvRecuperation - src\CSV\france.csv Find 
+INFO main process.connexion.CsvRecuperation - src\CSV\france.csv  data collected
+INFO main process.connexion.CsvRecuperation - src\CSV\germany_1.csv Find 
+INFO main process.connexion.CsvRecuperation - src\CSV\germany_1.csv  data collected
+INFO main process.connexion.CsvRecuperation - src\CSV\germany_2.csv Find 
+INFO main process.connexion.CsvRecuperation - src\CSV\germany_2.csv  data collected
+INFO main process.connexion.Database_Connection - Start connection to mysql-globalresourcehuman.alwaysdata.net:3306/globalresourcehuman_data_ch
+INFO main process.connexion.Database_Connection - Database connected !
+INFO main process.connexion.Database_Connection - Start connection to postgresql-globalresourcehuman.alwaysdata.net:5432/globalresourcehuman_data_us
+INFO main process.connexion.Database_Connection - Database connected !
+INFO main process.connexion.CsvRecuperation - src\CSV\france.csv Find 
+INFO main process.connexion.CsvRecuperation - src\CSV\france.csv  data collected
+INFO main process.connexion.CsvRecuperation - src\CSV\germany_1.csv Find 
+INFO main process.connexion.CsvRecuperation - src\CSV\germany_1.csv  data collected
+INFO main process.connexion.CsvRecuperation - src\CSV\germany_2.csv Find 
+INFO main process.connexion.CsvRecuperation - src\CSV\germany_2.csv  data collected
+INFO main process.connexion.Database_Connection - Start connection to mysql-globalresourcehuman.alwaysdata.net:3306/globalresourcehuman_data_ch
+INFO main process.connexion.Database_Connection - Database connected !
+INFO main process.connexion.Database_Connection - Start connection to postgresql-globalresourcehuman.alwaysdata.net:5432/globalresourcehuman_data_us
+INFO main process.connexion.Database_Connection - Database connected !
+INFO main process.connexion.CsvRecuperation - src\CSV\france.csv Find 
+INFO main process.connexion.CsvRecuperation - src\CSV\france.csv  data collected
+INFO main process.connexion.CsvRecuperation - src\CSV\germany_1.csv Find 
+INFO main process.connexion.CsvRecuperation - src\CSV\germany_1.csv  data collected
+INFO main process.connexion.CsvRecuperation - src\CSV\germany_2.csv Find 
+INFO main process.connexion.CsvRecuperation - src\CSV\germany_2.csv  data collected
+ERROR AWT-EventQueue-0 process.StatBuilder - error during recuperation of achievements's French succursale 
+ERROR AWT-EventQueue-0 process.StatBuilder - error during recuperation of achievements's French succursale 
+ERROR AWT-EventQueue-0 process.StatBuilder - error during recuperation of achievements's French succursale 
+ERROR AWT-EventQueue-0 process.StatBuilder - error during recuperation of achievements's French succursale 
+ERROR AWT-EventQueue-0 process.StatBuilder - error during recuperation of achievements's French succursale 
+ERROR AWT-EventQueue-0 process.StatBuilder - error during recuperation of achievements's French succursale 
+ERROR AWT-EventQueue-0 process.StatBuilder - error during recuperation of achievements's French succursale 
+ERROR AWT-EventQueue-0 process.StatBuilder - error during recuperation of achievements's French succursale 
+ERROR AWT-EventQueue-0 process.StatBuilder - error during recuperation of achievements's French succursale 
+ERROR AWT-EventQueue-0 process.StatBuilder - error during recuperation of achievements's French succursale 
+ERROR AWT-EventQueue-0 process.StatBuilder - error during recuperation of achievements's German succursale 
+ERROR AWT-EventQueue-0 process.StatBuilder - error during recuperation of achievements's German succursale 
+ERROR AWT-EventQueue-0 process.StatBuilder - error during recuperation of achievements's German succursale 
+ERROR AWT-EventQueue-0 process.StatBuilder - error during recuperation of achievements's German succursale 
+ERROR AWT-EventQueue-0 process.StatBuilder - error during recuperation of achievements's German succursale 
+ERROR AWT-EventQueue-0 process.StatBuilder - error during recuperation of achievements's German succursale 
+ERROR AWT-EventQueue-0 process.StatBuilder - error during recuperation of achievements's German succursale 
+ERROR AWT-EventQueue-0 process.StatBuilder - error during recuperation of achievements's German succursale 
+ERROR AWT-EventQueue-0 process.StatBuilder - error during recuperation of achievements's German succursale 
+ERROR AWT-EventQueue-0 process.StatBuilder - error during recuperation of achievements's German succursale 
+ERROR AWT-EventQueue-0 process.Mediator - Could not get the achievements of Chinese or Usa succursale
+INFO main process.connexion.Database_Connection - Start connection to mysql-globalresourcehuman.alwaysdata.net:3306/globalresourcehuman_data_ch
+INFO main process.connexion.Database_Connection - Database connected !
+INFO main process.connexion.Database_Connection - Start connection to postgresql-globalresourcehuman.alwaysdata.net:5432/globalresourcehuman_data_us
+INFO main process.connexion.Database_Connection - Database connected !
+INFO main process.connexion.CsvRecuperation - src\CSV\france.csv Find 
+INFO main process.connexion.CsvRecuperation - src\CSV\france.csv  data collected
+INFO main process.connexion.CsvRecuperation - src\CSV\germany_1.csv Find 
+INFO main process.connexion.CsvRecuperation - src\CSV\germany_1.csv  data collected
+INFO main process.connexion.CsvRecuperation - src\CSV\germany_2.csv Find 
+INFO main process.connexion.CsvRecuperation - src\CSV\germany_2.csv  data collected
+INFO main process.connexion.Database_Connection - Start connection to mysql-globalresourcehuman.alwaysdata.net:3306/globalresourcehuman_data_ch
+INFO main process.connexion.Database_Connection - Database connected !
+INFO main process.connexion.Database_Connection - Start connection to postgresql-globalresourcehuman.alwaysdata.net:5432/globalresourcehuman_data_us
+INFO main process.connexion.Database_Connection - Database connected !
+INFO main process.connexion.CsvRecuperation - src\CSV\france.csv Find 
+INFO main process.connexion.CsvRecuperation - src\CSV\france.csv  data collected
+INFO main process.connexion.CsvRecuperation - src\CSV\germany_1.csv Find 
+INFO main process.connexion.CsvRecuperation - src\CSV\germany_1.csv  data collected
+INFO main process.connexion.CsvRecuperation - src\CSV\germany_2.csv Find 
+INFO main process.connexion.CsvRecuperation - src\CSV\germany_2.csv  data collected
+INFO main process.connexion.Database_Connection - Start connection to mysql-globalresourcehuman.alwaysdata.net:3306/globalresourcehuman_data_ch
+INFO main process.connexion.Database_Connection - Database connected !
+INFO main process.connexion.Database_Connection - Start connection to postgresql-globalresourcehuman.alwaysdata.net:5432/globalresourcehuman_data_us
+INFO main process.connexion.Database_Connection - Database connected !
+INFO main process.connexion.CsvRecuperation - src\CSV\france.csv Find 
+INFO main process.connexion.CsvRecuperation - src\CSV\france.csv  data collected
+INFO main process.connexion.CsvRecuperation - src\CSV\germany_1.csv Find 
+INFO main process.connexion.CsvRecuperation - src\CSV\germany_1.csv  data collected
+INFO main process.connexion.CsvRecuperation - src\CSV\germany_2.csv Find 
+INFO main process.connexion.CsvRecuperation - src\CSV\germany_2.csv  data collected
+INFO main process.connexion.Database_Connection - Start connection to mysql-globalresourcehuman.alwaysdata.net:3306/globalresourcehuman_data_ch
+INFO main process.connexion.Database_Connection - Database connected !
+INFO main process.connexion.Database_Connection - Start connection to postgresql-globalresourcehuman.alwaysdata.net:5432/globalresourcehuman_data_us
+INFO main process.connexion.Database_Connection - Database connected !
+INFO main process.connexion.CsvRecuperation - src\CSV\france.csv Find 
+INFO main process.connexion.CsvRecuperation - src\CSV\france.csv  data collected
+INFO main process.connexion.CsvRecuperation - src\CSV\germany_1.csv Find 
+INFO main process.connexion.CsvRecuperation - src\CSV\germany_1.csv  data collected
+INFO main process.connexion.CsvRecuperation - src\CSV\germany_2.csv Find 
+INFO main process.connexion.CsvRecuperation - src\CSV\germany_2.csv  data collected
+INFO main process.connexion.Database_Connection - Start connection to mysql-globalresourcehuman.alwaysdata.net:3306/globalresourcehuman_data_ch
+INFO main process.connexion.Database_Connection - Database connected !
+INFO main process.connexion.Database_Connection - Start connection to postgresql-globalresourcehuman.alwaysdata.net:5432/globalresourcehuman_data_us
+INFO main process.connexion.Database_Connection - Database connected !
+INFO main process.connexion.CsvRecuperation - src\CSV\france.csv Find 
+INFO main process.connexion.CsvRecuperation - src\CSV\france.csv  data collected
+INFO main process.connexion.CsvRecuperation - src\CSV\germany_1.csv Find 
+INFO main process.connexion.CsvRecuperation - src\CSV\germany_1.csv  data collected
+INFO main process.connexion.CsvRecuperation - src\CSV\germany_2.csv Find 
+INFO main process.connexion.CsvRecuperation - src\CSV\germany_2.csv  data collected
+INFO main process.connexion.Database_Connection - Start connection to mysql-globalresourcehuman.alwaysdata.net:3306/globalresourcehuman_data_ch
+INFO main process.connexion.Database_Connection - Database connected !
+INFO main process.connexion.Database_Connection - Start connection to postgresql-globalresourcehuman.alwaysdata.net:5432/globalresourcehuman_data_us
+INFO main process.connexion.Database_Connection - Database connected !
+INFO main process.connexion.CsvRecuperation - src\CSV\france.csv Find 
+INFO main process.connexion.CsvRecuperation - src\CSV\france.csv  data collected
+INFO main process.connexion.CsvRecuperation - src\CSV\germany_1.csv Find 
+INFO main process.connexion.CsvRecuperation - src\CSV\germany_1.csv  data collected
+INFO main process.connexion.CsvRecuperation - src\CSV\germany_2.csv Find 
+INFO main process.connexion.CsvRecuperation - src\CSV\germany_2.csv  data collected
+INFO main process.connexion.Database_Connection - Start connection to mysql-globalresourcehuman.alwaysdata.net:3306/globalresourcehuman_data_ch
+INFO main process.connexion.Database_Connection - Database connected !
+INFO main process.connexion.Database_Connection - Start connection to postgresql-globalresourcehuman.alwaysdata.net:5432/globalresourcehuman_data_us
+INFO main process.connexion.Database_Connection - Database connected !
+INFO main process.connexion.CsvRecuperation - src\CSV\france.csv Find 
+INFO main process.connexion.CsvRecuperation - src\CSV\france.csv  data collected
+INFO main process.connexion.CsvRecuperation - src\CSV\germany_1.csv Find 
+INFO main process.connexion.CsvRecuperation - src\CSV\germany_1.csv  data collected
+INFO main process.connexion.CsvRecuperation - src\CSV\germany_2.csv Find 
+INFO main process.connexion.CsvRecuperation - src\CSV\germany_2.csv  data collected
+INFO main process.connexion.Database_Connection - Start connection to mysql-globalresourcehuman.alwaysdata.net:3306/globalresourcehuman_data_ch
+INFO main process.connexion.Database_Connection - Database connected !
+INFO main process.connexion.Database_Connection - Start connection to postgresql-globalresourcehuman.alwaysdata.net:5432/globalresourcehuman_data_us
+INFO main process.connexion.Database_Connection - Database connected !
+INFO main process.connexion.CsvRecuperation - src\CSV\france.csv Find 
+INFO main process.connexion.CsvRecuperation - src\CSV\france.csv  data collected
+INFO main process.connexion.CsvRecuperation - src\CSV\germany_1.csv Find 
+INFO main process.connexion.CsvRecuperation - src\CSV\germany_1.csv  data collected
+INFO main process.connexion.CsvRecuperation - src\CSV\germany_2.csv Find 
+INFO main process.connexion.CsvRecuperation - src\CSV\germany_2.csv  data collected
+INFO main process.connexion.Database_Connection - Start connection to mysql-globalresourcehuman.alwaysdata.net:3306/globalresourcehuman_data_ch
+INFO main process.connexion.Database_Connection - Database connected !
+INFO main process.connexion.Database_Connection - Start connection to postgresql-globalresourcehuman.alwaysdata.net:5432/globalresourcehuman_data_us
+INFO main process.connexion.Database_Connection - Database connected !
+INFO main process.connexion.CsvRecuperation - src\CSV\france.csv Find 
+INFO main process.connexion.CsvRecuperation - src\CSV\france.csv  data collected
+INFO main process.connexion.CsvRecuperation - src\CSV\germany_1.csv Find 
+INFO main process.connexion.CsvRecuperation - src\CSV\germany_1.csv  data collected
+INFO main process.connexion.CsvRecuperation - src\CSV\germany_2.csv Find 
+INFO main process.connexion.CsvRecuperation - src\CSV\germany_2.csv  data collected
+INFO main process.connexion.Database_Connection - Start connection to mysql-globalresourcehuman.alwaysdata.net:3306/globalresourcehuman_data_ch
+INFO main process.connexion.Database_Connection - Database connected !
+INFO main process.connexion.Database_Connection - Start connection to postgresql-globalresourcehuman.alwaysdata.net:5432/globalresourcehuman_data_us
+INFO main process.connexion.Database_Connection - Database connected !
+INFO main process.connexion.CsvRecuperation - src\CSV\france.csv Find 
+INFO main process.connexion.CsvRecuperation - src\CSV\france.csv  data collected
+INFO main process.connexion.CsvRecuperation - src\CSV\germany_1.csv Find 
+INFO main process.connexion.CsvRecuperation - src\CSV\germany_1.csv  data collected
+INFO main process.connexion.CsvRecuperation - src\CSV\germany_2.csv Find 
+INFO main process.connexion.CsvRecuperation - src\CSV\germany_2.csv  data collected

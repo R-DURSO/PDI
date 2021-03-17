@@ -11,5 +11,7 @@
 	<classpathentry kind="lib" path="librairy/log4j-1.2.17.jar"/>
 	<classpathentry kind="lib" path="librairy/postgresql-42.2.16.jar"/>
 	<classpathentry kind="lib" path="librairy/mysql-connector-java-5.1.6.jar"/>
+	<classpathentry kind="lib" path="librairy/jfreechart-1.0.1.jar"/>
+	<classpathentry kind="lib" path="librairy/jcommon-1.0.0.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

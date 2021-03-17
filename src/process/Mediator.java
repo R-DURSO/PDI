@@ -2,6 +2,7 @@ package process;
 
 import data.CSV_Information;
 import data.DataForRecuperation;
+import data.MediatorResult;
 import data.SQLQuery;
 import logger.LoggerUtility;
 import java.sql.ResultSet;
@@ -33,6 +34,7 @@ public class Mediator {
 	private CsvRecuperation csv;
 	private ResultSet resultSetMYSQL;
 	private ResultSet resultSetPOSTGRESQL;
+	private MediatorResult result = new MediatorResult(null,"");
 	private String whoRequest = "";
 	private StatBuilder stat = new StatBuilder();
 
@@ -127,9 +129,10 @@ public class Mediator {
 	
 	/**
 	 * Used for giving informations about total tasks done
+	 * @return 
 	 * @throws SQLException 
 	 */
-	public void TasksDone() {
+	public MediatorResult TasksDone() {
 		HashMap<String, Integer> tasksDoneFr = stat.taskDoneCSV(csv_fr, CSV_Information.fR_CSV);
 		HashMap<String, Integer> tasksDoneGer = stat.taskDoneCSV(csv_ALL2, CSV_Information.GER_CSV);
 		HashMap<String, Integer> tasksDoneChn = null;
@@ -148,17 +151,29 @@ public class Mediator {
 		int achv_Ger = tasksDoneGer.get("total"+CSV_Information.GER_CSV);
 		int achv_Chn = tasksDoneChn.get("totalChn");
 		int achv_Usa = tasksDoneUsa.get("totalUsa");
+		result.setPedagogie(best_succursale);
+		result.getResult().put("FR",tasksDoneFr.get("total"+CSV_Information.fR_CSV) );
+		result.getResult().put("GER",tasksDoneGer.get("total"+CSV_Information.GER_CSV ));
+		result.getResult().put("CHN",tasksDoneChn.get("totalChn") );
+		result.getResult().put("USA",tasksDoneUsa.get("totalUsa"));
 		
 		if (achv_Ger > max_achv) {
 			max_achv = achv_Ger;
 			best_succursale = "Germany";
+			result.setPedagogie(best_succursale);
+			result.setResult(tasksDoneGer);
 		} else if (achv_Chn > max_achv) {
 			max_achv = achv_Chn;
 			best_succursale = "China";
+			result.setPedagogie(best_succursale);
+			result.setResult(tasksDoneGer);
 		} else if (achv_Usa > max_achv) {
 			max_achv = achv_Usa;
 			best_succursale = "USA";
+			result.setPedagogie(best_succursale);
+			result.setResult(tasksDoneGer);
 		}
+		return result;
 	}
 	/**
 	 * Cleaning

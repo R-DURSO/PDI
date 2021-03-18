@@ -1,5 +1,6 @@
 package gui;
 
+import java.awt.CardLayout;
 import java.awt.Color;
 import java.awt.GridLayout;
 
@@ -20,19 +21,20 @@ public class DashboardPanel extends JPanel{
 //		private ElementManager manager;
 //		private PaintStrategy paintStrategy = new PaintStrategy();
 		private Mediator mediator = new Mediator();
-		private MediatorResult	result;/*		private JPanel resultOfEnterprisePanel = new JPanel();
+		private MediatorResult	result;
+		private JPanel resultOfEnterprisePanel = new JPanel();
 		private JPanel leaveDayPanel = new JPanel();
 		private JPanel salaryNotePanel = new JPanel();
 		private JPanel monthSalaryPanel = new JPanel();
-		private JPanel tasksDonePanel = new JPanel();*/
+		private JPanel tasksDonePanel = new JPanel();
 		
 
 		public DashboardPanel() {
-			
+		 	 JPanel sartPanel = new JPanel();
+		 	 sartPanel.setSize(800,600);
 		}
 		
 		public void creatTasksDonePanel() {
-	 	new JPanel();
 			setSize(800,600);
 			//result=mediator.TasksDone();
 //			System.out.println(result.getPedagogie());
@@ -41,75 +43,63 @@ public class DashboardPanel extends JPanel{
 			add(creaeJTextArea("test"));
 			// creation du cammember 
 			DefaultPieDataset  pieDataset = new DefaultPieDataset();
-			pieDataset.setValue("GER", 0); // value of german succurale
-			pieDataset.setValue("USA", 0); // value of usa succurale
-			pieDataset.setValue("CHN", 0); // value of china succurale
+			pieDataset.setValue("FR", 150); // value of german succurale
+			pieDataset.setValue("GER", 50); // value of german succurale
+			pieDataset.setValue("USA", 100); // value of usa succurale
+			pieDataset.setValue("CHN", 200); // value of china succurale
 			JFreeChart pieChart = ChartFactory.createPieChart("taskdone per Succurale", pieDataset, true, false, false);
 			ChartPanel cPanel = new ChartPanel(pieChart); 
 			add(cPanel);
-			repaint();
-		
+			setVisible(true);
+	
+		/*	new JPanel();
+			setSize(800,600);
+			JTextField jtf = new JTextField();
+			jtf.setText("Coucou ça fonctionne !!!");
+			add(jtf);
+			repaint();*/
 		}
 		
-		public JPanel creatWagesInfosPanel() {
-			new JPanel();
-			setSize(800,600);
-			add();
+		public void creatWagesInfosPanel() {
+
 		}
 		
-		public JPanel creatLeaveUsagePanel() {
-			new JPanel();
-			setSize(800,600);
-			add(/*a completer*/);
+		public void creatLeaveUsagePanel() {
+
 		}
 		
-		public JPanel creatMonthEmpPanel() {
-			new JPanel();
-			setSize(800,600);
-			add(/*a completer*/);
+		public void creatMonthEmpPanel() {
+
 		}
 		
 		public void creatExpensiveEmpPanel() {
-			new JPanel();
-			setSize(800,600);
-			add(/*a completer*/);
+
 		}
 		
-		public JPanel creatFormationUtilityPanel() {
-			new JPanel();
-			setSize(800,600);
-			add(/*a completer*/);
+		public void creatFormationUtilityPanel() {
+
 		}
 		
-		public JPanel creatResBySeniorityPanel() {
-			new JPanel();
-			setSize(800,600);
-			add(/*a completer*/);
+		public void creatResBySeniorityPanel() {
+
 		}
 		
-		public JPanel creatTypeContractPanel() {
-			new JPanel();
-			setSize(800,600);
-			add(/*a completer*/);
+		public void creatTypeContractPanel() {
+
 		}
 		
-		public JPanel creatEmployCostPanel() {
-			new JPanel();
-			setSize(800,600);
-			add(/*a completer*/);
+		public void creatEmployCostPanel() {
+
 		}
 		
-		public JPanel creatSalGradesPanel() {
-			new JPanel();
-			setSize(800,600);
-			add(/*a completer*/);
+		public void creatSalGradesPanel() {
+
 		}
 		
-		public JPanel creatPayPanel() {
-			new JPanel();
-			setSize(800,600);
-			add(/*a completer*/);
+		public void creatPayPanel() {
+
 		}
+
 		public JTextArea creaeJTextArea(String text) {
 			JTextArea jTextArea = new JTextArea(text);
 			jTextArea.setEnabled(false);
@@ -118,4 +108,5 @@ public class DashboardPanel extends JPanel{
 			jTextArea.setBackground(Color.BLACK);
 			return jTextArea;
 		}
+
 }

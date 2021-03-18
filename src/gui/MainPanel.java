@@ -26,7 +26,7 @@ public class MainPanel extends JFrame implements Runnable {
 	private final static Dimension preferredSize = new Dimension(GuiData.WINDOW_WIDTH, GuiData.WINDOW_HEIGHT);
 	private final static Dimension dashboardSize = new Dimension(GuiData.DASHBOARD_PANEL_WIDTH,GuiData.DASHBOARD_PANEL_HEIGHT);
 	private final static Dimension controlPanelSize = new Dimension(GuiData.CONTROL_PANEL_WIDTH,GuiData.CONTROL_PANEL_HEIGHT);
-
+	private Container contentPane;
 	public MainPanel(String title) {
 		super(title);
 		this.setPreferredSize(preferredSize);
@@ -36,7 +36,7 @@ public class MainPanel extends JFrame implements Runnable {
 	}
 
 	private void init() {
-		Container contentPane = getContentPane();
+		contentPane = getContentPane();
 		contentPane.setLayout(new BorderLayout());
 		
 		dashboardPanel = new DashboardPanel();
@@ -73,6 +73,7 @@ public class MainPanel extends JFrame implements Runnable {
 				System.out.println(e.getMessage());
 			}
 			dashboardPanel.repaint();
+			repaint();
 		}
 	}
 	
@@ -82,42 +83,52 @@ public class MainPanel extends JFrame implements Runnable {
 	
 	public static void creatWagesInfosPanel() {
 		dashboardPanel.creatWagesInfosPanel();
+		dashboardPanel.repaint();
 	}
 	
 	public static void creatLeaveUsagePanel() {
 		dashboardPanel.creatLeaveUsagePanel();
+		dashboardPanel.repaint();
 	}
 	
 	public static void creatMonthEmpPanel() {
 		dashboardPanel.creatMonthEmpPanel();
+		dashboardPanel.repaint();
 	}
 	
 	public static void creatExpensiveEmpPanel() {
 		dashboardPanel.creatExpensiveEmpPanel();
+		dashboardPanel.repaint();
 	}
 	
 	public static void creatFormationUtilityPanel() {
 		dashboardPanel.creatFormationUtilityPanel();
+		dashboardPanel.repaint();
 	}
 	
 	public static void creatResBySeniorityPanel() {
 		dashboardPanel.creatResBySeniorityPanel();
+		dashboardPanel.repaint();
 	}
 	
 	public static void creatTypeContractPanel() {
 		dashboardPanel.creatTypeContractPanel();
+		dashboardPanel.repaint();
 	}
 	
 	public static void creatEmployCostPanel() {
 		dashboardPanel.creatEmployCostPanel();
+		dashboardPanel.repaint();
 	}
 	
 	public static void creatSalGradesPanel() {
 		dashboardPanel.creatSalGradesPanel();
+		dashboardPanel.repaint();
 	}
 	
 	public static void creatPayPanel() {
 		dashboardPanel.creatPayPanel();
+		dashboardPanel.repaint();
 	}
 	
 }

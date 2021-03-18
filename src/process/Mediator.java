@@ -164,12 +164,7 @@ public class Mediator {
 		System.out.println(achv_Usa);
 		
 		result.setPedagogie(best_succursale);
-		try {
-			result.getResult().put("FR",tasksDoneFr.get("totalFr"));
-		} catch(Exception e) {
-			logger.error(e.getCause());
-		}
-		
+		result.getResult().put("FR",tasksDoneFr.get("totalFr"));
 		result.getResult().put("GER",tasksDoneGer.get("totalGer"));
 		result.getResult().put("CHN",tasksDoneChn.get("totalChn"));
 		result.getResult().put("USA",tasksDoneUsa.get("totalUsa"));

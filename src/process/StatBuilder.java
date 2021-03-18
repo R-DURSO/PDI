@@ -179,7 +179,7 @@ public class StatBuilder {
 				try {
 					department = list.get(CSV_Information.DEPARTMENT_FRANCE);
 					result.put(department, result.get(department) + Integer.parseInt(list.get(CSV_Information.ACHIEVEMENTS_FRANCE)));
-					result.put("total"+typeCsv, result.get("total") + Integer.parseInt(list.get(CSV_Information.ACHIEVEMENTS_FRANCE)));
+					result.put("total"+typeCsv, result.get("total"+typeCsv) + Integer.parseInt(list.get(CSV_Information.ACHIEVEMENTS_FRANCE)));
 				} catch (Exception e) {
 					logger.error("error during recuperation of achievements's French succursale ");
 					// System.out.println(e.toString());
@@ -190,7 +190,7 @@ public class StatBuilder {
 				try {
 					department = list.get(CSV_Information.DEPARTMENT_GER);
 					result.put(department, result.get(department) + Integer.parseInt(list.get(CSV_Information.ACHIEVEMENTS_GER)));
-					result.put("total"+typeCsv, result.get("total") + Integer.parseInt(list.get(CSV_Information.ACHIEVEMENTS_GER)));
+					result.put("total"+typeCsv, result.get("total"+typeCsv) + Integer.parseInt(list.get(CSV_Information.ACHIEVEMENTS_GER)));
 				} catch (Exception e) {
 					logger.error("error during recuperation of achievements's German succursale ");
 					// System.out.println(e.toString());
@@ -224,6 +224,101 @@ public class StatBuilder {
 		// Total
 		result.put("total"+branch, sum_achievements);
 		
+		return result;
+	}
+	
+	/**
+	* return fees by employee
+	* @param CSV data (1 or 2)
+	* @param type of CSV
+	* @return fees by employee
+	*/
+	public HashMap<String, Integer> feesEmployeesCSV (List<List<String>> information, List<List<String>> otherInformation,String typeCsv) {
+		HashMap<String, Integer> result = new HashMap<String, Integer>();
+		String employeeID = "";
+		String name = "";
+		Integer fees = 0;
+			
+		if (typeCsv.equals(CSV_Information.fR_CSV)) {
+			for (List<String> employefeesList : information) {
+				try {
+					name = employefeesList.get(CSV_Information.FAMILY_NAME_FRANCE)+" "+employefeesList.get(CSV_Information.FIRST_NAME_FRANCE);
+					result.put(name, Integer.parseInt(employefeesList.get(CSV_Information.FEES_FRANCE)));
+				} catch (Exception e) {
+					logger.error("Error during recuperation of employee fees for French succursale");
+					// System.out.println(e.toString());
+				}
+			}
+		} else {
+			for (List<String> employeListGER : otherInformation) {
+				try {
+					employeeID = employeListGER.get(CSV_Information.ID_GER);
+					fees = Integer.parseInt(employeListGER.get(CSV_Information.FEES_GER));
+					for (List<String> employe : information) {
+						if ((employe.get(CSV_Information.ID_GER)).equals(employeeID)) {
+							name = employe.get(CSV_Information.FAMILY_NAME_GER)+" "+employe.get(CSV_Information.FIRST_NAME_GER);
+							result.put(name, fees);
+						}
+
+					}
+
+				} catch (Exception e) {
+					logger.error("error during convert archivement and blame for best Month employe ");
+				}
+			}
+
+		}
+		return result;
+	}
+	
+	public HashMap<String, Integer> feesEmployeesBD (String branch) throws SQLException{
+		HashMap<String, Integer> result = new HashMap<String, Integer>();
+		ResultSet resulttasks;
+		
+		if (branch.equals("Chn")){
+			// Get the result of Chinese query
+			resulttasks = Database_Connection.Query(SQLQuery.EXPENSIVE_EMPLOYEES_MYSQL);
+		} else {
+			// Get the result of American query
+			resulttasks = Database_Connection.Query(SQLQuery.EXPENSIVE_EMPLOYEES_POSTGRESQL);
+		}
+		
+		// Browse the query result and get data
+		while(resulttasks.next()) {
+			result.put(resulttasks.getString("employee_id"), Integer.parseInt(resulttasks.getString("fees")));
+		}
+		
+		return result;
+	}
+	
+	/**
+	* returns 
+	*/
+	public HashMap<String, Integer> contractTypeCSV (List<List<String>> information, String typeCsv) {
+		HashMap<String, Integer> result = new HashMap<String, Integer>();
+		String contract = "";
+
+		if (typeCsv.equals(CSV_Information.fR_CSV)) {
+			for (List<String> list : information) {
+				try {
+					contract = list.get(CSV_Information.CONTRACT_FRANCE);
+					result.put(contract, result.get(contract) + 1);
+				} catch (Exception e) {
+					logger.error("error during recuperation of achievements's French succursale ");
+					// System.out.println(e.toString());
+				}
+			}
+		} else {
+			for (List<String> list : information) {
+				try {
+					contract = list.get(CSV_Information.CONTRACT_GER);
+					result.put(contract, result.get(contract) + 1);
+				} catch (Exception e) {
+					logger.error("error during recuperation of achievements's German succursale ");
+					// System.out.println(e.toString());
+				}
+			}
+		}
 		return result;
 	}
 }

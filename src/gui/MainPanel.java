@@ -64,18 +64,9 @@ public class MainPanel extends JFrame implements Runnable {
 	}
 
 	public void run() {
-		// TODO Auto-generated method stub
-		// actualization(map);
-		while (true) {
-			try {
-				Thread.sleep(500);
-			} catch (InterruptedException e) {
-				System.out.println(e.getMessage());
-			}
 			dashboardPanel.repaint();
 			repaint();
 		}
-	}
 	
 	public static void creatTasksDonePanel() {
 		dashboardPanel.creatTasksDonePanel();

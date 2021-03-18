@@ -149,8 +149,17 @@ public class Mediator {
 		String best_succursale = "France";
 		
 		int achv_Ger = tasksDoneGer.get("total"+CSV_Information.GER_CSV);
+
 		int achv_Chn = tasksDoneChn.get("totalChn");
 		int achv_Usa = tasksDoneUsa.get("totalUsa");
+		
+
+		System.out.println(achv_Chn);
+		System.out.println(achv_Usa);
+
+		
+		
+		
 		result.setPedagogie(best_succursale);
 		result.getResult().put("FR",tasksDoneFr.get("total"+CSV_Information.fR_CSV) );
 		result.getResult().put("GER",tasksDoneGer.get("total"+CSV_Information.GER_CSV ));

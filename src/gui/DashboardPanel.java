@@ -36,7 +36,7 @@ public class DashboardPanel extends JPanel{
 		
 		public void creatTasksDonePanel() {
 			setSize(800,600);
-			//result=mediator.TasksDone();
+			result=mediator.TasksDone();
 //			System.out.println(result.getPedagogie());
 			GridLayout resultLayout = new GridLayout(1,2);
 			setLayout(resultLayout);

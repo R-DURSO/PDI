@@ -32,7 +32,6 @@ public class MainPanel extends JFrame implements Runnable {
 		this.setPreferredSize(preferredSize);
 
 		init();
-		run();
 	}
 
 	private void init() {
@@ -53,73 +52,75 @@ public class MainPanel extends JFrame implements Runnable {
 		setPreferredSize(preferredSize);
 		setVisible(true);
 		setResizable(false);
-		/*BufferedImage myPicture;
-		try {
-			myPicture = ImageIO.read(new File("H:\\Desktop\\png-transparent-business-professional-services-computer-icons-dynamics-365-business.png"));
-			setIconImage(myPicture);
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}*/
-	}
 
-	public void run() {
-			dashboardPanel.repaint();
-			repaint();
-		}
+	}
+	@Override	public void run() {
+        // TODO Auto-generated method stub
+        // actualization(map);
+        while (true) {
+            try {
+                Thread.sleep(500);
+            } catch (InterruptedException e) {
+                System.out.println(e.getMessage());
+            }
+            dashboardPanel.revalidate();
+            // dashboardPanel.repaint();
+        }
+    }
 	
 	public static void creatTasksDonePanel() {
 		dashboardPanel.creatTasksDonePanel();
+		
 	}
 	
 	public static void creatWagesInfosPanel() {
 		dashboardPanel.creatWagesInfosPanel();
-		dashboardPanel.repaint();
+
 	}
 	
 	public static void creatLeaveUsagePanel() {
 		dashboardPanel.creatLeaveUsagePanel();
-		dashboardPanel.repaint();
+
 	}
 	
 	public static void creatMonthEmpPanel() {
 		dashboardPanel.creatMonthEmpPanel();
-		dashboardPanel.repaint();
+
 	}
 	
 	public static void creatExpensiveEmpPanel() {
 		dashboardPanel.creatExpensiveEmpPanel();
-		dashboardPanel.repaint();
+
 	}
 	
 	public static void creatFormationUtilityPanel() {
 		dashboardPanel.creatFormationUtilityPanel();
-		dashboardPanel.repaint();
+
 	}
 	
 	public static void creatResBySeniorityPanel() {
 		dashboardPanel.creatResBySeniorityPanel();
-		dashboardPanel.repaint();
+
 	}
 	
 	public static void creatTypeContractPanel() {
 		dashboardPanel.creatTypeContractPanel();
-		dashboardPanel.repaint();
+
 	}
 	
 	public static void creatEmployCostPanel() {
 		dashboardPanel.creatEmployCostPanel();
-		dashboardPanel.repaint();
+
 	}
 	
 	public static void creatSalGradesPanel() {
 		dashboardPanel.creatSalGradesPanel();
-		dashboardPanel.repaint();
+
 	}
 	
 	public static void creatPayPanel() {
 		dashboardPanel.creatPayPanel();
-		dashboardPanel.repaint();
+
 	}
 	
 }

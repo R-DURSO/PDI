@@ -5,10 +5,11 @@ import java.util.HashMap;
 public class MediatorResult {
 	private HashMap<String, Integer> result;
 	private String pedagogie;
-
-	public MediatorResult(HashMap<String, Integer> result, String pedagogie) {
-		super();
-		this.result = result;
+	private String information;
+	
+	
+	public MediatorResult( String pedagogie) {
+		this.result= new HashMap<String, Integer>();
 		this.pedagogie = pedagogie;
 	}
 	
@@ -23,7 +24,9 @@ public class MediatorResult {
 	public void setResult(HashMap<String, Integer> result) {
 		this.result = result;
 	}
-	
+	public void put (String name,Integer value) {
+		result.put(name, value);
+	}
 	public void setPedagogie(String pedagogie) {
 		this.pedagogie = pedagogie;
 	}

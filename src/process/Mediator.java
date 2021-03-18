@@ -34,7 +34,7 @@ public class Mediator {
 	private CsvRecuperation csv;
 	private ResultSet resultSetMYSQL;
 	private ResultSet resultSetPOSTGRESQL;
-	private MediatorResult result = new MediatorResult(null,"");
+	private MediatorResult result = new MediatorResult("");
 	private String whoRequest = "";
 	private StatBuilder stat;
 
@@ -143,7 +143,7 @@ public class Mediator {
 		HashMap<String, Integer> tasksDoneGer = stat.taskDoneCSV(csv_ALL2, CSV_Information.GER_CSV);
 		HashMap<String, Integer> tasksDoneChn = null;
 		HashMap<String, Integer> tasksDoneUsa = null;
-		
+		String intermediateString;
 		try {
 			tasksDoneChn = stat.taskDoneBD("Chn");
 			tasksDoneUsa = stat.taskDoneBD("Usa");
@@ -160,14 +160,11 @@ public class Mediator {
 		int achv_Chn = tasksDoneChn.get("totalChn");
 		int achv_Usa = tasksDoneUsa.get("totalUsa");
 		
-		System.out.println(achv_Chn);
-		System.out.println(achv_Usa);
-		
 		result.setPedagogie(best_succursale);
-		result.getResult().put("FR",tasksDoneFr.get("totalFr"));
-		result.getResult().put("GER",tasksDoneGer.get("totalGer"));
-		result.getResult().put("CHN",tasksDoneChn.get("totalChn"));
-		result.getResult().put("USA",tasksDoneUsa.get("totalUsa"));
+		result.put("FR",tasksDoneFr.get("totalFr"));
+		result.put("GER",tasksDoneGer.get("totalGer"));
+		result.put("CHN",tasksDoneChn.get("totalChn"));
+		result.put("USA",tasksDoneUsa.get("totalUsa"));
 		
 		if (achv_Ger > max_achv) {
 			max_achv = achv_Ger;

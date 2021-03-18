@@ -16,6 +16,7 @@ import java.sql.SQLException;
 
 import org.apache.log4j.Logger;
 
+import java.sql.Connection;
 import data.CSV_Information;
 import data.SQLQuery;
 import logger.LoggerUtility;
@@ -24,8 +25,13 @@ import process.connexion.Database_Connection;
 
 public class StatBuilder {
 	private static Logger logger = LoggerUtility.getLogger(StatBuilder.class, LoggerUtility.LOG_PREFERENCE);
-
-	public StatBuilder() {
+	private Database_Connection dataBase_MySQL;
+	private Database_Connection dataBase_POSTGRE;
+	
+	
+	public StatBuilder(Database_Connection db1, Database_Connection db2) {
+		dataBase_MySQL = db1;
+		dataBase_POSTGRE = db2;
 		// TODO Auto-generated constructor stub
 	}
 
@@ -41,13 +47,11 @@ public class StatBuilder {
 		if (typeCSV.equals(CSV_Information.fR_CSV)) {
 			for (List<String> employeList : information) {
 				try {
-					noteEmploye = Integer.parseInt(employeList.get(CSV_Information.ACHIEVEMENTS_FRANCE))
-							- Integer.parseInt(employeList.get(CSV_Information.BLAME_FRANCE));
+					noteEmploye = Integer.parseInt(employeList.get(CSV_Information.ACHIEVEMENTS_FRANCE)) - Integer.parseInt(employeList.get(CSV_Information.BLAME_FRANCE));
 					if (noteBestEmploye < noteEmploye) {
 
 						noteBestEmploye = noteEmploye;
-						employeName = employeList.get(CSV_Information.FAMILY_NAME_FRANCE) + " "
-								+ employeList.get(CSV_Information.FIRST_NAME_FRANCE);
+						employeName = employeList.get(CSV_Information.FAMILY_NAME_FRANCE) + " " + employeList.get(CSV_Information.FIRST_NAME_FRANCE);
 					}
 				} catch (Exception e) {
 					logger.error("error during convert archivement and blame for best Month employe ");
@@ -176,7 +180,7 @@ public class StatBuilder {
 		String department = "";
 		int add;
 		if (typeCsv.equals(CSV_Information.fR_CSV)) {
-			result.put("total" + typeCsv, 0);
+			result.put("totalFr", 0);
 			for (List<String> list : information) {
 				try {
 					department = list.get(CSV_Information.DEPARTMENT_FRANCE);
@@ -187,7 +191,7 @@ public class StatBuilder {
 						result.put(department, Integer.parseInt(list.get(CSV_Information.ACHIEVEMENTS_FRANCE)));
 					}
 
-					add = result.get("total" + typeCsv);
+					add = result.get("totalFr");
 					result.put("total" + typeCsv,
 							add + Integer.parseInt(list.get(CSV_Information.ACHIEVEMENTS_FRANCE)));
 
@@ -197,7 +201,7 @@ public class StatBuilder {
 				}
 			}
 		} else {
-			result.put("total" + typeCsv, 0);
+			result.put("totalGer", 0);
 			for (List<String> list : information) {
 				try {
 					department = list.get(CSV_Information.DEPARTMENT_GER);
@@ -207,7 +211,7 @@ public class StatBuilder {
 					} else {
 						result.put(department, Integer.parseInt(list.get(CSV_Information.ACHIEVEMENTS_GER)));
 					}
-					add = result.get("total" + typeCsv);
+					add = result.get("totalGer");
 					result.put("total" + typeCsv, add + Integer.parseInt(list.get(CSV_Information.ACHIEVEMENTS_GER)));
 				} catch (Exception e) {
 					// logger.error("error during recuperation of achievements's German succursale
@@ -225,10 +229,10 @@ public class StatBuilder {
 
 		if (branch.equals("Chn")) {
 			// Get the result of Chinese query
-			resulttasks = Database_Connection.Query(SQLQuery.TASKS_DONE_MYSQL);
+			resulttasks = dataBase_MySQL.Query(SQLQuery.TASKS_DONE_MYSQL);
 		} else {
 			// Get the result of American query
-			resulttasks = Database_Connection.Query(SQLQuery.TASKS_DONE_POSTGRESQL);
+			resulttasks = dataBase_POSTGRE.Query(SQLQuery.TASKS_DONE_POSTGRESQL);
 		}
 
 		// Save achievements for total sum
@@ -295,16 +299,16 @@ public class StatBuilder {
 		return result;
 	}
 
-	public HashMap<String, Integer> feesEmployeesBD(String branch) throws SQLException {
+	public HashMap<String, Integer> feesEmployeesBD(String branch, Database_Connection db) throws SQLException {
 		HashMap<String, Integer> result = new HashMap<String, Integer>();
 		ResultSet resulttasks;
 
 		if (branch.equals("Chn")) {
 			// Get the result of Chinese query
-			resulttasks = Database_Connection.Query(SQLQuery.EXPENSIVE_EMPLOYEES_MYSQL);
+			resulttasks = db.Query(SQLQuery.EXPENSIVE_EMPLOYEES_MYSQL);
 		} else {
 			// Get the result of American query
-			resulttasks = Database_Connection.Query(SQLQuery.EXPENSIVE_EMPLOYEES_POSTGRESQL);
+			resulttasks = db.Query(SQLQuery.EXPENSIVE_EMPLOYEES_POSTGRESQL);
 		}
 
 		// Browse the query result and get data

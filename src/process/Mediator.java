@@ -27,7 +27,7 @@ public class Mediator {
 	private static Logger logger = LoggerUtility.getLogger(Mediator.class, LoggerUtility.LOG_PREFERENCE);
 	// we start the connection with the database
 	private Database_Connection dataBase_MySQL;
-	private Database_Connection dataBase_POSTGREY;
+	private Database_Connection dataBase_POSTGRE;
 	private List<List<String>> csv_fr;
 	private List<List<String>> csv_ALL1;
 	private List<List<String>> csv_ALL2; // variable for
@@ -36,7 +36,7 @@ public class Mediator {
 	private ResultSet resultSetPOSTGRESQL;
 	private MediatorResult result = new MediatorResult(null,"");
 	private String whoRequest = "";
-	private StatBuilder stat = new StatBuilder();
+	private StatBuilder stat;
 
 	/**
 	 * Connect to the different sources of data
@@ -44,21 +44,27 @@ public class Mediator {
 	public Mediator() {
 		try {
 			dataBase_MySQL = new Database_Connection(DataForRecuperation.DATABASE_URL_MYSQL,
-					DataForRecuperation.DATABASE_USER_MYSQL, DataForRecuperation.DATABASE_PASSEWORD_MYSQL,
+					DataForRecuperation.DATABASE_USER_MYSQL, DataForRecuperation.DATABASE_PASSWORD_MYSQL,
 					DataForRecuperation.DATABASE_MYSQL);
+			
 		} catch (SQLException e) {
 			logger.error("Database connection on MYSQL is failed");
 			System.out.println(e.toString());
 		}
+		System.out.println(dataBase_MySQL.getName());
 		try {
-			dataBase_POSTGREY = new Database_Connection(DataForRecuperation.DATABASE_URL_POSRTGRESQL,
-					DataForRecuperation.DATABASE_USER_POSRTGRESQL, DataForRecuperation.DATABASE_PASSEWORD_POSRTGRESQL,
-					DataForRecuperation.DATABASE_POSRTGRESQL);
+			dataBase_POSTGRE = new Database_Connection(DataForRecuperation.DATABASE_URL_POSTGRESQL,
+					DataForRecuperation.DATABASE_USER_POSTGRESQL, DataForRecuperation.DATABASE_PASSWORD_POSTGRESQL,
+					DataForRecuperation.DATABASE_POSTGRESQL);
 
 		} catch (SQLException e) {
 			logger.error("Database connection on POSTGRESQL is failed");
 
 		}
+		System.out.println(dataBase_POSTGRE.getName());
+		System.out.println(dataBase_MySQL.getName());
+		
+		stat = new StatBuilder(dataBase_MySQL, dataBase_POSTGRE);
 		csv = new CsvRecuperation(DataForRecuperation.CSV_FR);
 		csv_fr = csv.SepareLineFR();
 
@@ -142,6 +148,7 @@ public class Mediator {
 			tasksDoneChn = stat.taskDoneBD("Chn");
 			tasksDoneUsa = stat.taskDoneBD("Usa");
 		} catch (SQLException e) {
+			logger.error(e.getMessage());
 			logger.error("Could not get the achievements of Chinese or Usa succursale");
 		}
 		
@@ -153,17 +160,18 @@ public class Mediator {
 		int achv_Chn = tasksDoneChn.get("totalChn");
 		int achv_Usa = tasksDoneUsa.get("totalUsa");
 		
-
 		System.out.println(achv_Chn);
 		System.out.println(achv_Usa);
-
-		
-		
 		
 		result.setPedagogie(best_succursale);
-		result.getResult().put("FR",tasksDoneFr.get("total"+CSV_Information.fR_CSV) );
-		result.getResult().put("GER",tasksDoneGer.get("total"+CSV_Information.GER_CSV ));
-		result.getResult().put("CHN",tasksDoneChn.get("totalChn") );
+		try {
+			result.getResult().put("FR",tasksDoneFr.get("totalFr"));
+		} catch(Exception e) {
+			logger.error(e.getCause());
+		}
+		
+		result.getResult().put("GER",tasksDoneGer.get("totalGer"));
+		result.getResult().put("CHN",tasksDoneChn.get("totalChn"));
 		result.getResult().put("USA",tasksDoneUsa.get("totalUsa"));
 		
 		if (achv_Ger > max_achv) {
@@ -184,6 +192,11 @@ public class Mediator {
 		}
 		return result;
 	}
+	private void printf(String message) {
+		// TODO Auto-generated method stub
+		
+	}
+
 	/**
 	 * Cleaning
 	 */

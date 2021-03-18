@@ -15,8 +15,9 @@ import logger.LoggerUtility;
  *
  */
 public class Database_Connection {
-	private static Connection connection;
+	private Connection connection;
 	private static Logger logger = LoggerUtility.getLogger(Database_Connection.class, LoggerUtility.LOG_PREFERENCE);
+	private String name;
 	/**
 	 * this function could be connect the java application on the database
 	 * @param url  
@@ -25,19 +26,20 @@ public class Database_Connection {
 	 * @param database
 	 * @throws SQLException
 	 */
-	public Database_Connection(String url, String user, String password,String database) throws SQLException {
-		if(database.contains(DataForRecuperation.DATABASE_POSRTGRESQL) ) {
+	public Database_Connection(String url, String user, String password, String database) throws SQLException {
+		if(database.equals(DataForRecuperation.DATABASE_POSTGRESQL) ) {
 		logger.info("Start connection to " + url);
 		connection = DriverManager.getConnection("jdbc:postgresql://" + url, user, password);
 		//if we are here, we are connected
-		logger.info("Database connected !");
+		logger.info("Database "+database+" connected !");
 		}
 		else {
 			logger.info("Start connection to " + url);
 			connection = DriverManager.getConnection("jdbc:mysql://" +url , user, password);
 			//if we are here, we are connected
-			logger.info("Database connected !");
+			logger.info("Database "+database+" connected !");
 		}
+		name = database;
 	}
 	/**
 	 * this function will be used for take some data from database 
@@ -45,9 +47,12 @@ public class Database_Connection {
 	 * @return a Resultet will be use for take information about woker or create stats with that 
 	 * @throws SQLException
 	 */
-	public static ResultSet Query(String query) throws SQLException {
+	public ResultSet Query(String query) throws SQLException {
 		PreparedStatement preparedStatement = connection.prepareStatement(query);
 		return preparedStatement.executeQuery();
-		
+	}
+	
+	public String getName() {
+		return name;
 	}
 }

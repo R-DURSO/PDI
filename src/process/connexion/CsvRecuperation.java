@@ -30,7 +30,7 @@ public class CsvRecuperation {
 			File csv = new File(PathName);
 			
 			if (csv.exists()) {
-				logger.info(csv +" Find ");
+				logger.info(csv +" Found ");
 				FileReader rdcsv = new FileReader(csv);
 				BufferedReader brcsv = new BufferedReader(rdcsv);
 				for (String line = brcsv.readLine(); line != null; line = brcsv.readLine()) {

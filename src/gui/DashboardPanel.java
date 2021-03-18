@@ -12,14 +12,17 @@ import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartPanel;
 import org.jfree.chart.JFreeChart;
 import org.jfree.data.general.DefaultPieDataset;
+import org.apache.log4j.Logger;
 import org.jfree.*;
 import data.MediatorResult;
 import process.Mediator;
+import logger.LoggerUtility;
 
 public class DashboardPanel extends JPanel{
 		
 //		private ElementManager manager;
 //		private PaintStrategy paintStrategy = new PaintStrategy();
+		private static Logger logger = LoggerUtility.getLogger(DashboardPanel.class, LoggerUtility.LOG_PREFERENCE);
 		private Mediator mediator = new Mediator();
 		private MediatorResult	result;
 		private JPanel resultOfEnterprisePanel = new JPanel();

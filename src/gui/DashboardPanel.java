@@ -40,8 +40,8 @@ public class DashboardPanel extends JPanel{
 //				System.out.println(result.getPedagogie());
 				GridLayout resultLayout = new GridLayout(1,2);
 				setLayout(resultLayout);
-				add(creaeJTextArea(Pedagogy.statTasksDones));
-				// creation du cammember 
+				add(creaeJTextArea(result.getPedagogie()));
+				// creation du cammember
 				DefaultPieDataset  pieDataset = new DefaultPieDataset();
 				pieDataset.setValue("FR", result.getResult().get("FR")); // value of german succurale
 				pieDataset.setValue("GER", result.getResult().get("GER")); // value of german succurale

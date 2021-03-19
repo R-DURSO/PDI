@@ -3,6 +3,7 @@ package process;
 import data.CSV_Information;
 import data.DataForRecuperation;
 import data.MediatorResult;
+import data.Pedagogy;
 import data.SQLQuery;
 import logger.LoggerUtility;
 import java.sql.ResultSet;
@@ -160,7 +161,8 @@ public class Mediator {
 		int achv_Chn = tasksDoneChn.get("totalChn");
 		int achv_Usa = tasksDoneUsa.get("totalUsa");
 		
-		result.setPedagogie(best_succursale);
+		result.setPedagogie(Pedagogy.statTasksDones);
+		result.setInformation("FR"+ " succursale is the succursale with the most achievements : "+String.valueOf(max_achv));
 		result.put("FR",tasksDoneFr.get("totalFr"));
 		result.put("GER",tasksDoneGer.get("totalGer"));
 		result.put("CHN",tasksDoneChn.get("totalChn"));
@@ -169,17 +171,17 @@ public class Mediator {
 		if (achv_Ger > max_achv) {
 			max_achv = achv_Ger;
 			best_succursale = "Germany";
-			result.setPedagogie(best_succursale);
+			result.setInformation(best_succursale+ " succursale is the succursale with the most achievements : "+String.valueOf(max_achv));
 			result.setResult(tasksDoneGer);
 		} else if (achv_Chn > max_achv) {
 			max_achv = achv_Chn;
 			best_succursale = "China";
-			result.setPedagogie(best_succursale);
+			result.setInformation(best_succursale+ " succursale is the succursale with the most achievements : "+String.valueOf(max_achv));
 			result.setResult(tasksDoneGer);
 		} else if (achv_Usa > max_achv) {
 			max_achv = achv_Usa;
 			best_succursale = "USA";
-			result.setPedagogie(best_succursale);
+			result.setInformation(best_succursale+ " succursale is the succursale with the most achievements : "+String.valueOf(max_achv));
 			result.setResult(tasksDoneGer);
 		}
 		return result;

@@ -18,7 +18,11 @@ public class MediatorResult {
 	}
 	
 	public String getPedagogie() {
-		return pedagogie;
+		return pedagogie+"\n ---\n"+information;
+	}
+	
+	public void setInformation(String information) {
+		this.information = information;
 	}
 	
 	public void setResult(HashMap<String, Integer> result) {

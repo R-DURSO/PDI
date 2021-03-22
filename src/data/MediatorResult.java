@@ -9,8 +9,10 @@ public class MediatorResult {
 	// is use for the all graphic could be create 
 	private String pedagogie;
 	private String information;
+	private String graphicTitle;
+
 	// is use for circular graphic
-	List<DataforCiruclarGraphic> cicularGraphic = new ArrayList<DataforCiruclarGraphic>();
+	List<DataforCircularGraphic> circularGraphic = new ArrayList<DataforCircularGraphic>();
 	
 	// is use for linear graphic 
 	List<DataForLinearGraphic> linearGraphics = new ArrayList<DataForLinearGraphic>();
@@ -18,12 +20,16 @@ public class MediatorResult {
 	private String valueY;
 	private String nameCourbe;
 	
+	// is use for BarChart graphic 
+	List<DataForBarChartGraphic> BarChartGraphic = new ArrayList<DataForBarChartGraphic>();
+	private String valueCompare;
+	
 	public String getInformation() {
 		return information;
 	}
 
-	public List<DataforCiruclarGraphic> getCicularGraphic() {
-		return cicularGraphic;
+	public List<DataforCircularGraphic> getCicularGraphic() {
+		return circularGraphic;
 	}
 
 	public List<DataForLinearGraphic> getLinearGraphics() {
@@ -50,8 +56,8 @@ public class MediatorResult {
 		return valueCompare;
 	}
 
-	public void setCicularGraphic(List<DataforCiruclarGraphic> cicularGraphic) {
-		this.cicularGraphic = cicularGraphic;
+	public void setCicularGraphic(List<DataforCircularGraphic> cicularGraphic) {
+		this.circularGraphic = cicularGraphic;
 	}
 
 	public void setLinearGraphics(List<DataForLinearGraphic> linearGraphics) {
@@ -77,9 +83,7 @@ public class MediatorResult {
 	public void setValueCompare(String valueCompare) {
 		this.valueCompare = valueCompare;
 	}
-	// is use for BarChart graphic 
-	List<DataForBarChartGraphic> BarChartGraphic = new ArrayList<DataForBarChartGraphic>();
-	private String valueCompare;
+
 	
 	public MediatorResult( String pedagogie) {
 		this.result= new HashMap<String, Integer>();
@@ -106,5 +110,15 @@ public class MediatorResult {
 	}
 	public void setPedagogie(String pedagogie) {
 		this.pedagogie = pedagogie;
+	}
+	public void addTocircularGraphic(DataforCircularGraphic data) {
+		circularGraphic.add(data);
+	}
+	public String getGraphicTitle() {
+		return graphicTitle;
+	}
+
+	public void setGraphicTitle(String graphicTitle) {
+		this.graphicTitle = graphicTitle;
 	}
 }

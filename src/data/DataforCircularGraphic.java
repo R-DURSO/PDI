@@ -1,6 +1,6 @@
 package data;
 
-public class DataforCiruclarGraphic {
+public class DataforCircularGraphic {
 	private int values=0;
 	private String WhoValues;
 	public int getValues() {
@@ -15,7 +15,7 @@ public class DataforCiruclarGraphic {
 	public void setWhoValues(String whoValues) {
 		WhoValues = whoValues;
 	}
-	public DataforCiruclarGraphic(int values, String whoValues) {
+	public DataforCircularGraphic(int values, String whoValues) {
 		this.values = values;
 		this.WhoValues = whoValues;
 	}

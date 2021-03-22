@@ -2,6 +2,7 @@ package process;
 
 import data.CSV_Information;
 import data.DataForRecuperation;
+import data.DataforCircularGraphic;
 import data.MediatorResult;
 import data.Pedagogy;
 import data.SQLQuery;
@@ -163,10 +164,13 @@ public class Mediator {
 		
 		result.setPedagogie(Pedagogy.statTasksDones);
 		result.setInformation("FR"+ " succursale is the succursale with the most achievements : "+String.valueOf(max_achv));
-		result.put("FR",tasksDoneFr.get("totalFr"));
-		result.put("GER",tasksDoneGer.get("totalGer"));
-		result.put("CHN",tasksDoneChn.get("totalChn"));
-		result.put("USA",tasksDoneUsa.get("totalUsa"));
+		List<DataforCircularGraphic> graphics = new ArrayList<DataforCircularGraphic>();
+		graphics.add(new DataforCircularGraphic(tasksDoneFr.get("totalFr"),"Fr"));
+		graphics.add(new DataforCircularGraphic(tasksDoneGer.get("totalGer"),"GER"));
+		graphics.add(new DataforCircularGraphic(tasksDoneChn.get("totalChn"),"CHN"));
+		graphics.add(new DataforCircularGraphic(tasksDoneUsa.get("totalUsa"),"USA"));
+		result.setCicularGraphic(graphics);
+		result.setGraphicTitle("taskdone per Succurale");
 		
 		if (achv_Ger > max_achv) {
 			max_achv = achv_Ger;

@@ -11,9 +11,17 @@ import javax.swing.JTextField;
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartPanel;
 import org.jfree.chart.JFreeChart;
+import org.jfree.chart.plot.PlotOrientation;
+import org.jfree.data.category.DefaultCategoryDataset;
 import org.jfree.data.general.DefaultPieDataset;
+import org.jfree.data.xy.XYSeries;
+import org.jfree.data.xy.XYSeriesCollection;
 import org.apache.log4j.Logger;
 import org.jfree.*;
+
+import data.DataForBarChartGraphic;
+import data.DataForLinearGraphic;
+import data.DataforCircularGraphic;
 import data.MediatorResult;
 import data.Pedagogy;
 import process.Mediator;
@@ -35,28 +43,10 @@ public class DashboardPanel extends JPanel {
 
 	public void creatTasksDonePanel() {
 		if (!isUser) {
-			setSize(800, 600);
 			result = mediator.TasksDone();
-//				System.out.println(result.getPedagogie());
-			GridLayout resultLayout = new GridLayout(1, 2);
-			setLayout(resultLayout);
-			add(creaeJTextArea(result.getPedagogie()));
-			// creation du cammember
-			DefaultPieDataset pieDataset = new DefaultPieDataset();
-			pieDataset.setValue("FR", result.getResult().get("FR")); // value of german succurale
-			pieDataset.setValue("GER", result.getResult().get("GER")); // value of german succurale
-			pieDataset.setValue("USA", result.getResult().get("USA")); // value of usa succurale
-			pieDataset.setValue("CHN", result.getResult().get("CHN")); // value of china succurale
-			JFreeChart pieChart = ChartFactory.createPieChart("taskdone per Succurale", pieDataset, true, false, false);
-			ChartPanel cPanel = new ChartPanel(pieChart);
-			add(cPanel);
-			isUser = true;
+			createCicurlarPanel(result);
+			isUser=true;
 		}
-
-		/*
-		 * new JPanel(); setSize(800,600); JTextField jtf = new JTextField();
-		 * jtf.setText("Coucou ça fonctionne !!!"); add(jtf); repaint();
-		 */
 	}
 
 	public void creatWagesInfosPanel() {
@@ -110,14 +100,7 @@ public class DashboardPanel extends JPanel {
 	/*
 	 * Prototypes histogramme
 	 * 
-	 * DefaultCategoryDataset dataset = new DefaultCategoryDataset(); // on crer les
-	 * valeur que l'on va mettre dans l'histogramme 
-	 * dataset.setValue(param1, param2, param3);
-	 *  param1 float valeur que la courbe va affichier param 2 String de la valeur de comparaison param3 String quel groupe/indicateur
-	 * 
-	 * JFreeChart barChart = ChartFactory.createBarChart(param4, "", param5,
-	 * dataset, PlotOrientation.VERTICAL, true, true, false); param4 String titre de
-	 * l'histogramme param5 String valeur de comparaison
+
 	 * 
 	 * ChartPanel cPanel = new ChartPanel(barChart); pnl.add(cPanel);
 	 */
@@ -125,22 +108,63 @@ public class DashboardPanel extends JPanel {
 	/*
 	 * Prototype graphique
 	 *
-	 *var series = new XYSeries("String"); // nom de la courbe 
-		series.add(int,int);  // axe X , axe Y 
+
+
 	 *
-		var dataset = new XYSeriesCollection();
-		dataset.addSeries(series); // ajout des statistisque remplit dans series 
-	 * JFreeChart chart = ChartFactory.createXYLineChart(
-        "String ", // titre du graphique 
-        "String", 			// nom de la valeur de l'axe X
-        "String",  // nom de la valeur de l'axe Y
-        dataset, 				// donnée a mettre 
-        PlotOrientation.VERTICAL,
-        true, 
-        true, 
-        false 
-);
+		
+		
 
 	*/
-
+	public void createCicurlarPanel(MediatorResult result) {
+		setSize(800, 600);
+		GridLayout resultLayout = new GridLayout(1, 2);
+		setLayout(resultLayout);
+		add(creaeJTextArea(result.getPedagogie()));
+		// creation du cammember
+		DefaultPieDataset pieDataset = new DefaultPieDataset();
+		/*
+		 * we use data from MediatorResult for create de cicurla graphic 
+		 */
+		for(DataforCircularGraphic  data : result.getCicularGraphic() ) {
+			pieDataset.setValue(data.getWhoValues(),data.getValues());
+		}
+		JFreeChart pieChart = ChartFactory.createPieChart(result.getGraphicTitle(), pieDataset, true, false, false);
+		ChartPanel cPanel = new ChartPanel(pieChart);
+		add(cPanel);
+		isUser = true;
+		
+	}
+	
+	public void createLinearGraphic(MediatorResult result) {
+		 var series = new XYSeries(result.getNameCourbe()); // nom de la courbe 
+		 for( DataForLinearGraphic data : result.getLinearGraphics()) {
+				series.add(data.getValuesX(),data.getValuesY() ) ;  // axe X , axe Y 
+		 }
+		 var dataset = new XYSeriesCollection();
+		 dataset.addSeries(series); // ajout des statistisque remplit dans series 
+		 	JFreeChart chart = ChartFactory.createXYLineChart(
+	        result.getGraphicTitle(), // titre du graphique 
+	        result.getValueX(), 			// nom de la valeur de l'axe X
+	        result.getValueY(),  // nom de la valeur de l'axe Y
+	        dataset, 				// donnée a mettre 
+	        PlotOrientation.VERTICAL,
+	        true, 
+	        true, 
+	        false 
+	);
+		 	ChartPanel chartPanel = new ChartPanel(chart);
+		 	add(chartPanel);
+	}
+	
+	public void createBarCharGraphic(MediatorResult result){
+		 DefaultCategoryDataset dataset = new DefaultCategoryDataset(); 
+		 for(DataForBarChartGraphic data : result.getBarChartGraphic()) {
+			 dataset.setValue(data.getValue(),data.getCompareValue() ,data.getWhoHaveValue() );
+		 }
+		 JFreeChart barChart = ChartFactory.createBarChart(result.getGraphicTitle(), "", result.getValueCompare() ,
+		 dataset, PlotOrientation.VERTICAL, true, true, false); 
+		 ChartPanel chartPanel = new ChartPanel( barChart ); 
+		 add(chartPanel);
+		 isUser=true;
+	}
 }

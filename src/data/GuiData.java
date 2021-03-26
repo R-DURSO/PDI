@@ -21,4 +21,7 @@ public class GuiData {
 	public static final Color BACK_PAY_BUTTON_COLOR = Color.GRAY;
 	
 	public static final Color FORE_BUTTON_COLOR = Color.WHITE;
+	
+	
+	
 }

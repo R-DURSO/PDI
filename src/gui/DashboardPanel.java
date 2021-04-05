@@ -54,7 +54,8 @@ public class DashboardPanel extends JPanel {
 	}
 
 	public void creatLeaveUsagePanel() {
-
+		result = mediator.leaveUsage();
+		createTextPanel(result);
 	}
 
 	public void creatMonthEmpPanel() {
@@ -82,7 +83,8 @@ public class DashboardPanel extends JPanel {
 	}
 
 	public void creatSalGradesPanel() {
-
+		result = mediator.SalaryNote();
+		
 	}
 
 	public void creatPayPanel() {
@@ -136,6 +138,10 @@ public class DashboardPanel extends JPanel {
 	}
 	
 	public void createLinearGraphic(MediatorResult result) {
+		setSize(800, 600);
+		GridLayout resultLayout = new GridLayout(1, 2);
+		setLayout(resultLayout);
+		add(creaeJTextArea(result.getPedagogie()));
 		 var series = new XYSeries(result.getNameCourbe()); // nom de la courbe 
 		 for( DataForLinearGraphic data : result.getLinearGraphics()) {
 				series.add(data.getValuesX(),data.getValuesY() ) ;  // axe X , axe Y 
@@ -157,6 +163,10 @@ public class DashboardPanel extends JPanel {
 	}
 	
 	public void createBarCharGraphic(MediatorResult result){
+		setSize(800, 600);
+		GridLayout resultLayout = new GridLayout(1, 2);
+		setLayout(resultLayout);
+		add(creaeJTextArea(result.getPedagogie()));
 		 DefaultCategoryDataset dataset = new DefaultCategoryDataset(); 
 		 for(DataForBarChartGraphic data : result.getBarChartGraphic()) {
 			 dataset.setValue(data.getValue(),data.getCompareValue() ,data.getWhoHaveValue() );
@@ -166,5 +176,21 @@ public class DashboardPanel extends JPanel {
 		 ChartPanel chartPanel = new ChartPanel( barChart ); 
 		 add(chartPanel);
 		 isUser=true;
+	}
+	public void createTextPanel(MediatorResult result) {
+		setSize(800, 600);
+		GridLayout resultLayout = new GridLayout(1, 2);
+		setLayout(resultLayout);
+		add(creaeJTextArea(result.getPedagogie()));
+		add(creaeJTextArea(result.getInformation()));
+	}
+	
+	public void createListPanel(MediatorResult result) {
+		setSize(800, 600);
+		GridLayout resultLayout = new GridLayout(1, 2);
+		setLayout(resultLayout);
+		add(creaeJTextArea(result.getPedagogie()));
+		
+		JTextArea  List = creaeJTextArea("");
 	}
 }

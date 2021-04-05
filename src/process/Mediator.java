@@ -183,8 +183,7 @@ public class Mediator {
 		}
 		
 		result.setResult(notes);
-		result.setPedagogie(Pedagogy.statSalaryNote);
-		
+		result.setPedagogie(Pedagogy.statSalaryNote); 
 		return result;
 	}
 
@@ -206,20 +205,20 @@ public class Mediator {
 			logger.error("Could not get the notes for Chinese of USA succursale");
 		}
 		
-		Integer noteBest;
+		Integer noteBest = 0 ;
 
 		HashMap<String, Integer> best = mthemplFr;
 		for (String key: mthemplFr.keySet()) {
 			noteBest = mthemplFr.get(key);
 		}
 		String best_branch = "France";
-		/*
+		
 		for (String key: mthemplGer.keySet()) {
 			if (noteBest < mthemplGer.get(key)) {
 				
 			}
 		}
-		*/
+		
 		
 		
 	}

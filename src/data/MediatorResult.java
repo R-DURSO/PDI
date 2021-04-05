@@ -5,7 +5,7 @@ import java.util.HashMap;
 import java.util.List;
 
 public class MediatorResult {
-	private HashMap<String, Integer> result;
+	private List<String> result;
 	// is use for the all graphic could be create 
 	private String pedagogie;
 	private String information;
@@ -86,11 +86,11 @@ public class MediatorResult {
 
 	
 	public MediatorResult( String pedagogie) {
-		this.result= new HashMap<String, Integer>();
+		this.result= new  ArrayList<String>();
 		this.pedagogie = pedagogie;
 	}
 	
-	public HashMap<String, Integer> getResult() {
+	public List<String> getResult() {
 		return result;
 	}
 	
@@ -102,11 +102,11 @@ public class MediatorResult {
 		this.information = information;
 	}
 	
-	public void setResult(HashMap<String, Integer> result) {
+	public void setResult(List<String> result) {
 		this.result = result;
 	}
-	public void put (String name,Integer value) {
-		result.put(name, value);
+	public void put (String value) {
+		result.add(value);
 	}
 	public void setPedagogie(String pedagogie) {
 		this.pedagogie = pedagogie;

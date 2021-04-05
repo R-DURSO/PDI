@@ -163,10 +163,12 @@ public class Mediator {
 			
 			for (String key: notesChn.keySet()) {
 				notes.put(key, notesChn.get(key));
+				noteList.add(key+": "+notesChn.get(key)+"\n");
 			}
 			
 			for (String key: notesUsa.keySet()) {
 				notes.put(key, notesUsa.get(key));
+				noteList.add(key+": "+notesUsa.get(key)+"\n");
 			}
 			
 		} catch (SQLException e) {
@@ -176,13 +178,13 @@ public class Mediator {
 		
 		for (String key: notesFr.keySet()) {
 			notes.put(key, notesFr.get(key));
+			noteList.add(key+": "+notesFr.get(key)+"\n");
 		}
 		
 		for (String key: notesGer.keySet()) {
-			notes.put(key, notesGer.get(key));
+			noteList.add(key+": "+notesGer.get(key)+"\n");
 		}
-		
-		result.setResult(notes);
+		result.setResult(noteList);
 		result.setPedagogie(Pedagogy.statSalaryNote); 
 		return result;
 	}
@@ -263,17 +265,14 @@ public class Mediator {
 			max_achv = achv_Ger;
 			best_succursale = "Germany";
 			result.setInformation(best_succursale+ " succursale is the succursale with the most achievements : "+String.valueOf(max_achv));
-			result.setResult(tasksDoneGer);
 		} else if (achv_Chn > max_achv) {
 			max_achv = achv_Chn;
 			best_succursale = "China";
 			result.setInformation(best_succursale+ " succursale is the succursale with the most achievements : "+String.valueOf(max_achv));
-			result.setResult(tasksDoneChn);
 		} else if (achv_Usa > max_achv) {
 			max_achv = achv_Usa;
 			best_succursale = "USA";
 			result.setInformation(best_succursale+ " succursale is the succursale with the most achievements : "+String.valueOf(max_achv));
-			result.setResult(tasksDoneUsa);
 		}
 		return result;
 	}

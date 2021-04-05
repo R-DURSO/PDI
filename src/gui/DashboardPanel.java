@@ -137,30 +137,7 @@ public class DashboardPanel extends JPanel {
 		
 	}
 	
-	public void createLinearGraphic(MediatorResult result) {
-		setSize(800, 600);
-		GridLayout resultLayout = new GridLayout(1, 2);
-		setLayout(resultLayout);
-		add(creaeJTextArea(result.getPedagogie()));
-		 var series = new XYSeries(result.getNameCourbe()); // nom de la courbe 
-		 for( DataForLinearGraphic data : result.getLinearGraphics()) {
-				series.add(data.getValuesX(),data.getValuesY() ) ;  // axe X , axe Y 
-		 }
-		 var dataset = new XYSeriesCollection();
-		 dataset.addSeries(series); // ajout des statistisque remplit dans series 
-		 	JFreeChart chart = ChartFactory.createXYLineChart(
-	        result.getGraphicTitle(), // titre du graphique 
-	        result.getValueX(), 			// nom de la valeur de l'axe X
-	        result.getValueY(),  // nom de la valeur de l'axe Y
-	        dataset, 				// donnée a mettre 
-	        PlotOrientation.VERTICAL,
-	        true, 
-	        true, 
-	        false 
-	);
-		 	ChartPanel chartPanel = new ChartPanel(chart);
-		 	add(chartPanel);
-	}
+
 	
 	public void createBarCharGraphic(MediatorResult result){
 		setSize(800, 600);

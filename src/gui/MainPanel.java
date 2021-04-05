@@ -69,58 +69,71 @@ public class MainPanel extends JFrame implements Runnable {
     }
 	
 	public static void creatTasksDonePanel() {
+		removePanel();
 		dashboardPanel.creatTasksDonePanel();
 		
 	}
 	
 	public static void creatWagesInfosPanel() {
+		removePanel();
 		dashboardPanel.creatWagesInfosPanel();
 
 	}
 	
 	public static void creatLeaveUsagePanel() {
+		removePanel();
 		dashboardPanel.creatLeaveUsagePanel();
 
 	}
 	
 	public static void creatMonthEmpPanel() {
+		removePanel();
 		dashboardPanel.creatMonthEmpPanel();
 
 	}
 	
 	public static void creatExpensiveEmpPanel() {
+		removePanel();
 		dashboardPanel.creatExpensiveEmpPanel();
 
 	}
 	
 	public static void creatFormationUtilityPanel() {
+		removePanel();
 		dashboardPanel.creatFormationUtilityPanel();
 
 	}
 	
 	public static void creatResBySeniorityPanel() {
+		removePanel();
 		dashboardPanel.creatResBySeniorityPanel();
 
 	}
 	
 	public static void creatTypeContractPanel() {
+		removePanel();
 		dashboardPanel.creatTypeContractPanel();
 
 	}
 	
 	public static void creatEmployCostPanel() {
+		removePanel();
 		dashboardPanel.creatEmployCostPanel();
 
 	}
 	
 	public static void creatSalGradesPanel() {
+		removePanel();
 		dashboardPanel.creatSalGradesPanel();
 
 	}
 	
 	public static void creatPayPanel() {
+		removePanel();
 		dashboardPanel.creatPayPanel();
 
 	}
-	
+	public static void removePanel() {
+		dashboardPanel.removeAll();
+	}
 }

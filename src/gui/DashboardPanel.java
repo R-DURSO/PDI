@@ -38,7 +38,7 @@ public class DashboardPanel extends JPanel {
 
 	public DashboardPanel() {
 		JPanel sartPanel = new JPanel();
-		sartPanel.setSize(800, 600);
+		sartPanel.setSize(800, 800);
 	}
 
 	public void creatTasksDonePanel() {
@@ -84,7 +84,7 @@ public class DashboardPanel extends JPanel {
 
 	public void creatSalGradesPanel() {
 		result = mediator.SalaryNote();
-		
+		createListPanel(result);
 	}
 
 	public void creatPayPanel() {
@@ -167,7 +167,11 @@ public class DashboardPanel extends JPanel {
 		GridLayout resultLayout = new GridLayout(1, 2);
 		setLayout(resultLayout);
 		add(creaeJTextArea(result.getPedagogie()));
+		String liString = "";
+		for (String  line: result.getResult()) {
+			liString =liString+line;
+		}
+		add( creaeJTextArea(liString));
 		
-		JTextArea  List = creaeJTextArea("");
 	}
 }

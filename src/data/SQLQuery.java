@@ -22,7 +22,7 @@ public class SQLQuery {
 	// Postgre BD
 	public static String NUMBER_OF_EMPLOYEES_POSTGRESQL = "SELECT COUNT(employee_id) AS nbrempl FROM Employee_PI";
 	public static String TASKS_DONE_POSTGRESQL = "SELECT department, SUM(achievements) AS achievements FROM Performances NATURAL JOIN Branch GROUP BY department";
-	public static String NOTE_EMPLOYEES_POSTGRESQL = "SELECT name, f_name, (achievement-blame) AS note FROM Employee_PI NATURAL JOIN Performances";
+	public static String NOTE_EMPLOYEES_POSTGRESQL = "SELECT name, f_name, (achievements-blames) AS note FROM Employee_PI NATURAL JOIN Performances";
 	public static String WAGES_INFORMATIONS_POSTGRESQL = "SELECT salary, soc_benefits, bonus FROM Payment";
 	public static String LEAVE_USAGE_POSTGRESQL = "SELECT SUM(leave) AS leaveusage From Payment";
 	public static String MONTH_EMPLOYEE_POSTGRESQL = "SELECT name, f_name, MAX(achievements-blame) AS MaxPerf From Employee_PI NATURAL JOIN Performances";

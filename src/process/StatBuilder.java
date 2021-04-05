@@ -36,138 +36,231 @@ public class StatBuilder {
 	}
 
 	/*
-	 * Use for find the best salary from CSV data
+	 * 
 	 */
-	public List<String> MonthEmployeCSV(List<List<String>> information, List<List<String>> otherInformation,
-			String typeCSV) {
-		List<String> bestNote = new ArrayList<String>();
-		String employeName = "no employe ";
-		int noteBestEmploye = 0;
-		int noteEmploye = 0;
-		if (typeCSV.equals(CSV_Information.fR_CSV)) {
-			for (List<String> employeList : information) {
-				try {
-					noteEmploye = Integer.parseInt(employeList.get(CSV_Information.ACHIEVEMENTS_FRANCE)) - Integer.parseInt(employeList.get(CSV_Information.BLAME_FRANCE));
-					if (noteBestEmploye < noteEmploye) {
+	public Integer numberOfEmployeesCSV(List<List<String>> information){
+		Integer nbr = 0;
+		
+		for (List<String> list : information) {
+			nbr ++;
+			}
+		
+		return nbr;
+	}
 
-						noteBestEmploye = noteEmploye;
-						employeName = employeList.get(CSV_Information.FAMILY_NAME_FRANCE) + " " + employeList.get(CSV_Information.FIRST_NAME_FRANCE);
+	public Integer numberOfEmployeesBD(String branch) throws SQLException{
+		Integer nbr = 0;
+		
+		ResultSet count;
+		
+		if (branch.equals("Chn")) {
+			// Get the result of Chinese query
+			count = dataBase_MySQL.Query(SQLQuery.NUMBER_OF_EMPLOYEES_MYSQL);
+			while (count.next()) {
+				nbr = count.getInt("nbrempl");
+			}
+		} else {
+			// Get the result of American query
+			count = dataBase_POSTGRE.Query(SQLQuery.NUMBER_OF_EMPLOYEES_POSTGRESQL);
+			while (count.next()) {
+				nbr = count.getInt("nbrempl");
+			}
+		}
+		
+		return nbr;
+	}
+	
+	/*
+
+	 * Used to find the best salary from CSV data
+	 */
+ 	public HashMap<String, Integer> monthEmployeeCSV(List<List<String>> information, List<List<String>> otherInformation, String typeCSV) {
+		HashMap<String, Integer> bestNote = new HashMap<String, Integer>();
+		String employeeName = "no employee";
+		int noteBestEmployee = 0;
+		int noteEmployee = 0;
+		if (typeCSV.equals(CSV_Information.fR_CSV)) {
+			for (List<String> employeeList : information) {
+				try {
+					noteEmployee = Integer.parseInt(employeeList.get(CSV_Information.ACHIEVEMENTS_FRANCE)) - Integer.parseInt(employeeList.get(CSV_Information.BLAME_FRANCE));
+					if (noteBestEmployee < noteEmployee) {
+
+						noteBestEmployee = noteEmployee;
+						employeeName = employeeList.get(CSV_Information.FAMILY_NAME_FRANCE) + " " + employeeList.get(CSV_Information.FIRST_NAME_FRANCE);
 					}
 				} catch (Exception e) {
-					logger.error("error during convert archivement and blame for best Month employe ");
-					// System.out.println(e.toString());
+					logger.error("error during convertion of achievement and blame for best month employe FR");
 				}
 			}
-			bestNote.add("For french  succursale the best employe of month is" + " : " + employeName + " "
-					+ noteBestEmploye);
 
 		} else {
 			for (List<String> employeListGER : otherInformation) {
 				try {
-					noteEmploye = Integer.parseInt(employeListGER.get(CSV_Information.ACHIEVEMENTS_GER))
+					noteEmployee = Integer.parseInt(employeListGER.get(CSV_Information.ACHIEVEMENTS_GER))
 							- Integer.parseInt(employeListGER.get(CSV_Information.BLAME_GER));
-					if (noteBestEmploye < noteEmploye) {
-						noteBestEmploye = noteEmploye;
-						employeName = employeListGER.get(CSV_Information.ID_GER);
-
+					if (noteBestEmployee < noteEmployee) {
+						noteBestEmployee = noteEmployee;
+						employeeName = employeListGER.get(CSV_Information.ID_GER);
 					}
 				} catch (Exception e) {
-					logger.error("error during convert archivement and blame for best Month employe ");
+					logger.error("error during convertion of achievement and blame for best month employe GER");
 				}
-
 			}
 			for (List<String> employe : information) {
-				if ((employe.get(CSV_Information.ID_GER)).equals(employeName)) {
-					employeName = employe.get(CSV_Information.FIRST_NAME_GER);
+				if ((employe.get(CSV_Information.ID_GER)).equals(employeeName)) {
+					employeeName = employe.get(CSV_Information.FIRST_NAME_GER);
 				}
-
 			}
-			bestNote.add("For German  succursale the best employe of month is" + " : " + employeName + " "
-					+ noteBestEmploye);
-
 		}
 
+		bestNote.put(employeeName, noteBestEmployee);
 		return bestNote;
 	}
 
-	public List<String> NoteEmployeCSV(List<List<String>> information, List<List<String>> otherInformation,
+	public HashMap<String, Integer> monthEmployeeBD(String branch) throws SQLException{
+		HashMap<String, Integer> bestemployee = new HashMap<String, Integer>();
+		ResultSet monthempl;
+		
+		Integer note_mthempl = 0;
+		String name_mthempl = "default";
+		
+		
+		if (branch.equals("Chn")) {
+			// Get the result of Chinese query
+			monthempl = dataBase_MySQL.Query(SQLQuery.MONTH_EMPLOYEE_MYSQL);
+		} else {
+			// Get the result of American query
+			monthempl = dataBase_POSTGRE.Query(SQLQuery.MONTH_EMPLOYEE_POSTGRESQL);
+		}
+		while (monthempl.next()) {
+			note_mthempl = monthempl.getInt("note");
+			name_mthempl = monthempl.getString("name") + " " + monthempl.getString("f_name");
+		}
+		
+		bestemployee.put(name_mthempl, note_mthempl);
+		return bestemployee;
+	}
+	
+	/**
+	 * 
+	 * @param information
+	 * @param otherInformation
+	 * @param typeCSV
+	 * @return
+	 */
+	public HashMap<String, Integer> noteEmployeeCSV(List<List<String>> information, List<List<String>> otherInformation,
 			String typeCSV) {
-		List<String> note = new ArrayList<String>();
-		String employeName = "no employe ";
-		int noteEmploye = 0;
+		HashMap<String, Integer> notes = new HashMap<String, Integer>();
+		String employeeName = "no employe ";
+		int noteEmployee = 0;
 		if (typeCSV.equals(CSV_Information.fR_CSV)) {
 			for (List<String> employeList : information) {
 				try {
-					noteEmploye = Integer.parseInt(employeList.get(CSV_Information.ACHIEVEMENTS_FRANCE))
+					noteEmployee = Integer.parseInt(employeList.get(CSV_Information.ACHIEVEMENTS_FRANCE))
 							- Integer.parseInt(employeList.get(CSV_Information.BLAME_FRANCE));
 
-					employeName = employeList.get(CSV_Information.FAMILY_NAME_FRANCE) + " "
+					employeeName = employeList.get(CSV_Information.FAMILY_NAME_FRANCE) + " "
 							+ employeList.get(CSV_Information.FIRST_NAME_FRANCE);
 
 				} catch (Exception e) {
-					logger.error("error during convert archivement and blame for best Month employe ");
-					// System.out.println(e.toString());
+					logger.error("error during convertion of achievement and blame for best month employee FR ");
 				}
-				note.add("For french  succursale the  employe " + " : " + employeName + " have as note : "
-						+ noteEmploye);
 			}
 		} else {
 			for (List<String> employeListGER : otherInformation) {
 				try {
-					noteEmploye = Integer.parseInt(employeListGER.get(CSV_Information.ACHIEVEMENTS_GER))
+					noteEmployee = Integer.parseInt(employeListGER.get(CSV_Information.ACHIEVEMENTS_GER))
 							- Integer.parseInt(employeListGER.get(CSV_Information.BLAME_GER));
-					employeName = employeListGER.get(CSV_Information.ID_GER);
+					employeeName = employeListGER.get(CSV_Information.ID_GER);
 					for (List<String> employe : information) {
-						if ((employe.get(CSV_Information.ID_GER)).equals(employeName)) {
-							employeName = employe.get(CSV_Information.FIRST_NAME_GER);
+						if ((employe.get(CSV_Information.ID_GER)).equals(employeeName)) {
+							employeeName = employe.get(CSV_Information.FIRST_NAME_GER);
 						}
-
 					}
-
 				} catch (Exception e) {
-					logger.error("error during convert archivement and blame for best Month employe ");
+					logger.error("error during convert archivement and blame for best month employee GER ");
 				}
-				note.add("For German  succursale the  employe " + " : " + employeName + " have as note : "
-						+ noteEmploye);
 			}
-
 		}
-
-		return note;
+		
+		notes.put(employeeName, noteEmployee);
+		return notes;
 	}
-
-	public List<String> freeDayCSV(List<List<String>> information, String typeCsv) {
-		List<String> freeday = new ArrayList<String>();
-		int numberOfFreeday = 0;
+	
+	public HashMap<String, Integer> noteEmployeeBD(String branch) throws SQLException{
+		HashMap<String, Integer> notes = new HashMap<String, Integer>();
+		ResultSet resultnotes;
+		
+		if (branch.equals("Chn")) {
+			// Get the result of Chinese query
+			resultnotes = dataBase_MySQL.Query(SQLQuery.NOTE_EMPLOYEES_MYSQL);
+		} else {
+			// Get the result of American query
+			resultnotes = dataBase_POSTGRE.Query(SQLQuery.NOTE_EMPLOYEES_POSTGRESQL);
+		}
+		while (resultnotes.next()) {
+			int note = resultnotes.getInt("note");
+			String name = resultnotes.getString("name") + " " + resultnotes.getString("f_name");
+			 notes.put(name, note);
+		}
+		
+		return notes;
+	}
+	
+	/**
+	 * 
+	 * @param information
+	 * @param typeCsv
+	 * @return
+	 */
+	public Integer leaveUsageCSV(List<List<String>> information, String typeCsv) {
+		int leaveUsageCount = 0;
 
 		if (typeCsv.equals(CSV_Information.fR_CSV)) {
 			for (List<String> list : information) {
 				try {
-					numberOfFreeday += Integer.parseInt(list.get(CSV_Information.LEAVE_FRANCE));
+					leaveUsageCount += Integer.parseInt(list.get(CSV_Information.LEAVE_FRANCE));
 				} catch (Exception e) {
-					logger.error("error during recuperation of freeday's French succursale ");
-					// System.out.println(e.toString());
+					logger.error("error during recuperation of French succursale leave usage");
 				}
 
 			}
-			freeday.add("For French succursale  the number of freeday used is : " + numberOfFreeday);
 		} else {
 			for (List<String> list : information) {
 				try {
-
-					numberOfFreeday += Integer.parseInt(list.get(CSV_Information.LEAVE_GER));
+					leaveUsageCount += Integer.parseInt(list.get(CSV_Information.LEAVE_GER));
 				} catch (Exception e) {
-					logger.error("error during recuperation of freeday's German succursale ");
-					// System.out.println(e.toString());
+					logger.error("error during recuperation of German succursale leave usage");
 				}
 
 			}
-			freeday.add("For German succursale  the number of freeday used is : " + numberOfFreeday);
 		}
-		return freeday;
-
+		
+		return leaveUsageCount;
 	}
 
+	public Integer leaveUsageBD(String branch) throws SQLException {
+		int leaveUsageCount = 0;
+		
+		ResultSet leave;
+		
+		if (branch.equals("Chn")) {
+			// Get the result of Chinese query
+			leave = dataBase_MySQL.Query(SQLQuery.NOTE_EMPLOYEES_MYSQL);
+			while (leave.next()) {
+				leaveUsageCount = leave.getInt("vacationusage");
+			}
+		} else {
+			// Get the result of American query
+			leave = dataBase_POSTGRE.Query(SQLQuery.NOTE_EMPLOYEES_POSTGRESQL);
+			while (leave.next()) {
+				leaveUsageCount = leave.getInt("leaveusage");
+			}
+		}
+		
+		return leaveUsageCount;
+	}
+	
 	/**
 	 * returns total of achievements by branch
 	 * 
@@ -299,41 +392,42 @@ public class StatBuilder {
 		return result;
 	}
 
-	public HashMap<String, Integer> feesEmployeesBD(String branch, Database_Connection db) throws SQLException {
+	public HashMap<String, Integer> feesEmployeesBD(String branch) throws SQLException {
 		HashMap<String, Integer> result = new HashMap<String, Integer>();
-		ResultSet resulttasks;
+		ResultSet resultfees;
 
 		if (branch.equals("Chn")) {
 			// Get the result of Chinese query
-			resulttasks = db.Query(SQLQuery.EXPENSIVE_EMPLOYEES_MYSQL);
+			resultfees = dataBase_MySQL.Query(SQLQuery.EXPENSIVE_EMPLOYEES_MYSQL);
 		} else {
 			// Get the result of American query
-			resulttasks = db.Query(SQLQuery.EXPENSIVE_EMPLOYEES_POSTGRESQL);
+			resultfees = dataBase_POSTGRE.Query(SQLQuery.EXPENSIVE_EMPLOYEES_POSTGRESQL);
 		}
 
 		// Browse the query result and get data
-		while (resulttasks.next()) {
-			result.put(resulttasks.getString("employee_id"), Integer.parseInt(resulttasks.getString("fees")));
+		while (resultfees.next()) {
+			result.put(resultfees.getString("employee_id"), Integer.parseInt(resultfees.getString("fees")));
 		}
 
 		return result;
 	}
 
 	/**
-	 * returns
+	 * 
 	 */
-	public HashMap<String, Integer> contractTypeCSV(List<List<String>> information, String typeCsv) {
-		HashMap<String, Integer> result = new HashMap<String, Integer>();
-		String contract = "";
-
-		if (typeCsv.equals(CSV_Information.fR_CSV)) {
+	public HashMap<Integer, Integer> resultBySeniorityCSV (List<List<String>> information, List<List<String>> otherInformation, String typeCSV){
+		HashMap<Integer, Integer> seniorityResults = new HashMap<Integer,Integer>();
+		Integer seniority;
+		Integer results;
+		
+		/*
+		if (typeCSV.equals(CSV_Information.fR_CSV)) {
 			for (List<String> list : information) {
 				try {
 					contract = list.get(CSV_Information.CONTRACT_FRANCE);
 					result.put(contract, result.get(contract) + 1);
 				} catch (Exception e) {
-					logger.error("error during recuperation of achievements's French succursale ");
-					// System.out.println(e.toString());
+					logger.error("error during recuperation of French succursale's contract types");
 				}
 			}
 		} else {
@@ -342,11 +436,64 @@ public class StatBuilder {
 					contract = list.get(CSV_Information.CONTRACT_GER);
 					result.put(contract, result.get(contract) + 1);
 				} catch (Exception e) {
-					logger.error("error during recuperation of achievements's German succursale ");
-					// System.out.println(e.toString());
+					logger.error("error during recuperation of German succursale's contract types");
 				}
 			}
 		}
+		*/
+		
+		return seniorityResults;
+	}
+	
+	
+	/**
+	 * returns
+	 */
+ 	public HashMap<String, Integer> contractTypesCSV(List<List<String>> information, String typeCSV) {
+		HashMap<String, Integer> result = new HashMap<String, Integer>();
+		String contract = "";
+
+		if (typeCSV.equals(CSV_Information.fR_CSV)) {
+			for (List<String> list : information) {
+				try {
+					contract = list.get(CSV_Information.CONTRACT_FRANCE);
+					result.put(contract, result.get(contract) + 1);
+				} catch (Exception e) {
+					logger.error("error during recuperation of French succursale's contract types");
+				}
+			}
+		} else {
+			for (List<String> list : information) {
+				try {
+					contract = list.get(CSV_Information.CONTRACT_GER);
+					result.put(contract, result.get(contract) + 1);
+				} catch (Exception e) {
+					logger.error("error during recuperation of German succursale's contract types");
+				}
+			}
+		}
+		
 		return result;
+	}
+	
+	public HashMap<String, Integer> contractTypesBD(String branch) throws SQLException {
+		HashMap<String, Integer> contracts = new HashMap<String, Integer>();
+		
+		ResultSet resultcontract;
+
+		if (branch.equals("Chn")) {
+			// Get the result of Chinese query
+			resultcontract = dataBase_MySQL.Query(SQLQuery.EXPENSIVE_EMPLOYEES_MYSQL);
+		} else {
+			// Get the result of American query
+			resultcontract = dataBase_POSTGRE.Query(SQLQuery.EXPENSIVE_EMPLOYEES_POSTGRESQL);
+		}
+
+		// Browse the query result and get data
+		while (resultcontract.next()) {
+			contracts.put(resultcontract.getString("contract"), Integer.parseInt(resultcontract.getString("contractnb")));
+		}
+		
+		return contracts;
 	}
 }

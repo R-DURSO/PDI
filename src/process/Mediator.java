@@ -80,59 +80,148 @@ public class Mediator {
 		csv_fr.remove(0);
 	}
 
-	/**
-	 * Values will be changed
-	 */
-	public void ResultOfEnterprise() {
-
-	}
-
+	
 	/**
 	 * Used for telling how many leaves are taken branch by branch
 	 */
-	public void LeaveDay() {
-		List<String> freeDayList = new ArrayList<String>();
-		freeDayList.add("For the leaveday we addition the number of leaveday by all employe on all succursale :");
-		freeDayList.addAll(stat.freeDayCSV(csv_ALL2, CSV_Information.GER_CSV));
-		freeDayList.addAll(stat.freeDayCSV(csv_fr, CSV_Information.fR_CSV));
-		// use for test will ne to clean after this
-
-		System.out.println("\n \n");
-		for (String test : freeDayList) {
-			System.out.println(test);
+	public MediatorResult leaveUsage() {
+		Integer leaveUsageGer = stat.leaveUsageCSV(csv_ALL2, CSV_Information.GER_CSV);
+		Integer leaveUsageFr = stat.leaveUsageCSV(csv_fr, CSV_Information.fR_CSV);
+		Integer leaveUsageUsa = 0;
+		Integer leaveUsageChn = 0;
+		
+		Integer nbrEmplGer = stat.numberOfEmployeesCSV(csv_ALL1);
+		Integer nbrEmplFr = stat.numberOfEmployeesCSV(csv_fr);
+		Integer nbrEmplUsa = 0;
+		Integer nbrEmplChn = 0;
+		
+		try {
+			leaveUsageUsa = stat.numberOfEmployeesBD("Usa");
+			leaveUsageChn = stat.numberOfEmployeesBD("Chn");
+		} catch (SQLException e) {
+			logger.error(e.getMessage());
+			logger.error("Could not get the leave usage of Chinese or Usa succursale");
 		}
-
+		
+		try {
+			nbrEmplUsa = stat.leaveUsageBD("Usa");
+			nbrEmplChn = stat.leaveUsageBD("Chn");
+		} catch (SQLException e) {
+			logger.error(e.getMessage());
+			logger.error("Could not get the total number of employees for Chinese or Usa succursale");
+		}
+		
+		Integer sumLeaveUsage = leaveUsageGer + leaveUsageFr + leaveUsageUsa + leaveUsageChn;
+		Integer sumEmployees = nbrEmplGer + nbrEmplFr + nbrEmplUsa + nbrEmplChn;
+		
+		float averageLeaveUsage = sumLeaveUsage / sumEmployees;
+		
+		float averageLUGer = leaveUsageGer / nbrEmplGer;
+		float averageLUFr = leaveUsageFr / nbrEmplFr;
+		float averageLUUsa = leaveUsageUsa / nbrEmplUsa;
+		float averageLUChn = leaveUsageChn / nbrEmplChn;
+		
+		
+		float highest_avg = averageLUFr;
+		String laziest_succursale = "France";
+		
+		if (averageLUGer > highest_avg) {
+			highest_avg =averageLUGer;
+			laziest_succursale = "Germany";
+					
+		} else if (averageLUChn > highest_avg) {
+			highest_avg =averageLUChn;
+			laziest_succursale = "China";
+			
+		} else if (averageLUUsa > highest_avg) {
+			highest_avg =averageLUUsa;
+			laziest_succursale = "USA";
+		}
+		
+		result.setInformation(laziest_succursale+" succursale is the succursale with the most leave usage out of the 4 with an average of "+ highest_avg +" on a total of "+ averageLeaveUsage);
+		result.setPedagogie(Pedagogy.statLeaveUsage);
+		
+		
+		return result;
 	}
 
 	/**
 	 * Used to get a List with the name and note of all salaries from the different branches
 	 */
-	public void SalaryNote() {
+	public MediatorResult SalaryNote() {
 		List<String> noteList = new ArrayList<String>();
-		noteList.add("For information the notes of all employees are calculated by substracting their blame score from their archievement score");
-		noteList.addAll(stat.NoteEmployeCSV(csv_fr, null, CSV_Information.fR_CSV));
-		noteList.addAll(stat.NoteEmployeCSV(csv_ALL1, csv_ALL2, CSV_Information.GER_CSV));
-		// test need clean this after
-		System.out.println("\n \n");
-		for (String test : noteList) {
-			System.out.println(test);
+		HashMap<String, Integer> notesFr = stat.noteEmployeeCSV(csv_fr, null, CSV_Information.fR_CSV);
+		HashMap<String, Integer> notesGer = stat.noteEmployeeCSV(csv_ALL1, csv_ALL2, CSV_Information.GER_CSV);
+		HashMap<String, Integer> notesUsa = null;
+		HashMap<String, Integer> notesChn = null;
+		
+		HashMap<String, Integer> notes = new HashMap<String, Integer>();
+		
+		try {
+			notesChn = stat.noteEmployeeBD("Chn");
+			notesUsa = stat.noteEmployeeBD("Usa");
+			
+			for (String key: notesChn.keySet()) {
+				notes.put(key, notesChn.get(key));
+			}
+			
+			for (String key: notesUsa.keySet()) {
+				notes.put(key, notesUsa.get(key));
+			}
+			
+		} catch (SQLException e) {
+			logger.error(e.getMessage());
+			logger.error("Could not get the notes for Chinese of USA succursale");
 		}
+		
+		for (String key: notesFr.keySet()) {
+			notes.put(key, notesFr.get(key));
+		}
+		
+		for (String key: notesGer.keySet()) {
+			notes.put(key, notesGer.get(key));
+		}
+		
+		result.setResult(notes);
+		result.setPedagogie(Pedagogy.statSalaryNote);
+		
+		return result;
 	}
 
 	/**
-	 * Used for telling the salary of the month for each branch
+	 * Used for telling the employee of the month for each branch and global
 	 */
 	public void MonthSalary() {
-		System.out.println("\n\n\n");
-		List<String> noteList = new ArrayList<String>();
-		noteList.add(
-				"He have a best salary for all succursale  we calculate this with the subbition between archivement and blame ");
-		noteList.addAll(stat.MonthEmployeCSV(csv_fr, null, CSV_Information.fR_CSV));
-		noteList.addAll(stat.MonthEmployeCSV(csv_ALL1, csv_ALL2, CSV_Information.GER_CSV));
-		// manque les méthode de cacule SQL
-		for (String test : noteList) {
-			System.out.println(test);
+		HashMap<String, Integer> mthemplFr = stat.monthEmployeeCSV(csv_fr, null, CSV_Information.fR_CSV);
+		HashMap<String, Integer> mthemplGer = stat.monthEmployeeCSV(csv_ALL1, csv_ALL2, CSV_Information.GER_CSV);
+		HashMap<String, Integer> mthemplUsa = null;
+		HashMap<String, Integer> mthemplChn = null;
+		
+		try {
+			mthemplChn = stat.monthEmployeeBD("Chn");
+			mthemplUsa = stat.monthEmployeeBD("Usa");
+			
+		} catch (SQLException e) {
+			logger.error(e.getMessage());
+			logger.error("Could not get the notes for Chinese of USA succursale");
 		}
+		
+		Integer noteBest;
+
+		HashMap<String, Integer> best = mthemplFr;
+		for (String key: mthemplFr.keySet()) {
+			noteBest = mthemplFr.get(key);
+		}
+		String best_branch = "France";
+		/*
+		for (String key: mthemplGer.keySet()) {
+			if (noteBest < mthemplGer.get(key)) {
+				
+			}
+		}
+		*/
+		
+		
 	}
 	
 	/**
@@ -145,7 +234,6 @@ public class Mediator {
 		HashMap<String, Integer> tasksDoneGer = stat.taskDoneCSV(csv_ALL2, CSV_Information.GER_CSV);
 		HashMap<String, Integer> tasksDoneChn = null;
 		HashMap<String, Integer> tasksDoneUsa = null;
-		String intermediateString;
 		try {
 			tasksDoneChn = stat.taskDoneBD("Chn");
 			tasksDoneUsa = stat.taskDoneBD("Usa");
@@ -165,12 +253,12 @@ public class Mediator {
 		result.setPedagogie(Pedagogy.statTasksDones);
 		result.setInformation("FR"+ " succursale is the succursale with the most achievements : "+String.valueOf(max_achv));
 		List<DataforCircularGraphic> graphics = new ArrayList<DataforCircularGraphic>();
-		graphics.add(new DataforCircularGraphic(tasksDoneFr.get("totalFr"),"Fr"));
+		graphics.add(new DataforCircularGraphic(tasksDoneFr.get("totalFr"),"FR"));
 		graphics.add(new DataforCircularGraphic(tasksDoneGer.get("totalGer"),"GER"));
 		graphics.add(new DataforCircularGraphic(tasksDoneChn.get("totalChn"),"CHN"));
 		graphics.add(new DataforCircularGraphic(tasksDoneUsa.get("totalUsa"),"USA"));
 		result.setCicularGraphic(graphics);
-		result.setGraphicTitle("taskdone per Succurale");
+		result.setGraphicTitle("Tasks done per Succursale");
 		
 		if (achv_Ger > max_achv) {
 			max_achv = achv_Ger;
@@ -181,15 +269,16 @@ public class Mediator {
 			max_achv = achv_Chn;
 			best_succursale = "China";
 			result.setInformation(best_succursale+ " succursale is the succursale with the most achievements : "+String.valueOf(max_achv));
-			result.setResult(tasksDoneGer);
+			result.setResult(tasksDoneChn);
 		} else if (achv_Usa > max_achv) {
 			max_achv = achv_Usa;
 			best_succursale = "USA";
 			result.setInformation(best_succursale+ " succursale is the succursale with the most achievements : "+String.valueOf(max_achv));
-			result.setResult(tasksDoneGer);
+			result.setResult(tasksDoneUsa);
 		}
 		return result;
 	}
+	
 	private void printf(String message) {
 		// TODO Auto-generated method stub
 		

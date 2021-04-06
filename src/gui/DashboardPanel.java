@@ -112,7 +112,7 @@ public class DashboardPanel extends JPanel {
 	 */
 	public void creatResBySeniorityPanel() {
 		result = mediator.resultsBySeniority();
-		createListPanel(result);
+		createBarCharGraphic(result);
 	}
 
 	/**
@@ -219,8 +219,10 @@ public class DashboardPanel extends JPanel {
 		setLayout(resultLayout);
 		add(creaeJTextArea(result.getPedagogie()));
 		 DefaultCategoryDataset dataset = new DefaultCategoryDataset(); 
+		 System.out.println(result.getBarChartGraphic());
 		 for(DataForBarChartGraphic data : result.getBarChartGraphic()) {
-			 dataset.setValue(data.getValue(),data.getCompareValue() ,data.getWhoHaveValue() );
+			 dataset.addValue(data.getValue(),data.getCompareValue() ,data.getWhoHaveValue() );
+			 System.out.println(data.getValue()+data.getCompareValue() +data.getWhoHaveValue());
 		 }
 		 JFreeChart barChart = ChartFactory.createBarChart(result.getGraphicTitle(), "", result.getValueCompare() ,
 		 dataset, PlotOrientation.VERTICAL, true, true, false); 

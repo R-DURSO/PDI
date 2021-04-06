@@ -1,6 +1,7 @@
 package process;
 
 import data.CSV_Information;
+import data.DataForBarChartGraphic;
 import data.DataForRecuperation;
 import data.DataforCircularGraphic;
 import data.MediatorResult;
@@ -333,6 +334,7 @@ public class Mediator {
 		HashMap<Integer, Integer> groupedResults = new HashMap<Integer, Integer>();
 		
 		List<String> seniorityInformations = new ArrayList<String>();
+		List<DataForBarChartGraphic> graphics = new ArrayList<DataForBarChartGraphic>();
 		
 		Integer formerValue;
 		
@@ -390,11 +392,14 @@ public class Mediator {
 		for (Integer key: groupedResults.keySet())
 		{
 			textResults = "The mean results for employees with "+key+" year(s) of seniority are "+groupedResults.get(key)+"\n";
+			graphics.add(new DataForBarChartGraphic(groupedResults.get(key), "years",key+"years"));
+			
 			seniorityInformations.add(textResults);
 		}
 		
-		
-		
+		result.setGraphicTitle("graphic of efficaty by ancienty");
+		result.setValueCompare("mean result");
+		result.setBarChartGraphic(graphics);
 		result.setResult(seniorityInformations);
 		
 		return result;

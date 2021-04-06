@@ -555,6 +555,69 @@ public class StatBuilder {
 	}
 	
 	/**
+	 * 
+	 */
+	
+	public Integer employmentCostCSV(List<List<String>> information, String typeCSV) {
+		Integer monthlyCost = 0;
+		Integer weeklyCost = 0;
+		
+		Integer employeeCost = 0;
+		
+		
+		if (typeCSV.equals(CSV_Information.fR_CSV)) {
+			for (List<String> list : information) {
+				try {
+					employeeCost = Integer.parseInt(list.get(CSV_Information.HOURS_WORKED_BY_WEEK_FRANCE))*Integer.parseInt(list.get(CSV_Information.HOURLY_RATE_FRANCE));
+					weeklyCost += employeeCost;
+				} catch (Exception e) {
+					logger.error(e.getMessage());
+					logger.error("error during recuperation of French succursale's contract types");
+				}
+			}
+		} else {
+			for (List<String> list : information) {
+				try {
+					employeeCost = Integer.parseInt(list.get(CSV_Information.HOURS_WORKED_BY_WEEK_GER))*Integer.parseInt(list.get(CSV_Information.HOURLY_RATE_GER));
+					weeklyCost += employeeCost;
+				} catch (Exception e) {
+					logger.error(e.getMessage());
+					logger.error("error during recuperation of German succursale's contract types");
+				}
+			}
+		}
+		
+		monthlyCost = 4*weeklyCost;
+		
+		return monthlyCost;
+	}
+
+	public Integer employmentCostBD(String branch) throws SQLException{
+		Integer monthlyCost = 0;
+		Integer weeklyCost = 0;
+		ResultSet employmentCostResult;
+		
+		if (branch.equals("Chn")) {
+			// Get the result of Chinese query
+			employmentCostResult = dataBase_MySQL.Query(SQLQuery.COST_OF_EMPLOYMENT_MYSQL);
+		} else {
+			// Get the result of American query
+			employmentCostResult = dataBase_POSTGRE.Query(SQLQuery.COST_OF_EMPLOYMENT_POSTGRESQL);
+		}
+
+		// Browse the query result and get data
+		while (employmentCostResult.next()) {
+			weeklyCost = employmentCostResult.getInt("weeklycost");
+		}
+		
+		monthlyCost = 4*weeklyCost;
+		
+		return monthlyCost;
+		
+	}
+	
+	
+	/**
 	 * returns
 	 */
  	public HashMap<String, Integer> contractTypesCSV(List<List<String>> information, String typeCSV) {

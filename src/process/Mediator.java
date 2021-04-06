@@ -26,7 +26,6 @@ import process.connexion.Database_Connection;
  * This class contains the heterogeneous data mediator
  * 
  * @author Kevin BERNARD, Raphael D'URSO, Laura FUSTINONI, Aelien MOUBECHE
- * @version
  *
  */
 public class Mediator {
@@ -44,6 +43,7 @@ public class Mediator {
 	private MediatorResult result = new MediatorResult("");
 	private String whoRequest = "";
 	private StatBuilder stat;
+
 
 	/**
 	 * Constructor.
@@ -206,6 +206,8 @@ public class Mediator {
 
 	/**
 	 * This method is used for telling the employee of the month for each branch and global
+	 * 
+	 * @return the result in a MediatorResult
 	 */
 	public MediatorResult monthEmployee() {
 		
@@ -266,6 +268,11 @@ public class Mediator {
 		return result;
 	}
 	
+	/**
+	 * This method is used to determine the worst employee
+	 * 
+	 * @return the result in a MediatorResult
+	 */
 	public MediatorResult worstEmployee() {
 		HashMap<String, Integer> wrstemplFr = stat.monthEmployeeCSV(csv_fr, null, CSV_Information.fR_CSV);
 		HashMap<String, Integer> wrstemplGer = stat.monthEmployeeCSV(csv_ALL1, csv_ALL2, CSV_Information.GER_CSV);
@@ -325,7 +332,11 @@ public class Mediator {
 	};
 
 	
-	
+	/**
+	 * This method is used to determine the highest fees employees
+	 * 
+	 * @return the result in a MediatorResult
+	 */
 	public MediatorResult highestFeesEmployees() {
 		HashMap<String, Integer> hfEmployeesGer = stat.feesEmployeesCSV(csv_ALL2, csv_ALL1, CSV_Information.GER_CSV);
 		HashMap<String, Integer> hfEmployeesFr = stat.feesEmployeesCSV(csv_fr, null, CSV_Information.fR_CSV);
@@ -368,6 +379,11 @@ public class Mediator {
 		return result;
 	}
 	
+	/**
+	 * This method is used to determine the number of contract types
+	 * 
+	 * @return the result in a MediatorResult
+	 */
 	public MediatorResult contractTypesCount() {
 		HashMap<String, Integer> ctcEmployeesGer = stat.contractTypesCSV(csv_ALL1, CSV_Information.GER_CSV);
 		HashMap<String, Integer> ctcEmployeesFr = stat.contractTypesCSV(csv_fr, CSV_Information.fR_CSV);
@@ -511,9 +527,11 @@ public class Mediator {
 		return result;
 		
 	}
+	
 	/**
+	 * This method is used for giving information about the results group by seniority
 	 * 
-	 * @param message
+	 * @return the information in a MediatorResult
 	 */
 	public MediatorResult resultsBySeniority() {
 		HashMap<Integer, Integer> seniorityFr = stat.resultBySeniorityCSV(csv_fr, null, CSV_Information.fR_CSV);
@@ -595,8 +613,11 @@ public class Mediator {
 		return result;
 	}
 
-	
-	
+	/**
+	 * This method is used to determine the employment cost
+	 * 
+	 * @return the result in a MediatorResult
+	 */
 	public MediatorResult employmentCost() {
 		int employmentcostFr = stat.employmentCostCSV(csv_fr, CSV_Information.fR_CSV);
 		int employmentcostGer = stat.employmentCostCSV(csv_ALL2, CSV_Information.GER_CSV);
@@ -628,6 +649,11 @@ public class Mediator {
 		return result;
 	}
 	
+	/**
+	 * This method is used to get and determine wages info about employees
+	 * 
+	 * @return the result in a MediatorResult
+	 */
 	public MediatorResult wagesInfo() {
 		HashMap<String, Integer> wagesinfofr = stat.wagesInforCSV(csv_fr,null, CSV_Information.fR_CSV);
 		HashMap<String, Integer> wagesinfoGer = stat.wagesInforCSV( csv_ALL1,csv_ALL2, CSV_Information.GER_CSV);
@@ -660,9 +686,13 @@ public class Mediator {
 		return result;
 	}
 	
+	/**
+	 * This method is used to build pay slip
+	 * 
+	 * @return the result in a MediatorResult
+	 */
 	public MediatorResult PayFich() {
-
-
+		
 		List<String> PayFichfr  = stat.payFichCSV(csv_fr, null, CSV_Information.fR_CSV);
 		List<String> PayFichGer  = stat.payFichCSV( csv_ALL1,csv_ALL2, CSV_Information.GER_CSV);
 		List<String> PayFichUSA = null;
@@ -673,7 +703,7 @@ public class Mediator {
 		result.setPedagogie("PAY SLIP");
 		result.setResult(finalPayFich);
 		return result;
+		
 	}
-	
 	
 }

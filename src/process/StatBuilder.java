@@ -1,11 +1,10 @@
 package process;
 
 /**
+ * This class builds the statistics
  * 
- * @author Laura FUSTINONI
- * @author Raphaël D'URSO
- * @author Aëlien MOUBECHE
- * use for transform the different data into a stats
+ * @author Kevin BERNARD, Raphael D'URSO, Laura FUSTINONI, Aelien MOUBECHE
+ *
  */
 
 import java.util.ArrayList;
@@ -26,6 +25,7 @@ import process.connexion.CsvRecuperation;
 import process.connexion.Database_Connection;
 
 public class StatBuilder {
+	
 	private static Logger logger = LoggerUtility.getLogger(StatBuilder.class, LoggerUtility.LOG_PREFERENCE);
 	private Database_Connection dataBase_MySQL;
 	private Database_Connection dataBase_POSTGRE;
@@ -33,14 +33,23 @@ public class StatBuilder {
 	private LocalDateTime now;
 	private String timestamp;
 
+	/**
+	 * Constructor
+	 * This method allows to build the statistics
+	 * 
+	 * @param db1 : information connection of the first database
+	 * @param db2 : information connection of the second database
+	 */
 	public StatBuilder(Database_Connection db1, Database_Connection db2) {
 		dataBase_MySQL = db1;
 		dataBase_POSTGRE = db2;
-		// TODO Auto-generated constructor stub
 	}
 
-	/*
+	/**
+	 * This method is used to return the number of employees in CSV files for statistics
 	 * 
+	 * @param information : a list of data of CSV in a List<List<String>>
+	 * @return the result in an integer
 	 */
 	public Integer numberOfEmployeesCSV(List<List<String>> information) {
 		Integer nbr = 0;
@@ -52,6 +61,13 @@ public class StatBuilder {
 		return nbr;
 	}
 
+	/**
+	 * This method is used to return the number of employees in databases for statistics
+	 * 
+	 * @param branch : the branch of the company in a String
+	 * @return the result in an integer
+	 * @throws SQLException
+	 */
 	public Integer numberOfEmployeesBD(String branch) throws SQLException {
 		Integer nbr = 0;
 
@@ -74,9 +90,13 @@ public class StatBuilder {
 		return nbr;
 	}
 
-	/*
+	/**
+	 * This method is used to find the best employee from CSV data
 	 * 
-	 * Used to find the best salary from CSV data
+	 * @param information : a list of data from CSV in a List<List<String>>
+	 * @param otherInformation : an other a list of data from CSV in a List<List<String>>
+	 * @param typeCSV : the FR CSV or GER CSV in a String
+	 * @return the result in a HashMap<String, Integer>
 	 */
 	public HashMap<String, Integer> monthEmployeeCSV(List<List<String>> information,
 			List<List<String>> otherInformation, String typeCSV) {
@@ -125,6 +145,13 @@ public class StatBuilder {
 		return bestNote;
 	}
 
+ 	/**
+ 	 * This method is used to find the best employee from databases data
+ 	 * 
+ 	 * @param branch : the branch of the company in a String
+ 	 * @return the result in a HashMap<String, Integer>
+ 	 * @throws SQLException
+ 	 */
 	public HashMap<String, Integer> monthEmployeeBD(String branch) throws SQLException {
 		HashMap<String, Integer> bestemployee = new HashMap<String, Integer>();
 		ResultSet monthempl;
@@ -149,11 +176,12 @@ public class StatBuilder {
 	}
 
 	/**
+	 * This method is used to get the employees notes from CSV
 	 * 
-	 * @param information
-	 * @param otherInformation
-	 * @param typeCSV
-	 * @return
+	 * @param information : a list of data from CSV in a List<List<String>>
+	 * @param otherInformation : an other list of data from CSV in a List<List<String>>
+	 * @param typeCSV : the FR CSV or GER CSV in a String
+	 * @return the result in a HashMap<String, Integer>
 	 */
 	public HashMap<String, Integer> noteEmployeeCSV(List<List<String>> information, List<List<String>> otherInformation,
 			String typeCSV) {
@@ -194,6 +222,13 @@ public class StatBuilder {
 		return notes;
 	}
 
+	/**
+	 * This method is used to get the employees notes from databases
+	 * 
+	 * @param branch : the branch of the company in a String
+	 * @return the result in a HashMap<String, Integer>
+	 * @throws SQLException
+	 */
 	public HashMap<String, Integer> noteEmployeeBD(String branch) throws SQLException {
 		HashMap<String, Integer> notes = new HashMap<String, Integer>();
 		ResultSet resultnotes;
@@ -215,10 +250,11 @@ public class StatBuilder {
 	}
 
 	/**
+	 * This method is used to get the leave usage of employees from CSV
 	 * 
-	 * @param information
-	 * @param typeCsv
-	 * @return
+	 * @param information : a list of data from CSV in a List<List<String>>
+	 * @param typeCsv : the FR CSV or GER CSV in a String
+	 * @return the result in an integer
 	 */
 	public Integer leaveUsageCSV(List<List<String>> information, String typeCsv) {
 		int leaveUsageCount = 0;
@@ -246,6 +282,14 @@ public class StatBuilder {
 		return leaveUsageCount;
 	}
 
+
+	/**
+	 * This method is used to get the leave usage of employees from databases
+	 * 
+	 * @param branch : the branch of the company in a String
+	 * @return the result in an integer
+	 * @throws SQLException
+	 */
 	public Integer leaveUsageBD(String branch) throws SQLException {
 		int leaveUsageCount = 0;
 
@@ -269,11 +313,11 @@ public class StatBuilder {
 	}
 
 	/**
-	 * returns total of achievements by branch
+	 * This method is used to get total of achievements by branch from CSV
 	 * 
-	 * @param CSV  data
-	 * @param type of CSV
-	 * @return number of tasks done by branch
+	 * @param information : a list of data from CSV in a List<List<String>>
+	 * @param typeCsv : the FR CSV or GER CSV in a String
+	 * @return the result in a HashMap<String, Integer>
 	 */
 	public HashMap<String, Integer> taskDoneCSV(List<List<String>> information, String typeCsv) {
 		HashMap<String, Integer> result = new HashMap<String, Integer>();
@@ -323,6 +367,13 @@ public class StatBuilder {
 		return result;
 	}
 
+	/**
+	 * This method is used to get total of achievements by branch from databases
+	 * 
+	 * @param branch : the branch of the company in a String
+	 * @return the result in a HashMap<String, Integer>
+	 * @throws SQLException
+	 */
 	public HashMap<String, Integer> taskDoneBD(String branch) throws SQLException {
 		HashMap<String, Integer> result = new HashMap<String, Integer>();
 		ResultSet resulttasks;
@@ -352,11 +403,12 @@ public class StatBuilder {
 	}
 
 	/**
-	 * return fees by employee
+	 * This method is used to get fees by employee from CSV
 	 * 
-	 * @param CSV  data (1 or 2)
-	 * @param type of CSV
-	 * @return fees by employee
+	 * @param information : a list of data from CSV in a List<List<String>>
+	 * @param otherInformation : an other list of data from CSV in a List<List<String>>
+	 * @param typeCsv : the FR CSV or GER CSV in a String
+	 * @return the result in a HashMap<String, Integer>
 	 */
 	public HashMap<String, Integer> feesEmployeesCSV(List<List<String>> information,
 			List<List<String>> otherInformation, String typeCsv) {
@@ -415,6 +467,13 @@ public class StatBuilder {
 		return result;
 	}
 
+	/**
+	 * This method is used to get fees by employee from databases
+	 * 
+	 * @param branch : the branch of the company in a String
+	 * @return the result in a HashMap<String, Integer>
+	 * @throws SQLException
+	 */
 	public HashMap<String, Integer> feesEmployeesBD(String branch) throws SQLException {
 		HashMap<String, Integer> result = new HashMap<String, Integer>();
 		ResultSet resultfees;
@@ -436,7 +495,12 @@ public class StatBuilder {
 	}
 
 	/**
+	 * This method is used to get result of employee by seniority from CSV
 	 * 
+	 * @param information : a list of data from CSV in a List<List<String>>
+	 * @param otherInformation : an other list of data from CSV in a List<List<String>>
+	 * @param typeCSV : the FR CSV or GER CSV in a String
+	 * @return the result in a HashMap<String, Integer>
 	 */
 	public HashMap<Integer, Integer> resultBySeniorityCSV(List<List<String>> information,
 			List<List<String>> otherInformation, String typeCSV) {
@@ -500,6 +564,12 @@ public class StatBuilder {
 		return seniorityResults;
 	}
 
+	/**
+	 * This method is used to calculate the seniority of employee
+	 * 
+	 * @param hiring_date : the hiring date of the employee in a String
+	 * @return the result of the calculation in an integer
+	 */
 	public Integer seniorityCalc(String hiring_date) {
 		Integer seniority;
 
@@ -549,6 +619,13 @@ public class StatBuilder {
 		return seniority;
 	};
 
+	/**
+	 * This method is used to get result of employee by seniority from databases
+	 * 
+	 * @param branch : the branch of the company in a String
+	 * @return the result in a HashMap<Integer, Integer>
+	 * @throws SQLException
+	 */
 	public HashMap<Integer, Integer> resultBySeniorityBD(String branch) throws SQLException {
 		HashMap<Integer, Integer> seniorities = new HashMap<Integer, Integer>();
 		ResultSet resultseniority;
@@ -570,9 +647,12 @@ public class StatBuilder {
 	}
 
 	/**
+	 * This method is used to get result of the employment cost from CSV
 	 * 
+	 * @param information : a list of data from CSV in a List<List<String>>
+	 * @param typeCSV : he FR CSV or GER CSV in a String
+	 * @return the result in a HashMap<String, Integer>
 	 */
-
 	public Integer employmentCostCSV(List<List<String>> information, String typeCSV) {
 		Integer monthlyCost = 0;
 		Integer weeklyCost = 0;

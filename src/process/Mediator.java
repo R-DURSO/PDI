@@ -268,6 +268,60 @@ public class Mediator {
 		return result;
 	}
 	
+	public MediatorResult highestFeesEmployees() {
+		HashMap<String, Integer> hfEmployeesGer = stat.feesEmployeesCSV(csv_ALL2, csv_ALL1, CSV_Information.GER_CSV);
+		HashMap<String, Integer> hfEmployeesFr = stat.feesEmployeesCSV(csv_fr, null, CSV_Information.fR_CSV);
+		HashMap<String, Integer> hfEmployeesChn;
+		HashMap<String, Integer> hfEmployeesUsa;
+		
+		List<String> hfEmployees = new ArrayList<String>();
+		
+		
+		
+		try {
+			hfEmployeesChn = stat.noteEmployeeBD("Chn");
+			hfEmployeesUsa = stat.noteEmployeeBD("Usa");
+			
+			for (String key: hfEmployeesChn.keySet()) {
+				hfEmployees.add(key+" has for fees : "+hfEmployeesChn.get(key)+"$\n");
+			}
+			
+			for (String key: hfEmployeesUsa.keySet()) {
+				hfEmployees.add(key+" has for fees : "+hfEmployeesUsa.get(key)+"$\n");
+			}
+			
+		} catch (SQLException e) {
+			logger.error(e.getMessage());
+			logger.error("Could not get the notes for Chinese of USA succursale");
+		}
+		
+		for (String key: hfEmployeesFr.keySet()) {
+			hfEmployees.add(key+" has for fees : "+hfEmployeesFr.get(key)+"$\n");
+		}
+		
+		for (String key: hfEmployeesGer.keySet()) {
+			hfEmployees.add(key+" has for fees : "+hfEmployeesGer.get(key)+"$\n");
+		}
+		
+		result.setResult(hfEmployees);
+		result.setPedagogie("yo");
+		
+		
+		return result;
+	}
+	
+	public MediatorResult contractTypesCount() {
+		HashMap<String, Integer> ctcEmployeesGer = stat.contractTypesCSV(csv_ALL1, CSV_Information.GER_CSV);
+		HashMap<String, Integer> ctcEmployeesFr = stat.contractTypesCSV(csv_fr, CSV_Information.fR_CSV);
+		HashMap<String, Integer> ctcEmployeesChn;
+		HashMap<String, Integer> ctcEmployeesUsa;
+		
+		
+		
+		return result;
+	}
+	
+	
 	/**
 	 * This method is used for giving information about total tasks done
 	 * 

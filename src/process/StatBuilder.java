@@ -363,13 +363,23 @@ public class StatBuilder {
 		String employeeID = "";
 		String name = "";
 		Integer fees = 0;
+		
+		String maxname = "";
+		Integer maxfees = 0;
+		
 
 		if (typeCsv.equals(CSV_Information.fR_CSV)) {
 			for (List<String> employefeesList : information) {
 				try {
 					name = employefeesList.get(CSV_Information.FAMILY_NAME_FRANCE) + " "
 							+ employefeesList.get(CSV_Information.FIRST_NAME_FRANCE);
-					result.put(name, Integer.parseInt(employefeesList.get(CSV_Information.FEES_FRANCE)));
+					
+					fees = Integer.parseInt(employefeesList.get(CSV_Information.FEES_FRANCE));
+					
+					if (fees >= maxfees){
+						maxname = name;
+						maxfees = fees;
+					}
 				} catch (Exception e) {
 					logger.error("Error during recuperation of employee fees for French succursale");
 					// System.out.println(e.toString());
@@ -384,7 +394,11 @@ public class StatBuilder {
 						if ((employe.get(CSV_Information.ID_GER)).equals(employeeID)) {
 							name = employe.get(CSV_Information.FAMILY_NAME_GER) + " "
 									+ employe.get(CSV_Information.FIRST_NAME_GER);
-							result.put(name, fees);
+							
+							if (fees >= maxfees){
+								maxname = name;
+								maxfees = fees;
+							}
 						}
 
 					}
@@ -395,6 +409,9 @@ public class StatBuilder {
 			}
 
 		}
+		
+		result.put(maxname, maxfees);
+		
 		return result;
 	}
 

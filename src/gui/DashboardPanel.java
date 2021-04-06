@@ -5,6 +5,7 @@ import java.awt.Color;
 import java.awt.GridLayout;
 
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
@@ -148,7 +149,9 @@ public class DashboardPanel extends JPanel {
 			}
 			JTextArea test =creaeJTextArea("                                                                                                                      "+result.getPedagogie()+"\n"+payslip);
 			test.setBounds(0, 0, 780, 600);
-			add(test);
+			JScrollPane sp = new JScrollPane(test);
+			sp.setSize(800, 600);
+			add(sp);
 	}
 
 	/**

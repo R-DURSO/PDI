@@ -13,7 +13,7 @@ public class DataForBarChartGraphic {
 	private String 	WhoHaveValue;
 	
 	/**
-	 * This method allows to get the value of the bar char graphic
+	 * This method allows to get the value of bar chart graphic
 	 * 
 	 * @return the value in integer
 	 */
@@ -33,14 +33,14 @@ public class DataForBarChartGraphic {
 	/**
 	 * This method allows to get who have the value
 	 * 
-	 * @return a String with the answer of the question
+	 * @return a String with the answer to the question
 	 */
 	public String getWhoHaveValue() {
 		return WhoHaveValue;
 	}
 	
 	/**
-	 * This method allows to set the value
+	 * This method allows to set the value of bar chart graphic
 	 * 
 	 * @param value : the new value in integer
 	 */
@@ -67,6 +67,7 @@ public class DataForBarChartGraphic {
 	}
 	
 	/**
+	 * Constructor.
 	 * This method allows to give data for bar chart graphic
 	 * 
 	 * @param value : the value of the bar chart graphic in integer

@@ -3,8 +3,8 @@ package process;
 /**
  * 
  * @author Laura FUSTINONI
- * @author Raphaël D'URSO
- * @author Aëlien MOUBECHE
+ * @author RaphaÃ«l D'URSO
+ * @author AÃ«lien MOUBECHE
  * use for transform the different data into a stats
  */
 
@@ -13,6 +13,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.format.DateTimeFormatter;
+import java.time.LocalDateTime; 
+
 
 import org.apache.log4j.Logger;
 
@@ -27,6 +30,9 @@ public class StatBuilder {
 	private static Logger logger = LoggerUtility.getLogger(StatBuilder.class, LoggerUtility.LOG_PREFERENCE);
 	private Database_Connection dataBase_MySQL;
 	private Database_Connection dataBase_POSTGRE;
+	private static DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+	private LocalDateTime now;
+	private String timestamp;
 	
 	
 	public StatBuilder(Database_Connection db1, Database_Connection db2) {
@@ -406,7 +412,7 @@ public class StatBuilder {
 
 		// Browse the query result and get data
 		while (resultfees.next()) {
-			result.put(resultfees.getString("employee_id"), Integer.parseInt(resultfees.getString("fees")));
+			result.put(resultfees.getString("employee_id"), resultfees.getInt("fees"));
 		}
 
 		return result;
@@ -417,34 +423,123 @@ public class StatBuilder {
 	 */
 	public HashMap<Integer, Integer> resultBySeniorityCSV (List<List<String>> information, List<List<String>> otherInformation, String typeCSV){
 		HashMap<Integer, Integer> seniorityResults = new HashMap<Integer,Integer>();
+		// HashMap key and value template variables
 		Integer seniority;
 		Integer results;
 		
-		/*
+		String hiring_date;
+		String employeeID;
+		
 		if (typeCSV.equals(CSV_Information.fR_CSV)) {
 			for (List<String> list : information) {
 				try {
-					contract = list.get(CSV_Information.CONTRACT_FRANCE);
-					result.put(contract, result.get(contract) + 1);
+					hiring_date = list.get(CSV_Information.HIRING_DATE_FRANCE);
+					seniority = seniorityCalc(hiring_date);
+					
+					results = Integer.parseInt(list.get(CSV_Information.ACHIEVEMENTS_FRANCE));
+					
+					seniorityResults.put(seniority, seniorityResults.get(seniority) + results);
+					
 				} catch (Exception e) {
-					logger.error("error during recuperation of French succursale's contract types");
+					logger.error("error during recuperation of French succursale's results by seniority");
 				}
 			}
 		} else {
 			for (List<String> list : information) {
 				try {
-					contract = list.get(CSV_Information.CONTRACT_GER);
-					result.put(contract, result.get(contract) + 1);
+					hiring_date = list.get(CSV_Information.HIRING_DATE_GER);
+					seniority = seniorityCalc(hiring_date);
+					
+					employeeID = list.get(CSV_Information.ID_GER);
+					
+					
+					for (List<String> employe : otherInformation) {
+						if ((employe.get(CSV_Information.ID_GER)).equals(employeeID)) {
+							results = Integer.parseInt(employe.get(CSV_Information.ACHIEVEMENTS_GER));
+							seniorityResults.put(seniority, seniorityResults.get(seniority) + results);
+						}
+
+					}
+					
+					
 				} catch (Exception e) {
-					logger.error("error during recuperation of German succursale's contract types");
+					logger.error("error during recuperation of German succursale's results by seniority");
 				}
 			}
 		}
-		*/
 		
 		return seniorityResults;
 	}
 	
+	public Integer seniorityCalc(String hiring_date) {
+		Integer seniority;
+		
+		// current date year, month and day
+		now = LocalDateTime.now();
+		timestamp = dtf.format(now);
+		String[] timestamparray = timestamp.split("\\s+");
+		String date = timestamparray[0];
+		String[] splitdate = date.split("-");
+		Integer currentYear = Integer.parseInt(splitdate[0]);
+		Integer currentMonth = Integer.parseInt(splitdate[1]);
+		Integer currentDay = Integer.parseInt(splitdate[2]);
+		
+		String delim = "/";
+		
+		String[] split_hd;
+		
+		// hiring date year, month and day
+		Integer hdYear;
+		Integer hdMonth;
+		Integer hdDay;
+		
+		// differences between hiring and current dates
+		Integer diffYear;
+		Integer diffMonth;
+		Integer diffDay;
+		
+		Integer dayDiffCount;
+		
+		//------
+		
+		split_hd = hiring_date.split(delim);
+		
+		// French and German syntax : dd/MM/yyyy
+		hdYear = Integer.parseInt(split_hd[2]);
+		hdMonth = Integer.parseInt(split_hd[1]);
+		hdDay = Integer.parseInt(split_hd[0]);
+		
+		diffYear = currentYear-hdYear;
+		diffMonth = currentMonth-hdMonth;
+		diffDay = currentDay-hdDay;
+		
+		dayDiffCount = diffYear*365 + diffMonth*30 + diffDay;
+		
+		seniority = dayDiffCount/365;
+		
+		return seniority;
+	};
+	
+	public HashMap<Integer, Integer> resultBySeniorityBD(String branch) throws SQLException{
+		HashMap<Integer, Integer> seniorities = new HashMap<Integer, Integer>();
+		ResultSet resultseniority;
+		
+		if (branch.equals("Chn")) {
+			// Get the result of Chinese query
+			resultseniority = dataBase_MySQL.Query(SQLQuery.RESULT_BY_SENIORITY_MYSQL);
+		} else {
+			// Get the result of American query
+			resultseniority = dataBase_POSTGRE.Query(SQLQuery.RESULT_BY_SENIORITY_POSTGRESQL);
+		}
+
+		// Browse the query result and get data
+		while (resultseniority.next()) {
+			seniorities.put(resultseniority.getInt("seniority"), resultseniority.getInt("results"));
+		}
+		
+		
+		return seniorities;
+	}
 	
 	/**
 	 * returns
@@ -483,15 +578,15 @@ public class StatBuilder {
 
 		if (branch.equals("Chn")) {
 			// Get the result of Chinese query
-			resultcontract = dataBase_MySQL.Query(SQLQuery.EXPENSIVE_EMPLOYEES_MYSQL);
+			resultcontract = dataBase_MySQL.Query(SQLQuery.TYPE_OF_CONTRACT_MYSQL);
 		} else {
 			// Get the result of American query
-			resultcontract = dataBase_POSTGRE.Query(SQLQuery.EXPENSIVE_EMPLOYEES_POSTGRESQL);
+			resultcontract = dataBase_POSTGRE.Query(SQLQuery.TYPE_OF_CONTRACT_POSTGRESQL);
 		}
 
 		// Browse the query result and get data
 		while (resultcontract.next()) {
-			contracts.put(resultcontract.getString("contract"), Integer.parseInt(resultcontract.getString("contractnb")));
+			contracts.put(resultcontract.getString("contract"), resultcontract.getInt("contractnb"));
 		}
 		
 		return contracts;

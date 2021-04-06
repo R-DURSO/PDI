@@ -291,6 +291,59 @@ public class Mediator {
 		return result;
 		
 	}
+	/**
+	 * 
+	 * @param message
+	 */
+	public MediatorResult resultsBySeniority() {
+		HashMap<Integer, Integer> seniorityFr = stat.resultBySeniorityCSV(csv_fr, null, CSV_Information.fR_CSV);
+		HashMap<Integer, Integer> seniorityGer = stat.resultBySeniorityCSV(csv_ALL1, csv_ALL2, CSV_Information.GER_CSV);
+		HashMap<Integer, Integer> seniorityChn = null;
+		HashMap<Integer, Integer> seniorityUsa= null;
+		
+		HashMap<Integer, Integer> groupedResults = new HashMap<Integer, Integer>();
+		
+		List<String> seniorityInformations = new ArrayList<String>();
+		
+		try {
+			seniorityChn = stat.resultBySeniorityBD("Chn");
+			seniorityUsa = stat.resultBySeniorityBD("Usa");
+			
+			for (Integer key: seniorityChn.keySet()) {
+				groupedResults.put(key, seniorityChn.get(key));
+			}
+			
+			for (Integer key: seniorityUsa.keySet()) {
+				groupedResults.put(key, seniorityUsa.get(key));
+			}
+			
+		} catch (SQLException e) {
+			logger.error(e.getMessage());
+			logger.error("Could not get the results by seniority for Chinese or Usa succursale");
+		}
+		
+		for (Integer key: seniorityFr.keySet()) {
+			groupedResults.put(key, seniorityFr.get(key));
+		}
+		
+		for (Integer key: seniorityGer.keySet()) {
+			groupedResults.put(key, seniorityGer.get(key));
+		}
+		
+		String textResults;
+		
+		for (Integer key: groupedResults.keySet())
+		{
+			textResults = "The mean results for employees with "+key+" year(s) of seniority are "+groupedResults.get(key);
+			seniorityInformations.add(textResults);
+		}
+		
+		
+		
+		result.setResult(seniorityInformations);
+		
+		return result;
+	}
 	
 	/**
 	 * This method is used to print a message on the std out

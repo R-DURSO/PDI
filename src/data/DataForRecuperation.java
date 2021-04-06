@@ -3,6 +3,13 @@ package data;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
+/**
+ * This class gives data for information recuperation in databases and CSV files
+ * 
+ * @author Kevin BERNARD, Raphael D'URSO, Laura FUSTINONI, Aelien MOUBECHE
+ * @version
+ *
+ */
 public class DataForRecuperation {
 
 	// static variable for connection on mysql database

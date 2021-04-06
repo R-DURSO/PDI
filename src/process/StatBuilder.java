@@ -114,7 +114,7 @@ public class StatBuilder {
 			}
 			for (List<String> employe : information) {
 				if ((employe.get(CSV_Information.ID_GER)).equals(employeeName)) {
-					employeeName = employe.get(CSV_Information.FIRST_NAME_GER);
+					employeeName = employe.get(CSV_Information.FAMILY_NAME_GER) +" "+employe.get(CSV_Information.FIRST_NAME_GER);
 				}
 			}
 		}
@@ -614,6 +614,76 @@ public class StatBuilder {
 		
 		return monthlyCost;
 		
+	}
+	
+	/**
+	 * 
+	 */
+ 	public HashMap<String, Integer> worstMonthEmployeeCSV(List<List<String>> information, List<List<String>> otherInformation, String typeCSV) {
+		HashMap<String, Integer> worstNote = new HashMap<String, Integer>();
+		String employeeName = "no employee";
+		int noteWorstEmployee = 0;
+		int noteEmployee = 0;
+		if (typeCSV.equals(CSV_Information.fR_CSV)) {
+			for (List<String> employeeList : information) {
+				try {
+					noteEmployee = Integer.parseInt(employeeList.get(CSV_Information.ACHIEVEMENTS_FRANCE)) - Integer.parseInt(employeeList.get(CSV_Information.BLAME_FRANCE));
+					if (noteWorstEmployee > noteEmployee) {
+
+						noteWorstEmployee = noteEmployee;
+						employeeName = employeeList.get(CSV_Information.FAMILY_NAME_FRANCE) + " " + employeeList.get(CSV_Information.FIRST_NAME_FRANCE);
+					}
+				} catch (Exception e) {
+					logger.error("error during convertion of achievement and blame for worst month employe FR");
+				}
+			}
+
+		} else {
+			for (List<String> employeListGER : otherInformation) {
+				try {
+					noteEmployee = Integer.parseInt(employeListGER.get(CSV_Information.ACHIEVEMENTS_GER))
+							- Integer.parseInt(employeListGER.get(CSV_Information.BLAME_GER));
+					if (noteWorstEmployee > noteEmployee) {
+						noteWorstEmployee = noteEmployee;
+						employeeName = employeListGER.get(CSV_Information.ID_GER);
+					}
+				} catch (Exception e) {
+					logger.error("error during convertion of achievement and blame for worst month employe GER");
+				}
+			}
+			for (List<String> employe : information) {
+				if ((employe.get(CSV_Information.ID_GER)).equals(employeeName)) {
+					employeeName = employe.get(CSV_Information.FAMILY_NAME_GER) +" " +employe.get(CSV_Information.FIRST_NAME_GER);
+				}
+			}
+		}
+
+		worstNote.put(employeeName, noteWorstEmployee);
+		return worstNote;
+	}
+
+	public HashMap<String, Integer> worstMonthEmployeeBD(String branch) throws SQLException{
+		HashMap<String, Integer> worstemployee = new HashMap<String, Integer>();
+		ResultSet wrstempl;
+		
+		Integer note_wrstempl = 0;
+		String name_wrstempl = "default";
+		
+		
+		if (branch.equals("Chn")) {
+			// Get the result of Chinese query
+			wrstempl = dataBase_MySQL.Query(SQLQuery.WORST_EMPLOYEE_MYSQL);
+		} else {
+			// Get the result of American query
+			wrstempl = dataBase_POSTGRE.Query(SQLQuery.WORST_EMPLOYEE_POSTGRESQL);
+		}
+		while (wrstempl.next()) {
+			note_wrstempl = wrstempl.getInt("minperf");
+			name_wrstempl = wrstempl.getString("name") + " " + wrstempl.getString("f_name");
+		}
+		
+		worstemployee.put(name_wrstempl, note_wrstempl);
+		return worstemployee;
 	}
 	
 	

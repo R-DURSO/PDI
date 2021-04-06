@@ -126,7 +126,8 @@ public class DashboardPanel extends JPanel {
 	 * This method creates the employ cost panel elements on the dashboard
 	 */
 	public void creatEmployCostPanel() {
-
+		result = mediator.employmentCost();
+				createCicurlarPanel(result);
 	}
 
 	/**

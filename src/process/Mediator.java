@@ -404,7 +404,36 @@ public class Mediator {
 		
 		return result;
 	}
-	
+	public MediatorResult employmentCost() {
+		int employmentcostFr = stat.employmentCostCSV(csv_fr, CSV_Information.fR_CSV);
+		int employmentcostGer = stat.employmentCostCSV(csv_ALL2, CSV_Information.GER_CSV);
+		int employmentcostChn = 0;
+		int employmentcostUSA = 0;
+		try {
+			employmentcostChn = stat.employmentCostBD("Chn");
+			employmentcostFr = stat.employmentCostBD("Usa");
+		} catch (SQLException e) {
+			logger.error(e.getMessage());
+			logger.error("Could not get the achievements of Chinese or Usa succursale");
+		}
+		List<DataforCircularGraphic> graphics = new ArrayList<DataforCircularGraphic>();
+		graphics.add(new DataforCircularGraphic(employmentcostFr,"FR"));
+		graphics.add(new DataforCircularGraphic(employmentcostGer,"GER"));
+		graphics.add(new DataforCircularGraphic(employmentcostChn,"CHN"));
+		graphics.add(new DataforCircularGraphic(employmentcostUSA,"USA"));
+		int mostCost =employmentcostChn;
+			mostCost =+ employmentcostFr;
+		
+			mostCost =+ employmentcostUSA;
+
+			mostCost =+ employmentcostGer;
+
+		result.setPedagogie("a remplir");
+		result.setInformation("total employment cost : "+mostCost);
+		result.setCicularGraphic(graphics);
+		result.setGraphicTitle("Employment cost comparison for the four branches");
+		return result;
+	}
 	/**
 	 * This method is used to print a message on the std out
 	 * 

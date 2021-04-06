@@ -594,6 +594,9 @@ public class Mediator {
 		
 		return result;
 	}
+
+	
+	
 	public MediatorResult employmentCost() {
 		int employmentcostFr = stat.employmentCostCSV(csv_fr, CSV_Information.fR_CSV);
 		int employmentcostGer = stat.employmentCostCSV(csv_ALL2, CSV_Information.GER_CSV);
@@ -624,30 +627,53 @@ public class Mediator {
 		result.setGraphicTitle("Employment cost comparison for the four branches");
 		return result;
 	}
-	/**
-	 * This method is used to print a message on the std out
-	 * 
-	 * @param message : the message to print in a String
-	 */
-	private void printf(String message) {
-		
-		// TODO Auto-generated method stub
-		
-	}
+	
+	public MediatorResult wagesInfo() {
+		HashMap<String, Integer> wagesinfofr = stat.wagesInforCSV(csv_fr,null, CSV_Information.fR_CSV);
+		HashMap<String, Integer> wagesinfoGer = stat.wagesInforCSV( csv_ALL1,csv_ALL2, CSV_Information.GER_CSV);
+		HashMap<String, Integer> wagesinfoChn = null;
+		HashMap<String, Integer> wagesinfoUse = null;
 
-	/**
-	 * This method is used for cleaning the resultSet of MySQL and PostgreSQL databases
-	 */
-	public void clean() {
-		
+		List<String> wage = new ArrayList<String>();
 		try {
-			resultSetMYSQL.deleteRow();
-			resultSetPOSTGRESQL.deleteRow();
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+			wagesinfoChn = stat.wagesInfoBd("Chn");
+			wagesinfoUse = stat.wagesInfoBd("Usa");
 
+		} catch (SQLException e) {
+			logger.error(e.getMessage());
+			logger.error("Could not get the achievements of Chinese or Usa succursale");
+		}
+		for(String key : wagesinfoChn.keySet()) {
+			wage.add(key+" "+wagesinfoChn.get(key)+"\n");
+		}
+		for(String key : wagesinfofr.keySet()) {
+			wage.add(key+" "+wagesinfofr.get(key)+"\n");
+		}
+		for(String key : wagesinfoGer.keySet()) {
+			wage.add(key+" "+wagesinfoGer.get(key)+"\n");
+		}
+		for(String key : wagesinfoUse.keySet()) {
+			wage.add(key+" "+wagesinfoUse.get(key)+"\n");
+		}
+		result.setPedagogie("a faire");
+		result.setResult(wage);
+		return result;
 	}
+	
+	public MediatorResult PayFich() {
+
+
+		List<String> PayFichfr  = stat.payFichCSV(csv_fr, null, CSV_Information.fR_CSV);
+		List<String> PayFichGer  = stat.payFichCSV( csv_ALL1,csv_ALL2, CSV_Information.GER_CSV);
+		List<String> PayFichUSA = null;
+		List<String> PayFichCHN = null;
+		
+		List<String> finalPayFich  =PayFichfr;
+		finalPayFich.addAll(PayFichGer);
+		result.setPedagogie("PAY SLIP");
+		result.setResult(finalPayFich);
+		return result;
+	}
+	
 	
 }

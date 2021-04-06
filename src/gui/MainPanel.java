@@ -147,10 +147,10 @@ public class MainPanel extends JFrame implements Runnable {
 	/**
 	 * This method allows to create the formation utility panel elements
 	 */
-	public static void creatFormationUtilityPanel() {
+	public static void createWortEmployeButton() {
 		
 		removePanel();
-		dashboardPanel.creatFormationUtilityPanel();
+		dashboardPanel.createWorthEmployeBoutton();
 
 	}
 	

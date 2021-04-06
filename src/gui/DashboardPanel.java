@@ -58,20 +58,16 @@ public class DashboardPanel extends JPanel {
 	 * This method creates the tasks done panel elements on the dashboard
 	 */
 	public void creatTasksDonePanel() {
-		
-		if (!isUser) {
 			result = mediator.tasksDone();
 			createCicurlarPanel(result);
-			isUser=true;
-		}
-		
 	}
 
 	/**
 	 * This method creates the wages information panel elements on the dashboard
 	 */
 	public void creatWagesInfosPanel() {
-
+		result = mediator.wagesInfo();
+		createListPanel(result);
 	}
 
 	/**
@@ -97,14 +93,16 @@ public class DashboardPanel extends JPanel {
 	 * This method creates the expensive employee panel elements on the dashboard
 	 */
 	public void creatExpensiveEmpPanel() {
-
+		result = mediator.highestFeesEmployees();
+		createListPanel(result);
 	}
 
 	/**
 	 * This method creates the formation utility panel elements on the dashboard
 	 */
-	public void creatFormationUtilityPanel() {
-
+	public void createWorthEmployeBoutton() {
+		result = mediator.worstEmployee();
+		createListPanel(result);
 	}
 
 	/**
@@ -145,7 +143,15 @@ public class DashboardPanel extends JPanel {
 	 * This method creates the pay panel elements on the dashboard
 	 */
 	public void creatPayPanel() {
-
+		setSize(800, 600);
+			result = mediator.PayFich();
+			String payslip ="";
+			for (String pay : result.getResult()) {
+				payslip= payslip+pay;
+			}
+			JTextArea test =creaeJTextArea("                                                                                                                      "+result.getPedagogie()+"\n"+payslip);
+			test.setBounds(0, 0, 780, 600);
+			add(test);
 	}
 
 	/**
@@ -221,10 +227,9 @@ public class DashboardPanel extends JPanel {
 		setLayout(resultLayout);
 		add(creaeJTextArea(result.getPedagogie()));
 		 DefaultCategoryDataset dataset = new DefaultCategoryDataset(); 
-		 System.out.println(result.getBarChartGraphic());
 		 for(DataForBarChartGraphic data : result.getBarChartGraphic()) {
 			 dataset.addValue(data.getValue(),data.getCompareValue() ,data.getWhoHaveValue() );
-			 System.out.println(data.getValue()+data.getCompareValue() +data.getWhoHaveValue());
+
 		 }
 		 JFreeChart barChart = ChartFactory.createBarChart(result.getGraphicTitle(), "", result.getValueCompare() ,
 		 dataset, PlotOrientation.VERTICAL, true, true, false); 

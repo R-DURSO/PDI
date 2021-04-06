@@ -104,13 +104,13 @@ public class ControlPanel extends JPanel {
 		});
 		
 		JButton formationUtilityButton = new JButton();
-		formationUtilityButton.setText("Efficacité des formations");
+		formationUtilityButton.setText(" Employés moins performant");
 		formationUtilityButton.setBackground(GuiData.BACK_STAT_BUTTON_COLOR);
 		formationUtilityButton.setForeground(GuiData.FORE_BUTTON_COLOR);
 		statPanel.add(formationUtilityButton);
 		formationUtilityButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				MainPanel.creatFormationUtilityPanel();
+				MainPanel.createWortEmployeButton();
 			}
 		});
 		

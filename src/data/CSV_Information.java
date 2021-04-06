@@ -4,7 +4,6 @@ package data;
  * This class is used to set information about List<String> by CSV loading
  * 
  * @author Kevin BERNARD, Raphael D'URSO, Laura FUSTINONI, Aelien MOUBECHE
- * @version
  *
  */
 public class CSV_Information {
@@ -56,10 +55,6 @@ public class CSV_Information {
 	public static int HOURLY_RATE_GER = 13;
 	public static int FORMATION_GER = 14;
 	
-	/* on dirait pas utiliser pour les fichier allemend 
- 	public static int SALARY_GER = 13;
-	public static int SALARY_RYTHM_GER = 14;
-	*/
 	public static int OVERTIME_GER = 1;
 	public static int BONUS_GER = 2;
 	public static int FEES_GER = 3;

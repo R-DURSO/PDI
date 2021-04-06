@@ -4,7 +4,6 @@ package data;
  * This class allows to manage data for circular graphic
  * 
  * @author Kevin BERNARD, Raphael D'URSO, Laura FUSTINONI, Aelien MOUBECHE
- * @version
  *
  */
 public class DataforCircularGraphic {

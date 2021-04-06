@@ -22,7 +22,6 @@ import data.GuiData;
  * This class process the elements display on the main panel and the application window
  * 
  * @author Kevin BERNARD, Raphael D'URSO, Laura FUSTINONI, Aelien MOUBECHE
- * @version
  *
  */
 public class MainPanel extends JFrame implements Runnable {

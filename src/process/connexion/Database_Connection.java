@@ -14,7 +14,6 @@ import logger.LoggerUtility;
  * This class process the database connection
  * 
  * @author Kevin BERNARD, Raphael D'URSO, Laura FUSTINONI, Aelien MOUBECHE
- * @version
  *
  */
 public class Database_Connection {

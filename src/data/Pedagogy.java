@@ -4,7 +4,6 @@ package data;
  * This class gives information about several software process for pedagogy
  * 
  * @author Kevin BERNARD, Raphael D'URSO, Laura FUSTINONI, Aelien MOUBECHE
- * @version
  *
  */
 public class Pedagogy {

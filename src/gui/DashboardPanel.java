@@ -31,13 +31,10 @@ import logger.LoggerUtility;
  * This class process the elements display on the dashboard panel
  * 
  * @author Kevin BERNARD, Raphael D'URSO, Laura FUSTINONI, Aelien MOUBECHE
- * @version
  *
  */
 public class DashboardPanel extends JPanel {
 
-//		private ElementManager manager;
-//		private PaintStrategy paintStrategy = new PaintStrategy();
 	private static Logger logger = LoggerUtility.getLogger(DashboardPanel.class, LoggerUtility.LOG_PREFERENCE);
 	private Mediator mediator = new Mediator();
 	private MediatorResult result;
@@ -170,24 +167,6 @@ public class DashboardPanel extends JPanel {
 		return jTextArea;
 		
 	}
-	/*
-	 * Prototypes histogramme
-	 * 
-
-	 * 
-	 * ChartPanel cPanel = new ChartPanel(barChart); pnl.add(cPanel);
-	 */
-
-	/*
-	 * Prototype graphique
-	 *
-
-
-	 *
-		
-		
-
-	*/
 	
 	/**
 	 * This method allows to create a panel with a circular graphic on the dashboard

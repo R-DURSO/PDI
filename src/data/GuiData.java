@@ -6,7 +6,6 @@ import java.awt.Color;
  * This class gives the GUI data
  * 
  * @author Kevin BERNARD, Raphael D'URSO, Laura FUSTINONI, Aelien MOUBECHE
- * @version
  *
  */
 

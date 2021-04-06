@@ -14,14 +14,10 @@ import javax.swing.JPanel;
 * This class process the elements display and actions on the control panel
 * 
 * @author Kevin BERNARD, Raphael D'URSO, Laura FUSTINONI, Aelien MOUBECHE
-* @version
 *
 */
 public class ControlPanel extends JPanel {
-		
-//		private ElementManager manager;
-//		private PaintStrategy paintStrategy = new PaintStrategy();
-
+	
 	/**
 	 * Constructor.
 	 * This method allows to build the control panel with buttons and define their action
@@ -40,13 +36,6 @@ public class ControlPanel extends JPanel {
 		setLayout(panelLayout);
 		statPanel.setLayout(statPanelLayout);
 		payPanel.setLayout(payPanelLayout);
-		/*statPanelLayout.preferredLayoutSize(statPanel);
-		payPanelLayout.preferredLayoutSize(payPanel);
-		panelLayout.preferredLayoutSize(payPanel);*/
-			
-		//setSize(800,200);
-		/*statPanel.setSize(400,200);
-		payPanel.setSize(400,200);*/
 		
 		JButton tasksDoneButton = new JButton();
 		tasksDoneButton.setText("Résultats de l'entreprise");
@@ -158,17 +147,6 @@ public class ControlPanel extends JPanel {
 			}
 		});
 		
-		//statPanel.add(new Button("Résultats de l'entreprise")); // tasksDoneButton
-		//statPanel.add(new Button("Moyenne des salaires")); // wagesInfosButton
-		//statPanel.add(new Button("Utilisation des congés")); // leaveUsageButton
-		//statPanel.add(new Button("Employé du mois")); // monthEmpButton
-		//statPanel.add(new Button("Employé le plus cher")); // expensiveEmpButton
-		//statPanel.add(new Button("Efficacité des formations")); // formationUtilityButton
-		//statPanel.add(new Button("Résultats par ancienneté")); // resBySeniorityButton
-		//statPanel.add(new Button("Taux des contrats")); // typeContractButton
-		//statPanel.add(new Button("Coût de l'emploi")); // employCostButton
-		//statPanel.add(new Button("Notes des salariés")); // salGradesButton
-		
 		JButton payButton = new JButton();
 		payButton.setText("Fiches de paie");
 		payButton.setBackground(GuiData.BACK_PAY_BUTTON_COLOR);
@@ -182,12 +160,7 @@ public class ControlPanel extends JPanel {
 		
 		add(statPanel);
 		add(payPanel);
+		
 		}
 	
-//		public void paintComponent(Graphics g){
-//			super.paintComponent(g);
-//			paintStrategy.paint(, g);
-			
-//		}
-		
 }

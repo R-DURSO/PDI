@@ -17,7 +17,6 @@ import logger.LoggerUtility;
  * This class process the CSV information recuperation
  * 
  * @author Kevin BERNARD, Raphael D'URSO, Laura FUSTINONI, Aelien MOUBECHE
- * @version
  *
  */
 public class CsvRecuperation {
@@ -32,9 +31,6 @@ public class CsvRecuperation {
 	 */
 	public CsvRecuperation(String PathName) {
 		try {
-			/**
-			 * we create a Path for 
-			 */
 			File csv = new File(PathName);
 			
 			if (csv.exists()) {

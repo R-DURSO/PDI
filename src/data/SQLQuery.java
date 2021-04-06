@@ -4,7 +4,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
 public class SQLQuery {
-	// string query of information's paie and static
+	// string query of information's pay and statistics
 
 	// MySQL BD
 	public static String NUMBER_OF_EMPLOYEES_MYSQL = "SELECT COUNT(employee_id) AS nbrempl FROM employee";
@@ -20,7 +20,7 @@ public class SQLQuery {
 	public static String TYPE_OF_CONTRACT_MYSQL = "SELECT contract, COUNT(contract) AS contractnb FROM contract GROUP BY contract";
 	public static String COST_OF_EMPLOYMENT_MYSQL = "SELECT SUM(hours_worked*salary) AS weeklycost FROM contract NATURAL JOIN pay";
 
-	// Postgre BD
+	// PostgreSQL BD
 	public static String NUMBER_OF_EMPLOYEES_POSTGRESQL = "SELECT COUNT(employee_id) AS nbrempl FROM Employee_PI";
 	public static String TASKS_DONE_POSTGRESQL = "SELECT department, SUM(achievements) AS achievements FROM Performances NATURAL JOIN Branch GROUP BY department";
 	public static String NOTE_EMPLOYEES_POSTGRESQL = "SELECT name, f_name, (achievements-blames) AS note FROM Employee_PI NATURAL JOIN Performances";

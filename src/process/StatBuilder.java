@@ -650,8 +650,8 @@ public class StatBuilder {
 	 * This method is used to get result of the employment cost from CSV
 	 * 
 	 * @param information : a list of data from CSV in a List<List<String>>
-	 * @param typeCSV : he FR CSV or GER CSV in a String
-	 * @return the result in a HashMap<String, Integer>
+	 * @param typeCSV : the FR CSV or GER CSV in a String
+	 * @return the result in an integer
 	 */
 	public Integer employmentCostCSV(List<List<String>> information, String typeCSV) {
 		Integer monthlyCost = 0;
@@ -688,6 +688,13 @@ public class StatBuilder {
 		return monthlyCost;
 	}
 
+	/**
+	 * This method is used to get result of the employment cost from databases
+	 * 
+	 * @param branch : the branch of the company in a String
+	 * @return the result in an integer
+	 * @throws SQLException
+	 */
 	public Integer employmentCostBD(String branch) throws SQLException {
 		Integer monthlyCost = 0;
 		Integer weeklyCost = 0;
@@ -713,7 +720,12 @@ public class StatBuilder {
 	}
 
 	/**
+	 * This method is used to determine the worst month employee from CSV
 	 * 
+	 * @param information : a list of data from CSV in a List<List<String>>
+	 * @param otherInformation : an other list of data from CSV in a List<List<String>>
+	 * @param typeCSV : the FR CSV or GER CSV in a String
+	 * @return the result in a HashMap<String, Integer>
 	 */
 	public HashMap<String, Integer> worstMonthEmployeeCSV(List<List<String>> information,
 			List<List<String>> otherInformation, String typeCSV) {
@@ -762,6 +774,13 @@ public class StatBuilder {
 		return worstNote;
 	}
 
+	/**
+	 * This method is used to determine the worst month employee from databases
+	 * 
+	 * @param branch : the branch of the company in a String
+	 * @return the result in an HashMap<String, Integer>
+	 * @throws SQLException
+	 */
 	public HashMap<String, Integer> worstMonthEmployeeBD(String branch) throws SQLException {
 		HashMap<String, Integer> worstemployee = new HashMap<String, Integer>();
 		ResultSet wrstempl;
@@ -785,8 +804,13 @@ public class StatBuilder {
 		return worstemployee;
 	}
 
+
 	/**
-	 * returns
+	 * This method is used to get the different contract types from CSV
+	 * 
+	 * @param information : a list of data from CSV in a List<List<String>>
+	 * @param typeCSV : the FR CSV or GER CSV in a String
+	 * @return the result in a HashMap<String, Integer>
 	 */
 	public HashMap<String, Integer> contractTypesCSV(List<List<String>> information, String typeCSV) {
 		HashMap<String, Integer> result = new HashMap<String, Integer>();
@@ -829,6 +853,13 @@ public class StatBuilder {
 		return result;
 	}
 
+	/**
+ 	 * This method is used to get the different contract types from databases
+ 	 * 
+ 	 * @param branch : the branch of the company in a String
+ 	 * @return the result in a HashMap<String, Integer>
+ 	 * @throws SQLException
+ 	 */
 	public HashMap<String, Integer> contractTypesBD(String branch) throws SQLException {
 		HashMap<String, Integer> contracts = new HashMap<String, Integer>();
 
@@ -850,6 +881,13 @@ public class StatBuilder {
 		return contracts;
 	}
 
+	/**
+	 * This method allows to determine wages information from databases
+	 * 
+	 * @param branch : the branch of the company in a String
+	 * @return the result in a HashMap<String, Integer>
+	 * @throws SQLException
+	 */
 	public HashMap<String, Integer> wagesInfoBd(String branch) throws SQLException {
 		HashMap<String, Integer> wagesinfo = new HashMap<String, Integer>();
 
@@ -872,6 +910,14 @@ public class StatBuilder {
 		return wagesinfo;
 	}
 
+	/**
+	 * This method allows to determine wages information from CSV
+	 * 
+	 * @param information : a list of data from CSV in a List<List<String>>
+	 * @param otherInformation : an other list of data from CSV in a List<List<String>>
+	 * @param typeCSV : the FR CSV or GER CSV in a String
+	 * @return the result in an HashMap<String, Integer>
+	 */
 	public HashMap<String, Integer> wagesInforCSV(List<List<String>> information, List<List<String>> otherInformation,
 			String typeCSV) {
 		HashMap<String, Integer> result = new HashMap<String, Integer>();
@@ -934,6 +980,14 @@ public class StatBuilder {
 		return result;
 	}
 
+	/**
+	 * This method allows to get information for pay slip from CSV
+	 * 
+	 * @param information : a list of data from CSV in a List<List<String>>
+	 * @param otherInformation : an other list of data from CSV in a List<List<String>>
+	 * @param typeCSV : the FR CSV or GER CSV in a String
+	 * @return the result in a List<String>
+	 */
 	public List<String> payFichCSV(List<List<String>> information, List<List<String>> otherInformation,
 			String typeCSV) {
 		List<String> result = new ArrayList<String>();

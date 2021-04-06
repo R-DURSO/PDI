@@ -11,22 +11,29 @@ import org.apache.log4j.Logger;
 import logger.LoggerUtility;
 
 /**
- * @author Raphaël D'URSO 
+ * This class process the database connection
+ * 
+ * @author Kevin BERNARD, Raphael D'URSO, Laura FUSTINONI, Aelien MOUBECHE
+ * @version
  *
  */
 public class Database_Connection {
+	
 	private Connection connection;
 	private static Logger logger = LoggerUtility.getLogger(Database_Connection.class, LoggerUtility.LOG_PREFERENCE);
 	private String name;
+	
 	/**
-	 * this function could be connect the java application on the database
-	 * @param url  
-	 * @param user
-	 * @param password
-	 * @param database
+	 * This method allows to connect the java application to the database
+	 * 
+	 * @param url : the URL of the database in a String
+	 * @param user : the user of the database in a String
+	 * @param password : the password of the database in a String
+	 * @param database : the type of database (MySQL or PostgreSQL)
 	 * @throws SQLException
 	 */
 	public Database_Connection(String url, String user, String password, String database) throws SQLException {
+		
 		if(database.equals(DataForRecuperation.DATABASE_POSTGRESQL) ) {
 		logger.info("Start connection to " + url);
 		connection = DriverManager.getConnection("jdbc:postgresql://" + url, user, password);
@@ -40,19 +47,32 @@ public class Database_Connection {
 			logger.info("Database "+database+" connected !");
 		}
 		name = database;
+		
 	}
+	
 	/**
-	 * this function will be used for take some data from database 
-	 * @param query
-	 * @return a Resultet will be use for take information about woker or create stats with that 
+	 * This method is used to take some data from database
+	 * 
+	 * @param query : the query to the database in a String
+	 * @return ResultSet used to take information about workers or create statistics
 	 * @throws SQLException
 	 */
 	public ResultSet Query(String query) throws SQLException {
+		
 		PreparedStatement preparedStatement = connection.prepareStatement(query);
 		return preparedStatement.executeQuery();
+		
 	}
 	
+	/**
+	 * This method allows to get the name of the database
+	 * 
+	 * @return the name of the database in a String
+	 */
 	public String getName() {
+		
 		return name;
+		
 	}
+	
 }

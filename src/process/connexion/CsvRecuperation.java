@@ -14,14 +14,22 @@ import org.apache.log4j.Logger;
 
 import logger.LoggerUtility;
 /**
+ * This class process the CSV information recuperation
  * 
- * @author Raphaël D'URSO
+ * @author Kevin BERNARD, Raphael D'URSO, Laura FUSTINONI, Aelien MOUBECHE
+ * @version
  *
  */
 public class CsvRecuperation {
 	private static Logger logger = LoggerUtility.getLogger(CsvRecuperation.class, LoggerUtility.LOG_PREFERENCE);
 	private List<String> lines = new ArrayList<String>();
 
+	/**
+	 * Constructor.
+	 * This method allows CSV data recuperation
+	 * 
+	 * @param PathName : the pathname of the CSV file in a String
+	 */
 	public CsvRecuperation(String PathName) {
 		try {
 			/**
@@ -51,10 +59,9 @@ public class CsvRecuperation {
 	}
 
 	/**
-	 * this method take the lines and separe all line and , for have information
-	 * ready to use
+	 * This method takes the lines and split all line of the FR CSV to have information ready to use
 	 * 
-	 * @return a list of information about employe on this csv
+	 * @return information about employee of this CSV in a List<List<String>>
 	 */
 	public List<List<String>> SepareLineFR() {
 		List<List<String>> employeList = new ArrayList<List<String>>();
@@ -76,10 +83,9 @@ public class CsvRecuperation {
 		return employeList;
 	}
 	/**
-	 * this method take the lines and separe all line and , for have information
-	 * ready to use
+	 * This method takes the lines and split all line of the GER CSV to have information ready to use
 	 * 
-	 * @return a list of information about employe on this csv
+	 * @return information about employee of this CSV in a List<List<String>>
 	 */
 	public List<List<String>> SepareLineGER() {
 		List<List<String>> employeList = new ArrayList<List<String>>();

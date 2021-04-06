@@ -252,13 +252,13 @@ public class StatBuilder {
 		
 		if (branch.equals("Chn")) {
 			// Get the result of Chinese query
-			leave = dataBase_MySQL.Query(SQLQuery.NOTE_EMPLOYEES_MYSQL);
+			leave = dataBase_MySQL.Query(SQLQuery.LEAVE_USAGE_MYSQL);
 			while (leave.next()) {
 				leaveUsageCount = leave.getInt("vacationusage");
 			}
 		} else {
 			// Get the result of American query
-			leave = dataBase_POSTGRE.Query(SQLQuery.NOTE_EMPLOYEES_POSTGRESQL);
+			leave = dataBase_POSTGRE.Query(SQLQuery.LEAVE_USAGE_POSTGRESQL);
 			while (leave.next()) {
 				leaveUsageCount = leave.getInt("leaveusage");
 			}

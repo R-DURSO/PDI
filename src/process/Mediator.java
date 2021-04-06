@@ -213,7 +213,7 @@ public class Mediator {
 		HashMap<String, Integer> mthemplGer = stat.monthEmployeeCSV(csv_ALL1, csv_ALL2, CSV_Information.GER_CSV);
 		HashMap<String, Integer> mthemplUsa = null;
 		HashMap<String, Integer> mthemplChn = null;
-		List<String>  allMonthEmploye =  new ArrayList<String>();
+		List<String>  allMonthEmployee =  new ArrayList<String>();
 		try {
 			mthemplChn = stat.monthEmployeeBD("Chn");
 			mthemplUsa = stat.monthEmployeeBD("Usa");
@@ -224,12 +224,10 @@ public class Mediator {
 		}
 		
 		Integer noteBest = 0 ;
-
-		HashMap<String, Integer> best = mthemplFr;
 		
 		String best_branch = "French";
 		for (String key: mthemplFr.keySet()) {
-			allMonthEmploye.add("French  "+mthemplFr.keySet()+ " : "+noteBest+"\n");
+			allMonthEmployee.add("French  "+mthemplFr.keySet()+ " : "+noteBest+"\n");
 			if (noteBest < mthemplFr.get(key)) {
 				noteBest = mthemplFr.get(key);	
 				result.setInformation(mthemplFr.keySet()+"  "+ best_branch + " : "+noteBest+"\n\n\n\n" );
@@ -238,7 +236,7 @@ public class Mediator {
 		}
 		
 		for (String key: mthemplGer.keySet()) {
-			allMonthEmploye.add("Germany  "+mthemplGer.keySet()+ " : "+noteBest+"\n");
+			allMonthEmployee.add("Germany  "+mthemplGer.keySet()+ " : "+noteBest+"\n");
 			if (noteBest < mthemplGer.get(key)) {
 				noteBest = mthemplGer.get(key);
 				best_branch="Germany";
@@ -247,7 +245,7 @@ public class Mediator {
 		}
 		
 		for (String key: mthemplUsa.keySet()) {
-			allMonthEmploye.add("USA "+mthemplUsa.keySet()+ " : "+noteBest+"\n");
+			allMonthEmployee.add("USA "+mthemplUsa.keySet()+ " : "+noteBest+"\n");
 			if( noteBest < mthemplUsa.get(key)){
 				noteBest = mthemplUsa.get(key);
 				best_branch="USA";
@@ -257,16 +255,76 @@ public class Mediator {
 		}
 		
 		for (String key: mthemplChn.keySet()) {
-			allMonthEmploye.add("Chinese "+mthemplChn.keySet()+ " : "+noteBest+"\n");
+			allMonthEmployee.add("Chinese "+mthemplChn.keySet()+ " : "+noteBest+"\n");
 			if(noteBest < mthemplChn.get(key)) {
 				noteBest = mthemplChn.get(key);
 				best_branch ="Chinese ";
 				result.setInformation(mthemplChn.keySet()+"  "+ best_branch + " : "+noteBest+"\n\n\n\n" );
 			}
 		}
-		result.setResult(allMonthEmploye);
+		result.setResult(allMonthEmployee);
 		return result;
 	}
+	
+	public MediatorResult worstEmployee() {
+		HashMap<String, Integer> wrstemplFr = stat.monthEmployeeCSV(csv_fr, null, CSV_Information.fR_CSV);
+		HashMap<String, Integer> wrstemplGer = stat.monthEmployeeCSV(csv_ALL1, csv_ALL2, CSV_Information.GER_CSV);
+		HashMap<String, Integer> wrstemplUsa = null;
+		HashMap<String, Integer> wrstemplChn = null;
+		List<String>  allWorstEmployee =  new ArrayList<String>();
+		try {
+			wrstemplChn = stat.monthEmployeeBD("Chn");
+			wrstemplUsa = stat.monthEmployeeBD("Usa");
+			
+		} catch (SQLException e) {
+			logger.error(e.getMessage());
+			logger.error("Could not get the notes for Chinese of USA succursale");
+		}
+		
+		Integer noteWorst = 0 ;
+		
+		String worst_branch = "French";
+		for (String key: wrstemplFr.keySet()) {
+			allWorstEmployee.add("French  "+wrstemplFr.keySet()+ " : "+noteWorst+"\n");
+			if (noteWorst > wrstemplFr.get(key)) {
+				noteWorst = wrstemplFr.get(key);	
+				result.setInformation(wrstemplFr.keySet()+"  "+ worst_branch + " : "+noteWorst+"\n\n\n\n" );
+			}	
+
+		}
+		
+		for (String key: wrstemplGer.keySet()) {
+			allWorstEmployee.add("Germany  "+wrstemplGer.keySet()+ " : "+noteWorst+"\n");
+			if (noteWorst > wrstemplGer.get(key)) {
+				noteWorst = wrstemplGer.get(key);
+				worst_branch="Germany";
+				result.setInformation(wrstemplGer.keySet()+"  "+ worst_branch + " : "+noteWorst+"\n\n\n\n" );
+			}
+		}
+		
+		for (String key: wrstemplUsa.keySet()) {
+			allWorstEmployee.add("USA "+wrstemplUsa.keySet()+ " : "+noteWorst+"\n");
+			if( noteWorst > wrstemplUsa.get(key)){
+				noteWorst = wrstemplUsa.get(key);
+				worst_branch="USA";
+
+				result.setInformation(wrstemplUsa.keySet()+"  "+ worst_branch + " : "+noteWorst+"\n\n\n\n" );
+				}
+		}
+		
+		for (String key: wrstemplChn.keySet()) {
+			allWorstEmployee.add("Chinese "+wrstemplChn.keySet()+ " : "+noteWorst+"\n");
+			if(noteWorst > wrstemplChn.get(key)) {
+				noteWorst = wrstemplChn.get(key);
+				worst_branch ="Chinese ";
+				result.setInformation(wrstemplChn.keySet()+"  "+ worst_branch + " : "+noteWorst+"\n\n\n\n" );
+			}
+		}
+		result.setResult(allWorstEmployee);
+		return result;
+	};
+
+	
 	
 	public MediatorResult highestFeesEmployees() {
 		HashMap<String, Integer> hfEmployeesGer = stat.feesEmployeesCSV(csv_ALL2, csv_ALL1, CSV_Information.GER_CSV);
@@ -313,14 +371,92 @@ public class Mediator {
 	public MediatorResult contractTypesCount() {
 		HashMap<String, Integer> ctcEmployeesGer = stat.contractTypesCSV(csv_ALL1, CSV_Information.GER_CSV);
 		HashMap<String, Integer> ctcEmployeesFr = stat.contractTypesCSV(csv_fr, CSV_Information.fR_CSV);
-		HashMap<String, Integer> ctcEmployeesChn;
-		HashMap<String, Integer> ctcEmployeesUsa;
+		HashMap<String, Integer> ctcEmployeesChn = null;
+		HashMap<String, Integer> ctcEmployeesUsa = null;
+		
+		HashMap<String, Integer> groupedResults = new HashMap<String, Integer>();
+		
+		List<DataForBarChartGraphic> graphics = new ArrayList<DataForBarChartGraphic>();
+		
+		Integer formerValue;
+		
+		String actualKey;
+		
+		try {
+			ctcEmployeesChn = stat.contractTypesBD("Chn");
+			ctcEmployeesUsa = stat.contractTypesBD("Usa");
+			
+			for (String key: ctcEmployeesChn.keySet()) {
+				
+				formerValue = groupedResults.get(key);
+				if (formerValue == null) {
+					formerValue = 0;
+				}
+				
+				groupedResults.put(key, formerValue + ctcEmployeesChn.get(key));
+			}
+			
+			for (String key: ctcEmployeesUsa.keySet()) {
+				
+				formerValue = groupedResults.get(key);
+				if (formerValue == null) {
+					formerValue = 0;
+				}
+				
+				groupedResults.put(key, formerValue + ctcEmployeesUsa.get(key));
+			}
+			
+		} catch (SQLException e) {
+			logger.error(e.getMessage());
+			logger.error("Could not get the results by seniority for Chinese or Usa succursale");
+		}
+		
+		for (String key: ctcEmployeesFr.keySet()) {
+			
+			if (key.equals("CDI")){
+				actualKey = "Permanent";
+			} else {
+				actualKey = "Fixed-Term";
+			}
+			
+			formerValue = groupedResults.get(actualKey);
+			if (formerValue == null) {
+				formerValue = 0;
+			}
+			
+			groupedResults.put(actualKey, formerValue + ctcEmployeesFr.get(key));
+		}
+		
+		for (String key: ctcEmployeesGer.keySet()) {
+			
+			if (key.equals("Unbefristet")){
+				actualKey = "Permanent";
+			} else {
+				actualKey = "Fixed-Term";
+			}
+			
+			formerValue = groupedResults.get(actualKey);
+			if (formerValue == null) {
+				formerValue = 0;
+			}
+			
+			groupedResults.put(actualKey, formerValue + ctcEmployeesGer.get(key));
+		}
 		
 		
+		for (String key: groupedResults.keySet())
+		{
+			graphics.add(new DataForBarChartGraphic(groupedResults.get(key), "Type ",key));
+			
+		}
+		
+		result.setGraphicTitle("Number of limited time contracts and permanent ones");
+		result.setValueCompare("Contrat number");
+		result.setBarChartGraphic(graphics);
 		
 		return result;
+
 	}
-	
 	
 	/**
 	 * This method is used for giving information about total tasks done

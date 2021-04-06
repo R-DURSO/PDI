@@ -710,12 +710,19 @@ public class StatBuilder {
  	public HashMap<String, Integer> contractTypesCSV(List<List<String>> information, String typeCSV) {
 		HashMap<String, Integer> result = new HashMap<String, Integer>();
 		String contract = "";
-
+		Integer formerValue;
+		
 		if (typeCSV.equals(CSV_Information.fR_CSV)) {
 			for (List<String> list : information) {
 				try {
 					contract = list.get(CSV_Information.CONTRACT_FRANCE);
-					result.put(contract, result.get(contract) + 1);
+					
+					formerValue = result.get(contract);
+					if (formerValue == null) {
+						formerValue = 0;
+					}
+					
+					result.put(contract, formerValue + 1);
 				} catch (Exception e) {
 					logger.error(e.getMessage());
 					logger.error("error during recuperation of French succursale's contract types");
@@ -725,7 +732,12 @@ public class StatBuilder {
 			for (List<String> list : information) {
 				try {
 					contract = list.get(CSV_Information.CONTRACT_GER);
-					result.put(contract, result.get(contract) + 1);
+					formerValue = result.get(contract);
+					if (formerValue == null) {
+						formerValue = 0;
+					}
+					
+					result.put(contract, formerValue + 1);
 				} catch (Exception e) {
 					logger.error(e.getMessage());
 					logger.error("error during recuperation of German succursale's contract types");

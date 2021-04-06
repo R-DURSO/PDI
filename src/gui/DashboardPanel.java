@@ -119,7 +119,8 @@ public class DashboardPanel extends JPanel {
 	 * This method creates the type of contract panel elements on the dashboard
 	 */
 	public void creatTypeContractPanel() {
-
+		result = mediator.contractTypesCount();
+		createBarCharGraphic(result);
 	}
 
 	/**

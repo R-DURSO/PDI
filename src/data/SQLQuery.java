@@ -3,7 +3,15 @@ package data;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
+/**
+ * This class gives all queries used for pay process and statistics generation
+ * 
+ * @author Kevin BERNARD, Raphael D'URSO, Laura FUSTINONI, Aelien MOUBECHE
+ * @version
+ *
+ */
 public class SQLQuery {
+	
 	// string query of information's paie and static
 
 	// MySQL BD
@@ -31,4 +39,5 @@ public class SQLQuery {
 	public static String RESULT_BY_SENIORITY_POSTGRESQL = "SELECT ((CURRENT_DATE - hiring_date)/365) AS seniority, AVG(achievements) FROM Contract NATURAL JOIN Performances GROUP BY seniority ORDER BY seniority";
 	public static String TYPE_OF_CONTRACT_POSTGRESQL = "SELECT contract, COUNT(contract) AS contractnb FROM Contract GROUP BY contract";
 	public static String COST_OF_EMPLOYMENT_POSTGRESQL = "";
+	
 }

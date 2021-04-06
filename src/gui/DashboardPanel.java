@@ -241,7 +241,11 @@ public class DashboardPanel extends JPanel {
 		GridLayout resultLayout = new GridLayout(1, 2);
 		setLayout(resultLayout);
 		add(creaeJTextArea(result.getPedagogie()));
-		add(creaeJTextArea(result.getInformation()));
+		String liString = "";
+		for (String  line: result.getResult()) {
+			liString =liString+line;
+		}
+		add(creaeJTextArea(result.getInformation()+liString));
 		
 	}
 	

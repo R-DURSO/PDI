@@ -212,7 +212,7 @@ public class Mediator {
 		HashMap<String, Integer> mthemplGer = stat.monthEmployeeCSV(csv_ALL1, csv_ALL2, CSV_Information.GER_CSV);
 		HashMap<String, Integer> mthemplUsa = null;
 		HashMap<String, Integer> mthemplChn = null;
-		
+		List<String>  allMonthEmploye =  new ArrayList<String>();
 		try {
 			mthemplChn = stat.monthEmployeeBD("Chn");
 			mthemplUsa = stat.monthEmployeeBD("Usa");
@@ -225,30 +225,45 @@ public class Mediator {
 		Integer noteBest = 0 ;
 
 		HashMap<String, Integer> best = mthemplFr;
+		
+		String best_branch = "French";
 		for (String key: mthemplFr.keySet()) {
-			noteBest = mthemplFr.get(key);
+			allMonthEmploye.add("French  "+mthemplFr.keySet()+ " : "+noteBest+"\n");
+			if (noteBest < mthemplFr.get(key)) {
+				noteBest = mthemplFr.get(key);	
+				result.setInformation(mthemplFr.keySet()+"  "+ best_branch + " : "+noteBest+"\n\n\n\n" );
+			}	
+
 		}
-		String best_branch = "France";
 		
 		for (String key: mthemplGer.keySet()) {
+			allMonthEmploye.add("Germany  "+mthemplGer.keySet()+ " : "+noteBest+"\n");
 			if (noteBest < mthemplGer.get(key)) {
 				noteBest = mthemplGer.get(key);
 				best_branch="Germany";
+				result.setInformation(mthemplGer.keySet()+"  "+ best_branch + " : "+noteBest+"\n\n\n\n" );
 			}
 		}
+		
 		for (String key: mthemplUsa.keySet()) {
+			allMonthEmploye.add("USA "+mthemplUsa.keySet()+ " : "+noteBest+"\n");
 			if( noteBest < mthemplUsa.get(key)){
 				noteBest = mthemplUsa.get(key);
 				best_branch="USA";
-			}
+
+				result.setInformation(mthemplUsa.keySet()+"  "+ best_branch + " : "+noteBest+"\n\n\n\n" );
+				}
 		}
+		
 		for (String key: mthemplChn.keySet()) {
+			allMonthEmploye.add("Chinese "+mthemplChn.keySet()+ " : "+noteBest+"\n");
 			if(noteBest < mthemplChn.get(key)) {
 				noteBest = mthemplChn.get(key);
-				best_branch ="China";
+				best_branch ="Chinese ";
+				result.setInformation(mthemplChn.keySet()+"  "+ best_branch + " : "+noteBest+"\n\n\n\n" );
 			}
 		}
-		result.setInformation(best_branch + " : "+noteBest );
+		result.setResult(allMonthEmploye);
 		return result;
 	}
 	
@@ -318,17 +333,31 @@ public class Mediator {
 		HashMap<Integer, Integer> groupedResults = new HashMap<Integer, Integer>();
 		
 		List<String> seniorityInformations = new ArrayList<String>();
-		
+		Integer formerValue;
 		try {
 			seniorityChn = stat.resultBySeniorityBD("Chn");
 			seniorityUsa = stat.resultBySeniorityBD("Usa");
 			
-			for (Integer key: seniorityChn.keySet()) {
-				groupedResults.put(key, groupedResults.get(key) + seniorityChn.get(key));
+			for (Integer key: seniorityFr.keySet()) {
+				
+
+				formerValue = groupedResults.get(key);
+				if (formerValue == null) {
+					formerValue = 0;
+				}
+
+				groupedResults.put(key, formerValue + seniorityFr.get(key));
 			}
-			
-			for (Integer key: seniorityUsa.keySet()) {
-				groupedResults.put(key, groupedResults.get(key) + seniorityUsa.get(key));
+
+			for (Integer key: seniorityGer.keySet()) {
+				
+
+				formerValue = groupedResults.get(key);
+				if (formerValue == null) {
+					formerValue = 0;
+				}
+
+				groupedResults.put(key, formerValue + seniorityGer.get(key));
 			}
 			
 		} catch (SQLException e) {
@@ -348,7 +377,7 @@ public class Mediator {
 		
 		for (Integer key: groupedResults.keySet())
 		{
-			textResults = "The mean results for employees with "+key+" year(s) of seniority are "+groupedResults.get(key);
+			textResults = "The mean results for employees with "+key+" year(s) of seniority are "+groupedResults.get(key)+"\n";
 			seniorityInformations.add(textResults);
 		}
 		

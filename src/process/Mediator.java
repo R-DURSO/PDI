@@ -22,10 +22,14 @@ import process.connexion.CsvRecuperation;
 import process.connexion.Database_Connection;
 
 /**
- * @author Raphaël D'URSO
- * @author Aëlien MOUBECHE
+ * This class contains the heterogeneous data mediator
+ * 
+ * @author Kevin BERNARD, Raphael D'URSO, Laura FUSTINONI, Aelien MOUBECHE
+ * @version
+ *
  */
 public class Mediator {
+	
 	private static Logger logger = LoggerUtility.getLogger(Mediator.class, LoggerUtility.LOG_PREFERENCE);
 	// we start the connection with the database
 	private Database_Connection dataBase_MySQL;
@@ -41,9 +45,11 @@ public class Mediator {
 	private StatBuilder stat;
 
 	/**
-	 * Connect to the different sources of data
+	 * Constructor.
+	 * This method allows to connect to the different sources of data
 	 */
 	public Mediator() {
+		
 		try {
 			dataBase_MySQL = new Database_Connection(DataForRecuperation.DATABASE_URL_MYSQL,
 					DataForRecuperation.DATABASE_USER_MYSQL, DataForRecuperation.DATABASE_PASSWORD_MYSQL,
@@ -78,13 +84,16 @@ public class Mediator {
 		csv_ALL1.remove(0);
 		csv_ALL2.remove(0);
 		csv_fr.remove(0);
+		
 	}
 
-	
 	/**
-	 * Used for telling how many leaves are taken branch by branch
+	 * This method is used for telling how many leaves are taken branch by branch
+	 * 
+	 * @return the result in a MediatorResult
 	 */
 	public MediatorResult leaveUsage() {
+		
 		Integer leaveUsageGer = stat.leaveUsageCSV(csv_ALL2, CSV_Information.GER_CSV);
 		Integer leaveUsageFr = stat.leaveUsageCSV(csv_fr, CSV_Information.fR_CSV);
 		Integer leaveUsageUsa = 0;
@@ -143,12 +152,16 @@ public class Mediator {
 		
 		
 		return result;
+		
 	}
-
+	
 	/**
-	 * Used to get a List with the name and note of all salaries from the different branches
+	 * This method is used to get a List with the name and note of all salaries from the different branches
+	 * 
+	 * @return the result in a MediatorResult
 	 */
 	public MediatorResult SalaryNote() {
+		
 		List<String> noteList = new ArrayList<String>();
 		HashMap<String, Integer> notesFr = stat.noteEmployeeCSV(csv_fr, null, CSV_Information.fR_CSV);
 		HashMap<String, Integer> notesGer = stat.noteEmployeeCSV(csv_ALL1, csv_ALL2, CSV_Information.GER_CSV);
@@ -187,12 +200,14 @@ public class Mediator {
 		result.setResult(noteList);
 		result.setPedagogie(Pedagogy.statSalaryNote); 
 		return result;
+		
 	}
 
 	/**
-	 * Used for telling the employee of the month for each branch and global
+	 * This method is used for telling the employee of the month for each branch and global
 	 */
 	public void MonthSalary() {
+		
 		HashMap<String, Integer> mthemplFr = stat.monthEmployeeCSV(csv_fr, null, CSV_Information.fR_CSV);
 		HashMap<String, Integer> mthemplGer = stat.monthEmployeeCSV(csv_ALL1, csv_ALL2, CSV_Information.GER_CSV);
 		HashMap<String, Integer> mthemplUsa = null;
@@ -221,16 +236,15 @@ public class Mediator {
 			}
 		}
 		
-		
-		
 	}
 	
 	/**
-	 * Used for giving informations about total tasks done
-	 * @return 
-	 * @throws SQLException 
+	 * This method is used for giving information about total tasks done
+	 * 
+	 * @return the information in a MediatorResult
 	 */
 	public MediatorResult TasksDone() {
+		
 		HashMap<String, Integer> tasksDoneFr = stat.taskDoneCSV(csv_fr, CSV_Information.fR_CSV);
 		HashMap<String, Integer> tasksDoneGer = stat.taskDoneCSV(csv_ALL2, CSV_Information.GER_CSV);
 		HashMap<String, Integer> tasksDoneChn = null;
@@ -275,17 +289,25 @@ public class Mediator {
 			result.setInformation(best_succursale+ " succursale is the succursale with the most achievements : "+String.valueOf(max_achv));
 		}
 		return result;
+		
 	}
 	
+	/**
+	 * This method is used to print a message on the std out
+	 * 
+	 * @param message : the message to print in a String
+	 */
 	private void printf(String message) {
+		
 		// TODO Auto-generated method stub
 		
 	}
 
 	/**
-	 * Cleaning
+	 * This method is used for cleaning the resultSet of MySQL and PostgreSQL databases
 	 */
 	public void clean() {
+		
 		try {
 			resultSetMYSQL.deleteRow();
 			resultSetPOSTGRESQL.deleteRow();
@@ -295,4 +317,5 @@ public class Mediator {
 		}
 
 	}
+	
 }

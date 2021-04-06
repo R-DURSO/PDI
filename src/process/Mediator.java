@@ -319,16 +319,30 @@ public class Mediator {
 		
 		List<String> seniorityInformations = new ArrayList<String>();
 		
+		Integer formerValue;
+		
 		try {
 			seniorityChn = stat.resultBySeniorityBD("Chn");
 			seniorityUsa = stat.resultBySeniorityBD("Usa");
 			
 			for (Integer key: seniorityChn.keySet()) {
-				groupedResults.put(key, groupedResults.get(key) + seniorityChn.get(key));
+				
+				formerValue = groupedResults.get(key);
+				if (formerValue == null) {
+					formerValue = 0;
+				}
+				
+				groupedResults.put(key, formerValue + seniorityChn.get(key));
 			}
 			
 			for (Integer key: seniorityUsa.keySet()) {
-				groupedResults.put(key, groupedResults.get(key) + seniorityUsa.get(key));
+				
+				formerValue = groupedResults.get(key);
+				if (formerValue == null) {
+					formerValue = 0;
+				}
+				
+				groupedResults.put(key, formerValue + seniorityUsa.get(key));
 			}
 			
 		} catch (SQLException e) {

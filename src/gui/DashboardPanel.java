@@ -88,7 +88,9 @@ public class DashboardPanel extends JPanel {
 	 * This method creates the month employee panel elements on the dashboard
 	 */
 	public void creatMonthEmpPanel() {
-
+		result = mediator.MonthSalary();
+		createTextPanel(result);
+		
 	}
 
 	/**

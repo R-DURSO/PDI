@@ -132,22 +132,22 @@ public class Mediator {
 		
 		
 		float highest_avg = averageLUFr;
-		String laziest_succursale = "France";
+		String laziest_succursale = "French";
 		
 		if (averageLUGer > highest_avg) {
 			highest_avg =averageLUGer;
-			laziest_succursale = "Germany";
+			laziest_succursale = "German";
 					
 		} else if (averageLUChn > highest_avg) {
 			highest_avg =averageLUChn;
-			laziest_succursale = "China";
+			laziest_succursale = "Chinese";
 			
 		} else if (averageLUUsa > highest_avg) {
 			highest_avg =averageLUUsa;
 			laziest_succursale = "USA";
 		}
 		
-		result.setInformation(laziest_succursale+" succursale is the succursale with the most leave usage out of the 4 with an average of "+ highest_avg +" on a total of "+ averageLeaveUsage);
+		result.setInformation(laziest_succursale+" succursale is the succursale with the most leave usage out of the 4 with an average of "+ highest_avg +" for a global average of "+ averageLeaveUsage);
 		result.setPedagogie(Pedagogy.statLeaveUsage);
 		
 		
@@ -206,7 +206,7 @@ public class Mediator {
 	/**
 	 * This method is used for telling the employee of the month for each branch and global
 	 */
-	public void MonthSalary() {
+	public MediatorResult MonthSalary() {
 		
 		HashMap<String, Integer> mthemplFr = stat.monthEmployeeCSV(csv_fr, null, CSV_Information.fR_CSV);
 		HashMap<String, Integer> mthemplGer = stat.monthEmployeeCSV(csv_ALL1, csv_ALL2, CSV_Information.GER_CSV);
@@ -232,10 +232,24 @@ public class Mediator {
 		
 		for (String key: mthemplGer.keySet()) {
 			if (noteBest < mthemplGer.get(key)) {
-				
+				noteBest = mthemplGer.get(key);
+				best_branch="Germany";
 			}
 		}
-		
+		for (String key: mthemplUsa.keySet()) {
+			if( noteBest < mthemplUsa.get(key)){
+				noteBest = mthemplUsa.get(key);
+				best_branch="USA";
+			}
+		}
+		for (String key: mthemplChn.keySet()) {
+			if(noteBest < mthemplChn.get(key)) {
+				noteBest = mthemplChn.get(key);
+				best_branch ="China";
+			}
+		}
+		result.setInformation(best_branch + " : "+noteBest );
+		return result;
 	}
 	
 	/**

@@ -139,7 +139,7 @@ public class StatBuilder {
 			monthempl = dataBase_POSTGRE.Query(SQLQuery.MONTH_EMPLOYEE_POSTGRESQL);
 		}
 		while (monthempl.next()) {
-			note_mthempl = monthempl.getInt("note");
+			note_mthempl = monthempl.getInt("maxperf");
 			name_mthempl = monthempl.getString("name") + " " + monthempl.getString("f_name");
 		}
 		

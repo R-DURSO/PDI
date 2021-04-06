@@ -333,31 +333,31 @@ public class Mediator {
 		HashMap<Integer, Integer> groupedResults = new HashMap<Integer, Integer>();
 		
 		List<String> seniorityInformations = new ArrayList<String>();
+		
 		Integer formerValue;
+		
 		try {
 			seniorityChn = stat.resultBySeniorityBD("Chn");
 			seniorityUsa = stat.resultBySeniorityBD("Usa");
 			
-			for (Integer key: seniorityFr.keySet()) {
+			for (Integer key: seniorityChn.keySet()) {
 				
-
 				formerValue = groupedResults.get(key);
 				if (formerValue == null) {
 					formerValue = 0;
 				}
-
-				groupedResults.put(key, formerValue + seniorityFr.get(key));
+				
+				groupedResults.put(key, formerValue + seniorityChn.get(key));
 			}
-
-			for (Integer key: seniorityGer.keySet()) {
+			
+			for (Integer key: seniorityUsa.keySet()) {
 				
-
 				formerValue = groupedResults.get(key);
 				if (formerValue == null) {
 					formerValue = 0;
 				}
-
-				groupedResults.put(key, formerValue + seniorityGer.get(key));
+				
+				groupedResults.put(key, formerValue + seniorityUsa.get(key));
 			}
 			
 		} catch (SQLException e) {
@@ -366,11 +366,23 @@ public class Mediator {
 		}
 		
 		for (Integer key: seniorityFr.keySet()) {
-			groupedResults.put(key, groupedResults.get(key) + seniorityFr.get(key));
+			
+			formerValue = groupedResults.get(key);
+			if (formerValue == null) {
+				formerValue = 0;
+			}
+			
+			groupedResults.put(key, formerValue + seniorityFr.get(key));
 		}
 		
 		for (Integer key: seniorityGer.keySet()) {
-			groupedResults.put(key, groupedResults.get(key) + seniorityGer.get(key));
+			
+			formerValue = groupedResults.get(key);
+			if (formerValue == null) {
+				formerValue = 0;
+			}
+			
+			groupedResults.put(key, formerValue + seniorityGer.get(key));
 		}
 		
 		String textResults;

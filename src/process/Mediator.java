@@ -310,11 +310,11 @@ public class Mediator {
 			seniorityUsa = stat.resultBySeniorityBD("Usa");
 			
 			for (Integer key: seniorityChn.keySet()) {
-				groupedResults.put(key, seniorityChn.get(key));
+				groupedResults.put(key, groupedResults.get(key) + seniorityChn.get(key));
 			}
 			
 			for (Integer key: seniorityUsa.keySet()) {
-				groupedResults.put(key, seniorityUsa.get(key));
+				groupedResults.put(key, groupedResults.get(key) + seniorityUsa.get(key));
 			}
 			
 		} catch (SQLException e) {
@@ -323,11 +323,11 @@ public class Mediator {
 		}
 		
 		for (Integer key: seniorityFr.keySet()) {
-			groupedResults.put(key, seniorityFr.get(key));
+			groupedResults.put(key, groupedResults.get(key) + seniorityFr.get(key));
 		}
 		
 		for (Integer key: seniorityGer.keySet()) {
-			groupedResults.put(key, seniorityGer.get(key));
+			groupedResults.put(key, groupedResults.get(key) + seniorityGer.get(key));
 		}
 		
 		String textResults;

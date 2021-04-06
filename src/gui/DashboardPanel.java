@@ -109,7 +109,8 @@ public class DashboardPanel extends JPanel {
 	 * This method creates the result by seniority panel elements on the dashboard
 	 */
 	public void creatResBySeniorityPanel() {
-
+		result = mediator.resultsBySeniority();
+		createListPanel(result);
 	}
 
 	/**

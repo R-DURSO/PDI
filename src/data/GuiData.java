@@ -2,6 +2,14 @@ package data;
 
 import java.awt.Color;
 
+/**
+ * This class gives the GUI data
+ * 
+ * @author Kevin BERNARD, Raphael D'URSO, Laura FUSTINONI, Aelien MOUBECHE
+ * @version
+ *
+ */
+
 public class GuiData {
 	
 	// GUI elements dimensions
@@ -21,7 +29,5 @@ public class GuiData {
 	public static final Color BACK_PAY_BUTTON_COLOR = Color.GRAY;
 	
 	public static final Color FORE_BUTTON_COLOR = Color.WHITE;
-	
-	
 	
 }

@@ -1,8 +1,10 @@
 package data;
 
 /**
+ * This class is used to set information about List<String> by CSV loading
  * 
- * @author raphael D'Urso use for set information about List<String> by CSV load
+ * @author Kevin BERNARD, Raphael D'URSO, Laura FUSTINONI, Aelien MOUBECHE
+ * @version
  *
  */
 public class CSV_Information {

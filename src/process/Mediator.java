@@ -351,18 +351,30 @@ public class Mediator {
 		}
 		
 		for (Integer key: seniorityFr.keySet()) {
-			groupedResults.put(key, groupedResults.get(key) + seniorityFr.get(key));
+			
+			formerValue = groupedResults.get(key);
+			if (formerValue == null) {
+				formerValue = 0;
+			}
+			
+			groupedResults.put(key, formerValue + seniorityFr.get(key));
 		}
 		
 		for (Integer key: seniorityGer.keySet()) {
-			groupedResults.put(key, groupedResults.get(key) + seniorityGer.get(key));
+			
+			formerValue = groupedResults.get(key);
+			if (formerValue == null) {
+				formerValue = 0;
+			}
+			
+			groupedResults.put(key, formerValue + seniorityGer.get(key));
 		}
 		
 		String textResults;
 		
 		for (Integer key: groupedResults.keySet())
 		{
-			textResults = "The mean results for employees with "+key+" year(s) of seniority are "+groupedResults.get(key);
+			textResults = "The mean results for employees with "+key+" year(s) of seniority are "+groupedResults.get(key)+"\n";
 			seniorityInformations.add(textResults);
 		}
 		

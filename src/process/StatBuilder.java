@@ -430,6 +430,8 @@ public class StatBuilder {
 		String hiring_date;
 		String employeeID;
 		
+		Integer formerValue;
+		
 		if (typeCSV.equals(CSV_Information.fR_CSV)) {
 			for (List<String> list : information) {
 				try {
@@ -438,7 +440,12 @@ public class StatBuilder {
 					
 					results = Integer.parseInt(list.get(CSV_Information.ACHIEVEMENTS_FRANCE));
 					
-					seniorityResults.put(seniority, seniorityResults.get(seniority) + results);
+					formerValue = seniorityResults.get(seniority);
+					if (formerValue == null) {
+						formerValue = 0;
+					}
+					
+					seniorityResults.put(seniority, formerValue + results);
 					
 				} catch (Exception e) {
 					logger.error("error during recuperation of French succursale's results by seniority");
@@ -456,7 +463,13 @@ public class StatBuilder {
 					for (List<String> employe : otherInformation) {
 						if ((employe.get(CSV_Information.ID_GER)).equals(employeeID)) {
 							results = Integer.parseInt(employe.get(CSV_Information.ACHIEVEMENTS_GER));
-							seniorityResults.put(seniority, seniorityResults.get(seniority) + results);
+							
+							formerValue = seniorityResults.get(seniority);
+							if (formerValue == null) {
+								formerValue = 0;
+							}
+							
+							seniorityResults.put(seniority, formerValue + results);
 						}
 
 					}
@@ -554,6 +567,7 @@ public class StatBuilder {
 					contract = list.get(CSV_Information.CONTRACT_FRANCE);
 					result.put(contract, result.get(contract) + 1);
 				} catch (Exception e) {
+					logger.error(e.getMessage());
 					logger.error("error during recuperation of French succursale's contract types");
 				}
 			}
@@ -563,6 +577,7 @@ public class StatBuilder {
 					contract = list.get(CSV_Information.CONTRACT_GER);
 					result.put(contract, result.get(contract) + 1);
 				} catch (Exception e) {
+					logger.error(e.getMessage());
 					logger.error("error during recuperation of German succursale's contract types");
 				}
 			}

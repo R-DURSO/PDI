@@ -265,6 +265,7 @@ public class Mediator {
 			}
 		}
 		result.setResult(allMonthEmployee);
+		result.setPedagogie(Pedagogy.statMonthEmployee); 
 		return result;
 	}
 	
@@ -328,6 +329,7 @@ public class Mediator {
 			}
 		}
 		result.setResult(allWorstEmployee);
+		result.setPedagogie(Pedagogy.statWorstEmployee); 
 		return result;
 	};
 
@@ -373,8 +375,7 @@ public class Mediator {
 		}
 		
 		result.setResult(hfEmployees);
-		result.setPedagogie("yo");
-		
+		result.setPedagogie(Pedagogy.statHighestFeesEmployee); 		
 		
 		return result;
 	}
@@ -469,7 +470,7 @@ public class Mediator {
 		result.setGraphicTitle("Number of limited time contracts and permanent ones");
 		result.setValueCompare("Contrat number");
 		result.setBarChartGraphic(graphics);
-		
+		result.setPedagogie(Pedagogy.statContractTypes); 
 		return result;
 
 	}
@@ -609,7 +610,7 @@ public class Mediator {
 		result.setValueCompare("mean result");
 		result.setBarChartGraphic(graphics);
 		result.setResult(seniorityInformations);
-		
+		result.setPedagogie(Pedagogy.statResultBySeniority); 
 		return result;
 	}
 
@@ -642,7 +643,7 @@ public class Mediator {
 
 			mostCost =+ employmentcostGer;
 
-		result.setPedagogie("a remplir");
+			result.setPedagogie(Pedagogy.statEmploymentCost); 
 		result.setInformation("total employment cost : "+mostCost);
 		result.setCicularGraphic(graphics);
 		result.setGraphicTitle("Employment cost comparison for the four branches");
@@ -681,7 +682,7 @@ public class Mediator {
 		for(String key : wagesinfoUse.keySet()) {
 			wage.add(key+" "+wagesinfoUse.get(key)+"\n");
 		}
-		result.setPedagogie("a faire");
+		result.setPedagogie(Pedagogy.statWagesInfo); 
 		result.setResult(wage);
 		return result;
 	}

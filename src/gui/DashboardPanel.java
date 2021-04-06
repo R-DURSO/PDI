@@ -60,7 +60,7 @@ public class DashboardPanel extends JPanel {
 	public void creatTasksDonePanel() {
 		
 		if (!isUser) {
-			result = mediator.TasksDone();
+			result = mediator.tasksDone();
 			createCicurlarPanel(result);
 			isUser=true;
 		}
@@ -88,7 +88,7 @@ public class DashboardPanel extends JPanel {
 	 * This method creates the month employee panel elements on the dashboard
 	 */
 	public void creatMonthEmpPanel() {
-		result = mediator.MonthSalary();
+		result = mediator.monthEmployee();
 		createTextPanel(result);
 		
 	}
@@ -136,7 +136,7 @@ public class DashboardPanel extends JPanel {
 	 */
 	public void creatSalGradesPanel() {
 		
-		result = mediator.SalaryNote();
+		result = mediator.employeeNote();
 		createListPanel(result);
 		
 	}

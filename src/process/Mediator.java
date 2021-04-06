@@ -161,7 +161,7 @@ public class Mediator {
 	 * 
 	 * @return the result in a MediatorResult
 	 */
-	public MediatorResult SalaryNote() {
+	public MediatorResult employeeNote() {
 		
 		List<String> noteList = new ArrayList<String>();
 		HashMap<String, Integer> notesFr = stat.noteEmployeeCSV(csv_fr, null, CSV_Information.fR_CSV);
@@ -207,7 +207,7 @@ public class Mediator {
 	/**
 	 * This method is used for telling the employee of the month for each branch and global
 	 */
-	public MediatorResult MonthSalary() {
+	public MediatorResult monthEmployee() {
 		
 		HashMap<String, Integer> mthemplFr = stat.monthEmployeeCSV(csv_fr, null, CSV_Information.fR_CSV);
 		HashMap<String, Integer> mthemplGer = stat.monthEmployeeCSV(csv_ALL1, csv_ALL2, CSV_Information.GER_CSV);
@@ -463,7 +463,7 @@ public class Mediator {
 	 * 
 	 * @return the information in a MediatorResult
 	 */
-	public MediatorResult TasksDone() {
+	public MediatorResult tasksDone() {
 		
 		HashMap<String, Integer> tasksDoneFr = stat.taskDoneCSV(csv_fr, CSV_Information.fR_CSV);
 		HashMap<String, Integer> tasksDoneGer = stat.taskDoneCSV(csv_ALL2, CSV_Information.GER_CSV);
